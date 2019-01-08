@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+// import { HttpModule, HttpClientModule } from '@angular/http';
 import { AgmCoreModule } from '@agm/core';
+import { HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 
 import { MDBSpinningPreloader, MDBBootstrapModulesPro, ToastModule } from 'ng-uikit-pro-standard';
@@ -12,7 +13,7 @@ import { NavigationComponent } from './webSiteComponents/navigation/navigation.c
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './webSiteComponents/home/home.component';
 import { JumbotronComponent } from './webSiteComponents/jumbotron/jumbotron.component';
-import { CreateComponent } from './services/create/create.component';
+
 import { ContactComponent } from './webSiteComponents/contact/contact.component';
 import { BlogComponent } from './webSiteComponents/blog/blog.component';
 import { DashboardComponent } from './appComponents/dashboard/dashboard.component';
@@ -21,6 +22,7 @@ import { RegisterComponent } from './authComponents/register/register.component'
 import { FeaturesComponent } from './webSiteComponents/features/features.component';
 import { ProjectsComponent } from './webSiteComponents/projects/projects.component';
 import { DevelopersComponent } from './webSiteComponents/developers/developers.component';
+import { FooterComponent } from './webSiteComponents/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,6 @@ import { DevelopersComponent } from './webSiteComponents/developers/developers.c
     NavigationComponent,
     HomeComponent,
     JumbotronComponent,
-    CreateComponent,
     ContactComponent,
     BlogComponent,
     DashboardComponent,
@@ -36,14 +37,15 @@ import { DevelopersComponent } from './webSiteComponents/developers/developers.c
     RegisterComponent,
     FeaturesComponent,
     ProjectsComponent,
-    DevelopersComponent
+    DevelopersComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     ToastModule.forRoot(),
     MDBBootstrapModulesPro.forRoot(),
     AgmCoreModule.forRoot({
