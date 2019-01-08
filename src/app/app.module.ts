@@ -18,6 +18,9 @@ import { BlogComponent } from './webSiteComponents/blog/blog.component';
 import { DashboardComponent } from './appComponents/dashboard/dashboard.component';
 import { LoginComponent } from './authComponents/login/login.component';
 import { RegisterComponent } from './authComponents/register/register.component';
+import { FeaturesComponent } from './webSiteComponents/features/features.component';
+import { ProjectsComponent } from './webSiteComponents/projects/projects.component';
+import { DevelopersComponent } from './webSiteComponents/developers/developers.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { RegisterComponent } from './authComponents/register/register.component'
     BlogComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FeaturesComponent,
+    ProjectsComponent,
+    DevelopersComponent
   ],
   imports: [
     BrowserModule,
