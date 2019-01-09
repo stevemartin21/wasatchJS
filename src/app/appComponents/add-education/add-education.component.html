@@ -3,7 +3,7 @@
 <header>
 
   <!-- Full Page Intro -->
-  <div class="view" style="background-image: url('../../../assets/databig.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+  <div class="view" style="background-image: url('../../../assets/code.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <!-- Mask & flexbox options-->
     <div class="mask rgba-indigo-strong d-flex justify-content-center align-items-center">
       <!-- Content -->
@@ -29,47 +29,53 @@
                 <!--Header-->
                 <div class="text-center">
                   <h3 class="dark-grey-text">
-                    <strong>My Profile</strong>
+                    <strong>Add Education</strong>
                   </h3>
                   <hr>
                 </div>
                 <!--Body-->
-                <form [formGroup]='form' (submit)='createProfile()' >
+                <form [formGroup]='form' (submit)='createEducation()' >
 
                 <div class="md-form">
 
-                  <input type="text" id="form1" class="form-control" mdbInputDirective formControlName='fname'>
-                  <label for="form1"> First Name</label>
+                  <input type="text" id="form1" class="form-control" mdbInputDirective formControlName='schoolName'>
+                  <label for="form1">School</label>
                 </div>
 
                 <div class="md-form">
 
-                  <input type="text" id="form2" class="form-control" mdbInputDirective formControlName='lname'>
-                  <label for="form2"> Last Name</label>
+                  <input type="text" id="form2" class="form-control" mdbInputDirective formControlName='schoolType'>
+                  <label for="form2">School Type</label>
                 </div>
 
                 <div class="md-form">
 
-                  <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='phone'>
-                  <label for="form3"> Phone</label>
+                  <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='degree'>
+                  <label for="form3">Degree Name</label>
                 </div>
 
                 <div class="md-form">
 
-                  <input type="text" id="form4" class="form-control" mdbInputDirective formControlName='email'>
-                  <label for="form4"> Email</label>
+                  <input type="text" id="form4" class="form-control" mdbInputDirective formControlName='degreeType'>
+                  <label for="form4">Type of degree</label>
                 </div>
 
                 <div class="md-form">
 
-                  <input type="text" id="form5" class="form-control" mdbInputDirective formControlName='webSite'>
-                  <label for="form5">Web Site</label>
+                  <input type="text" id="form5" class="form-control" mdbInputDirective formControlName='from'>
+                  <label for="form5">From</label>
                 </div>
 
                 <div class="md-form">
 
-                    <input type="text" id="form6" class="form-control" mdbInputDirective formControlName='gitHub'>
-                    <label for="form6">Git Hub </label>
+                    <input type="text" id="form6" class="form-control" mdbInputDirective formControlName='to'>
+                    <label for="form6">To </label>
+                  </div>
+
+                  <div class="md-form">
+
+                    <input type="text" id="form6" class="form-control" mdbInputDirective formControlName='notes'>
+                    <label for="form6">Additional Notes </label>
                   </div>
 
 
@@ -94,5 +100,6 @@
   <!-- Full Page Intro -->
 </header>
 <!-- Main navigation -->
+
 
 

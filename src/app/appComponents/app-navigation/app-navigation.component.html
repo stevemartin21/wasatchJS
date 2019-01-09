@@ -1,0 +1,46 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark elegant-color">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" routerLink="/">Wasatch JS</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/dashboard" >Dashboard<span class="sr-only" >(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/developers">Developers</a>
+          </li>
+
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown" dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Add to Profile<span class="caret"></span></a>
+            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addEducation">Add Education</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addExperience">Add Experience</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addSkill">Add Skill</a>
+                <div class="divider dropdown-divider"></div>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addProject">Add Project</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addContent">Add Content</a>
+            </div>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link waves-light btn btn-default" mdbWavesEffect (click)='logout()'  >Logout</button>
+      </li>
+      </ul>
+      <!-- Links -->
+
+<!-- Search form -->
+
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->

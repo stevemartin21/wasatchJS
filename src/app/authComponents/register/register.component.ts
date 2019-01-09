@@ -29,6 +29,13 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
+    this.createDataService.createUser(
+      this.form.value.name,
+      this.form.value.email,
+      this.form.value.password
+    );
+    this.form.reset();
+
     console.log(this.form.value);
 
 

@@ -23,6 +23,13 @@ import { FeaturesComponent } from './webSiteComponents/features/features.compone
 import { ProjectsComponent } from './webSiteComponents/projects/projects.component';
 import { DevelopersComponent } from './webSiteComponents/developers/developers.component';
 import { FooterComponent } from './webSiteComponents/footer/footer.component';
+import { AddProfileComponent } from './appComponents/add-profile/add-profile.component';
+import { AddExperienceComponent } from './appComponents/add-experience/add-experience.component';
+import { AddEducationComponent } from './appComponents/add-education/add-education.component';
+import { AddSkillComponent } from './appComponents/add-skill/add-skill.component';
+import { AddContentComponent } from './appComponents/add-content/add-content.component';
+import { AppNavigationComponent } from './appComponents/app-navigation/app-navigation.component';
+import { AddProjectComponent } from './appComponents/add-project/add-project.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +45,14 @@ import { FooterComponent } from './webSiteComponents/footer/footer.component';
     FeaturesComponent,
     ProjectsComponent,
     DevelopersComponent,
-    FooterComponent
+    FooterComponent,
+    AddProfileComponent,
+    AddExperienceComponent,
+    AddEducationComponent,
+    AddSkillComponent,
+    AddContentComponent,
+    AppNavigationComponent,
+    AddProjectComponent
   ],
   imports: [
     BrowserModule,
