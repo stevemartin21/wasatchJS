@@ -34,51 +34,37 @@
                   <hr>
                 </div>
                 <!--Body-->
-                <form [formGroup]='form' (submit)='createEducation()' >
+                <form [formGroup]='form' (submit)='createExperience()' >
 
                 <div class="md-form">
 
-                  <input type="text" id="form1" class="form-control" mdbInputDirective formControlName='schoolName'>
-                  <label for="form1">School</label>
+                  <input type="text" id="form1" class="form-control" mdbInputDirective formControlName='employer'>
+                  <label for="form1">Employer</label>
                 </div>
 
                 <div class="md-form">
 
-                  <input type="text" id="form2" class="form-control" mdbInputDirective formControlName='schoolType'>
-                  <label for="form2">School Type</label>
+                  <input type="text" id="form2" class="form-control" mdbInputDirective formControlName='jobTitle'>
+                  <label for="form2">Job Title</label>
                 </div>
 
                 <div class="md-form">
 
-                  <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='degree'>
-                  <label for="form3">Degree Name</label>
+                  <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='to'>
+                  <label for="form3">To</label>
                 </div>
 
                 <div class="md-form">
 
-                  <input type="text" id="form4" class="form-control" mdbInputDirective formControlName='degreeType'>
-                  <label for="form4">Type of degree</label>
+                  <input type="text" id="form4" class="form-control" mdbInputDirective formControlName='from'>
+                  <label for="form4">From</label>
                 </div>
 
                 <div class="md-form">
 
-                  <input type="text" id="form5" class="form-control" mdbInputDirective formControlName='from'>
-                  <label for="form5">From</label>
+                  <input type="text" id="form5" class="form-control" mdbInputDirective formControlName='description'>
+                  <label for="form5">Description</label>
                 </div>
-
-                <div class="md-form">
-
-                    <input type="text" id="form6" class="form-control" mdbInputDirective formControlName='to'>
-                    <label for="form6">To </label>
-                  </div>
-
-                  <div class="md-form">
-
-                    <input type="text" id="form6" class="form-control" mdbInputDirective formControlName='notes'>
-                    <label for="form6">Additional Notes </label>
-                  </div>
-
-
                 <div class="text-center mt-3">
                   <button class='btn btn-elegant' mdbWavesEffect>Send</button>
                   <hr>

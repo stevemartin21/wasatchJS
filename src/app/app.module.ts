@@ -30,6 +30,7 @@ import { AddSkillComponent } from './appComponents/add-skill/add-skill.component
 import { AddContentComponent } from './appComponents/add-content/add-content.component';
 import { AppNavigationComponent } from './appComponents/app-navigation/app-navigation.component';
 import { AddProjectComponent } from './appComponents/add-project/add-project.component';
+import { ManageEducationComponent } from './appComponents/manage-education/manage-education.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AddProjectComponent } from './appComponents/add-project/add-project.com
     AddSkillComponent,
     AddContentComponent,
     AppNavigationComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    ManageEducationComponent
   ],
   imports: [
     BrowserModule,

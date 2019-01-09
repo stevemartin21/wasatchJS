@@ -31,6 +31,19 @@
             </div>
         </li>
 
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          Manage Profile<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+              <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/manageEducation"> Education</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/manageExperience"> Experience</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/manageSkill"> Skills</a>
+              <div class="divider dropdown-divider"></div>
+              <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/manageProject"> Projects</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/manageContent"> Content</a>
+          </div>
+      </li>
+
         <li class="nav-item">
           <button class="nav-link waves-light btn btn-default" mdbWavesEffect (click)='logout()'  >Logout</button>
       </li>

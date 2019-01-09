@@ -1,0 +1,38 @@
+<app-app-navigation></app-app-navigation>
+
+<div class='container'>
+
+<h1 class='text-center'>Manage Education</h1>
+
+
+
+<ul class='list-group' *ngFor='let education of educations'>
+
+    <li class='list-group-item mt-3 mb-3'>
+      <div class='card'>
+
+        <div class='card-title'>Education</div>
+        <div>{{education.schoolName}}</div>
+        <div>{{education.schoolType}}</div>
+        <div>{{education.degree}}</div>
+        <div>{{education.degreeType}}</div>
+        <div>{{education.from}}</div>
+        <div>{{education.to}}</div>
+        <div>{{education.notes}}</div>
+        <a class='btn btn-success'>Edit</a>
+        <button class='btn btn-danger'>Delete</button>
+
+
+      </div>
+
+
+    </li>
+
+
+
+
+
+
+</ul>
+
+</div>

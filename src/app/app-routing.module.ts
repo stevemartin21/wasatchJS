@@ -10,6 +10,9 @@ import { AddExperienceComponent } from './appComponents/add-experience/add-exper
 import { AddSkillComponent } from './appComponents/add-skill/add-skill.component';
 import { AddContentComponent } from './appComponents/add-content/add-content.component';
 import { AddProjectComponent } from './appComponents/add-project/add-project.component';
+import { ManageEducationComponent } from './appComponents/manage-education/manage-education.component';
+
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,7 +24,8 @@ const routes: Routes = [
   {path: 'addExperience', component: AddExperienceComponent},
   {path: 'addSkill', component:  AddSkillComponent},
   {path: 'addContent', component: AddContentComponent},
-  {path: 'addProject', component: AddProjectComponent}
+  {path: 'addProject', component: AddProjectComponent},
+  {path: 'manageEducation', component: ManageEducationComponent }
 ];
 
 

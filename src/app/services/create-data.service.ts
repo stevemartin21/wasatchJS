@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { Profile } from '../models/profile';
+import { Skill } from '../models/skill';
+import { Project } from '../models/project';
 import { Education } from '../models/education';
 import { Experience } from '../models/experience';
+import { Content } from '../models/content';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 
@@ -118,4 +121,44 @@ export class CreateDataService {
     this.http.post('http://localhost:3000/create/experience', newExperience)
       .subscribe(response => console.log(response));
   }
+
+  createSkill(name: string, type: string, description: string, years: string) {
+    const newSkill: Skill = {
+      name: name,
+      type: type,
+      description: description,
+      years: years
+    };
+
+    this.http.post('http://localhost:3000/create/skill', newSkill)
+      .subscribe(response => console.log(response));
+  }
+
+  createProject(name: string, description: string, skills: string, framework: string,
+    backend: string, database: string, link: string) {
+        const newProject: Project = {
+          name: name,
+          description: description,
+          skills: skills,
+          framework: framework,
+          backend: backend,
+          database: database,
+          link: link
+        };
+
+        this.http.post('http://localhost:3000/create/project', newProject)
+          .subscribe(response => console.log(response));
+    }
+
+    createContent(title: string, description: string, topic: string, link: string){
+      const newContent: Content = {
+        title: title,
+        description: description,
+        topic: topic,
+        link: link
+      };
+
+      this.http.post('http://localhost:3000/create/content', newContent)
+        .subscribe(response  => console.log(response));
+    }
 }

@@ -4,6 +4,9 @@ var User = require('../models/user');
 var Profile = require('../models/profile');
 var Education = require('../models/education');
 var Experience = require('../models/experience');
+var Skill = require('../models/skill');
+var Project = require('../models/project');
+var Content = require('../models/content');
 
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
@@ -111,9 +114,56 @@ router.post('/experience', (req, res ) => {
       description: req.body.description
     })
 
+    console.log(newExperience + '1')
+
     newExperience.save().then(experience => {
+      console.log(experience + '2');
       res.status(200).json(experience);
-    }).catch(err => res.status(400),json(err))
+    }).catch(err => res.status(400).json(err))
+})
+
+router.post('/skill', (req, res) => {
+  const newSkill = new Skill({
+    name: req.body.name,
+    type: req.body.type,
+    description: req.body.description,
+    years: req.body.years
+  })
+  console.log(newSkill + '1')
+
+  newSkill.save().then(skill => {
+    console.log(newSkill +'2')
+    res.status(200).json(skill)
+  }).catch(err => res.status(400).json(err))
+})
+
+router.post('/project', (req, res) => {
+  const newProject = new Project({
+      name: req.body.name,
+      description: req.body.description,
+      skills: req.body.skills,
+      framework: req.body.framework,
+      backend: req.body.backend,
+      database: req.body.database,
+      link: req.body.link
+  })
+
+  newProject.save().then(project => {
+    res.status(200).json(project)
+  }).catch(err => res.status(400).json(err))
+})
+
+router.post('/content', (req, res) => {
+    const newContent = new Content({
+      title: req.body.title,
+      description: req.body.description,
+      topic: req.body.topic,
+      link: req.body.link
+    })
+
+    newContent.save().then(content => {
+      res.status(200).json(content);
+    }).catch(err => res.status(400).json(err))
 })
 
 module.exports = router;
