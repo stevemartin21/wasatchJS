@@ -1,0 +1,52 @@
+<app-app-navigation></app-app-navigation>
+
+<div class='container'>
+
+        <h1 class='text-center mt-5'>Manage Experience</h1>
+
+
+
+        <ul class='list-group' *ngFor='let experience of experiences'>
+            <li class='list-group-item mt-3 mb-3'>
+              <div class='card'>
+                <div class='card-header'>{{experience.employer}}</div>
+                <div class='card-body'>
+                  <div class='row'>
+                    <div class='col-4'>
+                    <div>
+                      <h5>Job Title</h5>
+                      <p>{{experience.jobTitle}}</p>
+                    </div>
+                  </div>
+                  <div class='col-4'>
+                    <div>
+                      <h5>Degree</h5>
+                      <p>{{experience.from}}</p>
+                    </div>
+                  </div>
+                <div class='col-4'>
+                    <div>
+                      <h5>Degree Type</h5>
+                      <p>{{experience.to}}</p>
+                  </div>
+                </div>
+
+
+                    <!-- end of row-->
+                  </div>
+
+                    <div>
+                      <h5>Additional Notes</h5>
+                      <p>{{experience.description}}</p>
+                    </div>
+                    <div class='mt-2'>
+                      <a class='btn btn-success'>Edit</a>
+                      <button class='btn btn-danger' (click)='onDelete(experience._id)'>Delete</button>
+                  </div>
+              </div>
+              </div>
+            </li>
+        </ul>
+
+        </div>
+

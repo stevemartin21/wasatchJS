@@ -11,7 +11,10 @@ import { AddSkillComponent } from './appComponents/add-skill/add-skill.component
 import { AddContentComponent } from './appComponents/add-content/add-content.component';
 import { AddProjectComponent } from './appComponents/add-project/add-project.component';
 import { ManageEducationComponent } from './appComponents/manage-education/manage-education.component';
-
+import { ManageExperienceComponent } from './appComponents/manage-experience/manage-experience.component';
+import { ManageSkillsComponent } from './appComponents/manage-skills/manage-skills.component';
+import { ManageProjectsComponent } from './appComponents/manage-projects/manage-projects.component';
+import { ManageContentComponent } from './appComponents/manage-content/manage-content.component';
 
 
 const routes: Routes = [
@@ -25,7 +28,11 @@ const routes: Routes = [
   {path: 'addSkill', component:  AddSkillComponent},
   {path: 'addContent', component: AddContentComponent},
   {path: 'addProject', component: AddProjectComponent},
-  {path: 'manageEducation', component: ManageEducationComponent }
+  {path: 'manageEducation', component: ManageEducationComponent },
+  {path: 'manageExperience', component: ManageExperienceComponent },
+  {path: 'manageSkills', component: ManageSkillsComponent },
+  {path: 'manageProjects', component: ManageProjectsComponent },
+  {path: 'manageContent', component: ManageContentComponent },
 ];
 
 

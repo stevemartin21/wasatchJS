@@ -92,6 +92,7 @@ export class CreateDataService {
     degreeType: string, from: string, to: string, notes: string) {
 
       const newEducation: Education = {
+        _id: null,
         schoolName: schoolName,
         schoolType: schoolType,
         degree: degree,
@@ -111,6 +112,7 @@ export class CreateDataService {
     to: string, description: string
   ) {
     const newExperience: Experience = {
+        _id: null,
         employer: employer,
         jobTitle: jobTitle,
         from: from,
@@ -124,6 +126,7 @@ export class CreateDataService {
 
   createSkill(name: string, type: string, description: string, years: string) {
     const newSkill: Skill = {
+      _id: null,
       name: name,
       type: type,
       description: description,
@@ -137,6 +140,7 @@ export class CreateDataService {
   createProject(name: string, description: string, skills: string, framework: string,
     backend: string, database: string, link: string) {
         const newProject: Project = {
+          _id: null,
           name: name,
           description: description,
           skills: skills,
@@ -150,8 +154,9 @@ export class CreateDataService {
           .subscribe(response => console.log(response));
     }
 
-    createContent(title: string, description: string, topic: string, link: string){
+    createContent(title: string, description: string, topic: string, link: string) {
       const newContent: Content = {
+        _id: null,
         title: title,
         description: description,
         topic: topic,

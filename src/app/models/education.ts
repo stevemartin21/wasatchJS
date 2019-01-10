@@ -1,4 +1,5 @@
 export interface Education {
+  _id: String;
   schoolName: String;
   schoolType: String;
   degree: String;

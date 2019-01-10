@@ -2,37 +2,63 @@
 
 <div class='container'>
 
-<h1 class='text-center'>Manage Education</h1>
+<h1 class='text-center mt-5'>Manage Education</h1>
 
 
 
 <ul class='list-group' *ngFor='let education of educations'>
-
     <li class='list-group-item mt-3 mb-3'>
       <div class='card'>
+        <div class='card-header'>{{education.schoolName}}</div>
+        <div class='card-body'>
+          <div class='row'>
+            <div class='col-4'>
+            <div>
+              <h5>School Type</h5>
+              <p>{{education.schoolType}}</p>
+            </div>
+          </div>
+          <div class='col-4'>
+            <div>
+              <h5>Degree</h5>
+              <p>{{education.degree}}</p>
+            </div>
+          </div>
+        <div class='col-4'>
+            <div>
+              <h5>Degree Type</h5>
+              <p>{{education.degreeType}}</p>
+          </div>
+        </div>
 
-        <div class='card-title'>Education</div>
-        <div>{{education.schoolName}}</div>
-        <div>{{education.schoolType}}</div>
-        <div>{{education.degree}}</div>
-        <div>{{education.degreeType}}</div>
-        <div>{{education.from}}</div>
-        <div>{{education.to}}</div>
-        <div>{{education.notes}}</div>
-        <a class='btn btn-success'>Edit</a>
-        <button class='btn btn-danger'>Delete</button>
 
-
+            <!-- end of row-->
+          </div>
+          <div class='row'>
+            <div class='col-6'>
+            <div>
+              <h5>From</h5>
+              <p>{{education.from}}</p>
+            </div>
+          </div>
+          <div class='col-6'>
+            <div>
+              <h5>To</h5>
+              <p>{{education.to}}</p>
+            </div>
+          </div>
+          </div>
+            <div>
+              <h5>Additional Notes</h5>
+              <p>{{education.notes}}</p>
+            </div>
+            <div class='mt-2'>
+              <a class='btn btn-success'>Edit</a>
+              <button class='btn btn-danger' (click)='onDelete(education._id)'>Delete</button>
+          </div>
       </div>
-
-
+      </div>
     </li>
-
-
-
-
-
-
 </ul>
 
 </div>

@@ -31,6 +31,10 @@ import { AddContentComponent } from './appComponents/add-content/add-content.com
 import { AppNavigationComponent } from './appComponents/app-navigation/app-navigation.component';
 import { AddProjectComponent } from './appComponents/add-project/add-project.component';
 import { ManageEducationComponent } from './appComponents/manage-education/manage-education.component';
+import { ManageExperienceComponent } from './appComponents/manage-experience/manage-experience.component';
+import { ManageSkillsComponent } from './appComponents/manage-skills/manage-skills.component';
+import { ManageProjectsComponent } from './appComponents/manage-projects/manage-projects.component';
+import { ManageContentComponent } from './appComponents/manage-content/manage-content.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,11 @@ import { ManageEducationComponent } from './appComponents/manage-education/manag
     AddContentComponent,
     AppNavigationComponent,
     AddProjectComponent,
-    ManageEducationComponent
+    ManageEducationComponent,
+    ManageExperienceComponent,
+    ManageSkillsComponent,
+    ManageProjectsComponent,
+    ManageContentComponent
   ],
   imports: [
     BrowserModule,

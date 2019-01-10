@@ -21,4 +21,20 @@ export class ReadDataService {
     return this.http.get<Education[]>('http://localhost:3000/read/educations');
   }
 
+  getExperiences() {
+    return this.http.get<Experience[]>('http://localhost:3000/read/experiences');
+  }
+
+  getSkills() {
+    return this.http.get<Skill[]>('http://localhost:3000/read/skills');
+  }
+
+  getProjects() {
+    return this.http.get<Project[]>('http://localhost:3000/read/projects');
+  }
+
+  getContents() {
+    return this.http.get<Content[]>('http://localhost:3000/read/content');
+  }
+
 }

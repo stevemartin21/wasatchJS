@@ -1,0 +1,49 @@
+<app-app-navigation></app-app-navigation>
+
+
+<div class='container'>
+
+    <h1 class='text-center mt-5'>Manage Skills</h1>
+
+
+
+    <ul class='list-group' *ngFor='let skill of skills'>
+        <li class='list-group-item mt-3 mb-3'>
+          <div class='card'>
+            <div class='card-header'>{{skill.name}}</div>
+            <div class='card-body'>
+              <div class='row'>
+                <div class='col-6'>
+                <div>
+                  <h5>Skill Type</h5>
+                  <p>{{skill.type}}</p>
+                </div>
+              </div>
+              <div class='col-6'>
+                <div>
+                  <h5>Years</h5>
+                  <p>{{skill.years}}</p>
+                </div>
+              </div>
+
+
+
+                <!-- end of row-->
+              </div>
+
+                <div>
+                  <h5>Additional Notes</h5>
+                  <p>{{skill.description}}</p>
+                </div>
+                <div class='mt-2'>
+                  <a class='btn btn-success'>Edit</a>
+                  <button class='btn btn-danger' (click)='onDelete(skill._id)'>Delete</button>
+              </div>
+          </div>
+          </div>
+        </li>
+    </ul>
+
+    </div>
+
+
