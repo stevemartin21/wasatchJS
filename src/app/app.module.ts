@@ -35,6 +35,8 @@ import { ManageExperienceComponent } from './appComponents/manage-experience/man
 import { ManageSkillsComponent } from './appComponents/manage-skills/manage-skills.component';
 import { ManageProjectsComponent } from './appComponents/manage-projects/manage-projects.component';
 import { ManageContentComponent } from './appComponents/manage-content/manage-content.component';
+import { AddProblemComponent } from './appComponents/add-problem/add-problem.component';
+import { ManageProblemsComponent } from './appComponents/manage-problems/manage-problems.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { ManageContentComponent } from './appComponents/manage-content/manage-co
     ManageExperienceComponent,
     ManageSkillsComponent,
     ManageProjectsComponent,
-    ManageContentComponent
+    ManageContentComponent,
+    AddProblemComponent,
+    ManageProblemsComponent
   ],
   imports: [
     BrowserModule,

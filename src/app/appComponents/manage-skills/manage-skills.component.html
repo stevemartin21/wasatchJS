@@ -36,7 +36,7 @@
                   <p>{{skill.description}}</p>
                 </div>
                 <div class='mt-2'>
-                  <a class='btn btn-success'>Edit</a>
+                  <a class='btn btn-success' [routerLink]="['/editSkill', skill._id]">Edit</a>
                   <button class='btn btn-danger' (click)='onDelete(skill._id)'>Delete</button>
               </div>
           </div>

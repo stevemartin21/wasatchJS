@@ -1,5 +1,7 @@
 <app-app-navigation></app-app-navigation>
 
+
+
 <header>
 
   <!-- Full Page Intro -->
@@ -29,40 +31,38 @@
                 <!--Header-->
                 <div class="text-center">
                   <h3 class="dark-grey-text">
-                    <strong>Add Skill</strong>
+                    <strong>Add Problem</strong>
                   </h3>
                   <hr>
                 </div>
                 <!--Body-->
-                <form [formGroup]='form' (submit)='saveSkill()' >
+                <form [formGroup]='form' (submit)='saveProblem()' >
 
                 <div class="md-form">
 
-                  <input type="text" id="form1" class="form-control" mdbInputDirective formControlName='name'>
-                  <label for="form1">Name</label>
+                  <input type="text" id="form1" class="form-control" mdbInputDirective formControlName='title'>
+                  <label for="form1">Title</label>
                 </div>
 
                 <div class="md-form">
 
-                  <input type="text" id="form2" class="form-control" mdbInputDirective formControlName='type'>
-                  <label for="form2">Type</label>
+                  <input type="text" id="form2" class="form-control" mdbInputDirective formControlName='description'>
+                  <label for="form2">Description</label>
                 </div>
 
                 <div class="md-form">
 
-                  <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='description'>
-                  <label for="form3">Description</label>
+                  <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='steps'>
+                  <label for="form3">Steps</label>
                 </div>
 
                 <div class="md-form">
 
-                  <input type="text" id="form4" class="form-control" mdbInputDirective formControlName='years'>
-                  <label for="form4">Years</label>
+                  <input type="text" id="form4" class="form-control" mdbInputDirective formControlName='appliedLearning'>
+                  <label for="form4">Applied Learning</label>
                 </div>
-
-
                 <div class="text-center mt-3">
-                  <button class='btn btn-elegant' mdbWavesEffect>Send</button>
+                  <button class='btn btn-elegant' mdbWavesEffect>Submit</button>
                   <hr>
 
                 </div>
@@ -82,6 +82,7 @@
   <!-- Full Page Intro -->
 </header>
 <!-- Main navigation -->
+
 
 
 

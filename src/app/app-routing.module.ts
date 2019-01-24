@@ -15,6 +15,9 @@ import { ManageExperienceComponent } from './appComponents/manage-experience/man
 import { ManageSkillsComponent } from './appComponents/manage-skills/manage-skills.component';
 import { ManageProjectsComponent } from './appComponents/manage-projects/manage-projects.component';
 import { ManageContentComponent } from './appComponents/manage-content/manage-content.component';
+import {AddProfileComponent } from './appComponents/add-profile/add-profile.component';
+import {AddProblemComponent} from './appComponents/add-problem/add-problem.component';
+import {ManageProblemsComponent} from './appComponents/manage-problems/manage-problems.component';
 
 
 const routes: Routes = [
@@ -33,6 +36,17 @@ const routes: Routes = [
   {path: 'manageSkills', component: ManageSkillsComponent },
   {path: 'manageProjects', component: ManageProjectsComponent },
   {path: 'manageContent', component: ManageContentComponent },
+  {path: 'editEducation/:id', component: AddEducationComponent },
+  {path: 'editExperience/:id', component: AddExperienceComponent },
+  {path: 'editEducation/:id', component: AddEducationComponent },
+  {path: 'editSkill/:id', component: AddSkillComponent },
+  {path: 'editContent/:id', component: AddContentComponent },
+  {path: 'editProfile/:id', component: AddProfileComponent },
+  {path: 'editProject/:id', component: AddProjectComponent },
+  {path: 'editProblem/:id', component: AddProblemComponent },
+  {path: 'addProblem', component: AddProblemComponent },
+  {path: 'manageProblems', component: ManageProblemsComponent },
+  {path: 'addProfile', component: AddProfileComponent },
 ];
 
 

@@ -56,4 +56,12 @@ export class DeleteDataService {
       .subscribe(response => console.log(response));
 
   }
+
+  deleteProblem(id: string) {
+    console.log('Clicked Delete Service');
+    console.log(id);
+    this.http.delete(`http://localhost:3000/delete/problem/${id}`)
+      .subscribe(response => console.log(response));
+
+  }
 }

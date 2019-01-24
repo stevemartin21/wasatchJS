@@ -7,6 +7,7 @@ var Experience = require('../models/experience');
 var Skill = require('../models/skill');
 var Project = require('../models/project');
 var Content = require('../models/content');
+var Problem = require('../models/problem');
 
 // create user
 
@@ -52,6 +53,15 @@ router.delete('/content/:id', (req, res) => {
   Content.deleteOne({_id: req.params.id})
     .then(content => {
       res.status(200).json(content);
+    }).catch(err => res.json(err));
+})
+
+router.delete('/problem/:id', (req, res) => {
+  console.log('Delete Yo yo');
+  console.log(req.params.id);
+  Problem.deleteOne({_id: req.params.id})
+    .then(problem => {
+      res.status(200).json(problem);
     }).catch(err => res.json(err));
 })
 

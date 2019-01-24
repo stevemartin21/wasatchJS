@@ -7,6 +7,7 @@ var Experience = require('../models/experience');
 var Skill = require('../models/skill');
 var Project = require('../models/project');
 var Content = require('../models/content');
+var Problem = require('../models/problem');
 
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
@@ -164,6 +165,19 @@ router.post('/content', (req, res) => {
     newContent.save().then(content => {
       res.status(200).json(content);
     }).catch(err => res.status(400).json(err))
+})
+
+router.post('/problem', (req, res) => {
+  const newProblem = new Problem({
+    title: req.body.title,
+    description: req.body.description,
+    steps: req.body.steps,
+    appliedLearning: req.body.appliedLearning
+  })
+
+  newProblem.save().then(problem => {
+    res.status(200).json(problem);
+  }).catch(err => res.status(400).json(err))
 })
 
 module.exports = router;

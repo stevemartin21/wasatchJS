@@ -40,7 +40,7 @@
                       <p>{{experience.description}}</p>
                     </div>
                     <div class='mt-2'>
-                      <a class='btn btn-success'>Edit</a>
+                      <a class='btn btn-success' [routerLink]="['/editExperience', experience._id]" >Edit</a>
                       <button class='btn btn-danger' (click)='onDelete(experience._id)'>Delete</button>
                   </div>
               </div>

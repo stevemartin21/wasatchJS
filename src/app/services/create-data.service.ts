@@ -76,6 +76,7 @@ export class CreateDataService {
 
   createProfile (fname: string, lname: string, phone: string, email: string, webSite: string, gitHub: string) {
       const newProfile: Profile = {
+        _id: null,
         fname: fname,
         lname: lname,
         phone: phone,
@@ -165,5 +166,18 @@ export class CreateDataService {
 
       this.http.post('http://localhost:3000/create/content', newContent)
         .subscribe(response  => console.log(response));
+    }
+
+    createProblem(title: string,  description: string, steps: string, appliedLearning: string) {
+      const newProblem = {
+        _id: null,
+        title: title,
+        description: description,
+        steps: steps,
+        appliedLearning: appliedLearning
+      };
+
+      this.http.post('http://localhost:3000/create/problem', newProblem)
+        .subscribe(response => console.log(response));
     }
 }
