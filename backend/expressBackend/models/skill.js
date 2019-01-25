@@ -5,6 +5,7 @@ const skillSchema = mongoose.Schema({
   type: {type: String},
   description: {type: String},
   years: {type: String},
+  creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User' , required: true }
 
 })
 

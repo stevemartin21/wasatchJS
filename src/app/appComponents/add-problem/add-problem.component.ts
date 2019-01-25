@@ -78,6 +78,8 @@ export class AddProblemComponent implements OnInit {
         this.form.value.appliedLearning
       );
     }
+
+    this.router.navigate(['/dashboard']);
   }
 
 }

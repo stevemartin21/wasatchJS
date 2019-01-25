@@ -5,8 +5,9 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 // import { HttpModule, HttpClientModule } from '@angular/http';
 import { AgmCoreModule } from '@agm/core';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { RequestInterceptor } from './services/request-interceptor';
 
 import { MDBSpinningPreloader, MDBBootstrapModulesPro, ToastModule } from 'ng-uikit-pro-standard';
 import { NavigationComponent } from './webSiteComponents/navigation/navigation.component';
@@ -37,6 +38,8 @@ import { ManageProjectsComponent } from './appComponents/manage-projects/manage-
 import { ManageContentComponent } from './appComponents/manage-content/manage-content.component';
 import { AddProblemComponent } from './appComponents/add-problem/add-problem.component';
 import { ManageProblemsComponent } from './appComponents/manage-problems/manage-problems.component';
+import { MainProfileComponent } from './appComponents/main-profile/main-profile.component';
+import { PublicProfileComponent } from './appComponents/public-profile/public-profile.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,9 @@ import { ManageProblemsComponent } from './appComponents/manage-problems/manage-
     ManageProjectsComponent,
     ManageContentComponent,
     AddProblemComponent,
-    ManageProblemsComponent
+    ManageProblemsComponent,
+    MainProfileComponent,
+    PublicProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +87,7 @@ import { ManageProblemsComponent } from './appComponents/manage-problems/manage-
     }),
     AppRoutingModule
   ],
-  providers: [MDBSpinningPreloader],
+  providers: [MDBSpinningPreloader, { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true } ],
   bootstrap: [AppComponent],
   schemas:      [ NO_ERRORS_SCHEMA ]
 })

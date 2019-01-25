@@ -7,7 +7,8 @@ const projectSchema = mongoose.Schema({
   framework: {type: String},
   backend: {type: String},
   database: {type: String},
-  link: {type: String}
+  link: {type: String},
+  creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User' , required: true }
 })
 
 module.exports = mongoose.model('Project', projectSchema);

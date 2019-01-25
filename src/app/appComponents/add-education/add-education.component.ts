@@ -5,7 +5,7 @@ import {ActivatedRoute, ParamMap } from '@angular/router';
 import { ReadDataService } from '../../services/read-data.service';
 import { UpdateDataService } from '../../services/update-data.service';
 import {Education} from '../../models/education';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-education',
@@ -22,7 +22,8 @@ export class AddEducationComponent implements OnInit {
   constructor(private createDataService: CreateDataService,
     private readDataService: ReadDataService,
     private updateDataService: UpdateDataService,
-    public route: ActivatedRoute) { }
+    public route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -97,6 +98,8 @@ export class AddEducationComponent implements OnInit {
       this.form.value.notes
       );
     }
+
+    this.router.navigate(['/dashboard']);
 
 
   }

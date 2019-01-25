@@ -79,6 +79,8 @@ export class AddSkillComponent implements OnInit {
         this.form.value.years
       );
     }
+
+    this.router.navigate(['/dashboard']);
   }
 
 }

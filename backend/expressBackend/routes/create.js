@@ -8,6 +8,7 @@ var Skill = require('../models/skill');
 var Project = require('../models/project');
 var Content = require('../models/content');
 var Problem = require('../models/problem');
+const verifyToken = require('../middleware/verify-token');
 
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
@@ -73,14 +74,16 @@ router.post('/token', (req, res) => {
     })
 })
 
-router.post('/profile', (req, res) => {
+router.post('/profile', verifyToken, (req, res) => {
+
   const newProfile = new Profile ({
     fname: req.body.fname,
     lname: req.body.lname,
     phone: req.body.phone,
     email: req.body.email,
     webSite: req.body.webSite,
-    gitHub: req.body.gitHub
+    gitHub: req.body.gitHub,
+    creator: req.userData.userId
   })
 
   newProfile.save().then(profile => {
@@ -90,7 +93,7 @@ router.post('/profile', (req, res) => {
 
 })
 
-router.post('/education', (req, res ) => {
+router.post('/education', verifyToken, (req, res ) => {
   const newEducation = new Education ({
     schoolName: req.body.schoolName,
     schoolType: req.body.schoolType,
@@ -98,7 +101,8 @@ router.post('/education', (req, res ) => {
     degreeType: req.body.degreeType,
     to: req.body.to,
     from: req.body.from,
-    notes: req.body.notes
+    notes: req.body.notes,
+    creator: req.userData.userId
   })
 
   newEducation.save().then(education => {
@@ -106,13 +110,14 @@ router.post('/education', (req, res ) => {
   }).catch(err => res.status(400).json(err))
 })
 
-router.post('/experience', (req, res ) => {
+router.post('/experience', verifyToken, (req, res ) => {
     const newExperience = new Experience({
       employer: req.body.employer,
       jobTitle: req.body.jobTitle,
       to: req.body.to,
       from: req.body.from,
-      description: req.body.description
+      description: req.body.description,
+      creator: req.userData.userId
     })
 
     console.log(newExperience + '1')
@@ -123,12 +128,13 @@ router.post('/experience', (req, res ) => {
     }).catch(err => res.status(400).json(err))
 })
 
-router.post('/skill', (req, res) => {
+router.post('/skill', verifyToken, (req, res) => {
   const newSkill = new Skill({
     name: req.body.name,
     type: req.body.type,
     description: req.body.description,
-    years: req.body.years
+    years: req.body.years,
+    creator: req.userData.userId
   })
   console.log(newSkill + '1')
 
@@ -138,7 +144,7 @@ router.post('/skill', (req, res) => {
   }).catch(err => res.status(400).json(err))
 })
 
-router.post('/project', (req, res) => {
+router.post('/project', verifyToken, (req, res) => {
   const newProject = new Project({
       name: req.body.name,
       description: req.body.description,
@@ -146,7 +152,8 @@ router.post('/project', (req, res) => {
       framework: req.body.framework,
       backend: req.body.backend,
       database: req.body.database,
-      link: req.body.link
+      link: req.body.link,
+      creator: req.userData.userId
   })
 
   newProject.save().then(project => {
@@ -154,12 +161,13 @@ router.post('/project', (req, res) => {
   }).catch(err => res.status(400).json(err))
 })
 
-router.post('/content', (req, res) => {
+router.post('/content', verifyToken, (req, res) => {
     const newContent = new Content({
       title: req.body.title,
       description: req.body.description,
       topic: req.body.topic,
-      link: req.body.link
+      link: req.body.link,
+      creator: req.userData.userId
     })
 
     newContent.save().then(content => {
@@ -167,12 +175,13 @@ router.post('/content', (req, res) => {
     }).catch(err => res.status(400).json(err))
 })
 
-router.post('/problem', (req, res) => {
+router.post('/problem', verifyToken, (req, res) => {
   const newProblem = new Problem({
     title: req.body.title,
     description: req.body.description,
     steps: req.body.steps,
-    appliedLearning: req.body.appliedLearning
+    appliedLearning: req.body.appliedLearning,
+    creator: req.userData.userId
   })
 
   newProblem.save().then(problem => {

@@ -20,12 +20,22 @@ export class CreateDataService {
   userId: String;
   expiresIn: String;
   statusCheck = new Subject<Boolean>();
+  userIdCheck  = new Subject<String>();
 
 
   constructor(private http: HttpClient, private router: Router) { }
 
   getToken() {
     return this.token;
+  }
+
+  getUserId() {
+    return this.userId;
+  }
+
+  getUserIdCheck() {
+    console.log('User Id check was called');
+    return this.userIdCheck.asObservable();
   }
 
   getIsAuth() {
@@ -65,9 +75,14 @@ export class CreateDataService {
     this.http.post<{token: string, expiresIn: string, userId: string}>('http://localhost:3000/create/token', newToken)
       .subscribe(response => {
         this.token = response.token;
+        console.log(this.token);
+        console.log(response);
         this.isAuth = true;
         this.expiresIn = response.expiresIn;
         this.userId = response.userId;
+        this.userIdCheck.next(this.userId);
+
+
         this.statusCheck.next(true);
         this.router.navigate(['/dashboard']);
 

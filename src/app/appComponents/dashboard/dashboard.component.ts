@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators } from '@angular/forms';
-import { CreateDataService } from '../../services/create-data.service'
-
+import { CreateDataService } from '../../services/create-data.service';
+import { ReadDataService } from '../../services/read-data.service';
+import {Subscription } from 'rxjs';
+import { Profile } from '../../models/profile';
+import { DeleteDataService } from '../../services/delete-data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,32 +13,33 @@ import { CreateDataService } from '../../services/create-data.service'
 })
 export class DashboardComponent implements OnInit {
 
-  form: FormGroup;
+  profile: Profile;
+  profileId: String;
+  profileSub: Subscription;
+  token: String;
+  userId: String;
+  userIdSub: Subscription;
 
-  constructor(private createDataService: CreateDataService) { }
+
+  constructor(private readDataService: ReadDataService,
+    private deleteDataService: DeleteDataService,
+    private createDataService: CreateDataService) { }
 
   ngOnInit() {
-    this.form = new FormGroup({
-      fname: new FormControl(null, {validators: [Validators.required]}),
-      lname: new FormControl(null, {validators: [Validators.required]}),
-      phone: new FormControl(null, {validators: [Validators.required]}),
-      email: new FormControl(null, {validators: [Validators.required]}),
-      webSite: new FormControl(null, {validators: [Validators.required]}),
-      gitHub: new FormControl(null, {validators: [Validators.required]}),
-    });
+
+     this.createDataService.getUserIdCheck()
+      .subscribe(response => {
+        console.log('Made it this far ');
+        console.log(response);
+        this.userId = response;
+        this.readDataService.getProfile(this.userId)
+          .subscribe(response2 => this.profile = response2);
+      });
   }
 
-  createProfile () {
-
-    this.createDataService.createProfile(
-      this.form.value.fname,
-      this.form.value.lname,
-      this.form.value.phone,
-      this.form.value.email,
-      this.form.value.webSite,
-      this.form.value.gitHub
-    );
-
+  onDelete(id: string) {
+    this.deleteDataService.deleteProfile(id);
+  }
   }
 
-}
+

@@ -36,19 +36,59 @@ export class AddProfileComponent implements OnInit {
       webSite: new FormControl(null, {validators: [Validators.required]}),
       gitHub: new FormControl(null, {validators: [Validators.required]}),
     });
+
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      console.log('edit educations');
+      if (paramMap.has('id')) {
+        this.mode = 'edit';
+        this.profileId = paramMap.get('id');
+        this.readDataService.getProfile(this.profileId).subscribe(profile => {
+          this.profile = profile;
+
+
+          this.form.setValue({
+            fname: this.profile.fname,
+            lname: this.profile.lname,
+            phone: this.profile.phone,
+            email: this.profile.email,
+            webSite: this.profile.webSite,
+            gitHub: this.profile.gitHub
+          });
+        });
+      } else {
+        this.mode = 'create';
+        this.profileId = null;
+      }
+    });
   }
 
   saveProfile () {
 
-    this.createDataService.createProfile(
-      this.form.value.fname,
-      this.form.value.lname,
-      this.form.value.phone,
-      this.form.value.email,
-      this.form.value.webSite,
-      this.form.value.gitHub
-    );
+    if ( this.form.invalid) {
+      return ;
+    }
 
+    if (this.mode === 'create') {
+      this.createDataService.createProfile(
+        this.form.value.fname,
+        this.form.value.lname,
+        this.form.value.phone,
+        this.form.value.email,
+        this.form.value.webSite,
+        this.form.value.gitHub
+      );
+    } else {
+      this.updateDataService.updateProfile(
+        this.profileId,
+        this.form.value.fname,
+        this.form.value.lname,
+        this.form.value.phone,
+        this.form.value.email,
+        this.form.value.webSite,
+        this.form.value.gitHub
+      );
+    }
+
+    this.router.navigate(['/dashboard']);
   }
-
 }
