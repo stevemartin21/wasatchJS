@@ -62,6 +62,10 @@ export class ReadDataService {
     return this.http.get<Profile[]>('http://localhost:3000/read/profiles');
   }
 
+  getPublicProfiles() {
+    return this.http.get<any[]>('http://localhost:3000/read/publicProfiles');
+  }
+
   getProfile(id) {
     return this.http.get<Profile>(`http://localhost:3000/read/profile/${id}`);
   }

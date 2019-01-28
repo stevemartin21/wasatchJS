@@ -18,7 +18,7 @@ import { ManageContentComponent } from './appComponents/manage-content/manage-co
 import {AddProfileComponent } from './appComponents/add-profile/add-profile.component';
 import {AddProblemComponent} from './appComponents/add-problem/add-problem.component';
 import {ManageProblemsComponent} from './appComponents/manage-problems/manage-problems.component';
-
+import {MainProfileComponent} from './appComponents/main-profile/main-profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -47,6 +47,9 @@ const routes: Routes = [
   {path: 'addProblem', component: AddProblemComponent },
   {path: 'manageProblems', component: ManageProblemsComponent },
   {path: 'addProfile', component: AddProfileComponent },
+  {path: 'mainProfile', component: MainProfileComponent },
+
+
 ];
 
 

@@ -38,8 +38,9 @@ import { ManageProjectsComponent } from './appComponents/manage-projects/manage-
 import { ManageContentComponent } from './appComponents/manage-content/manage-content.component';
 import { AddProblemComponent } from './appComponents/add-problem/add-problem.component';
 import { ManageProblemsComponent } from './appComponents/manage-problems/manage-problems.component';
-import { MainProfileComponent } from './appComponents/main-profile/main-profile.component';
+
 import { PublicProfileComponent } from './appComponents/public-profile/public-profile.component';
+import { MainProfileComponent } from './appComponents/main-profile/main-profile.component';
 
 @NgModule({
   declarations: [
@@ -70,8 +71,8 @@ import { PublicProfileComponent } from './appComponents/public-profile/public-pr
     ManageContentComponent,
     AddProblemComponent,
     ManageProblemsComponent,
-    MainProfileComponent,
-    PublicProfileComponent
+    PublicProfileComponent,
+    MainProfileComponent
   ],
   imports: [
     BrowserModule,

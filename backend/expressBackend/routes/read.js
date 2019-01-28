@@ -83,6 +83,13 @@ router.get('/profiles', verifyToken, (req, res) => {
   }).catch(err => res.json(err));
 })
 
+router.get('/publicProfiles',  (req, res) => {
+  Profile.find().then(profiles => {
+    console.log(profiles);
+    res.status(200).json(profiles)
+  }).catch(err => res.json(err));
+})
+
 router.get('/profile/:id', verifyToken, (req, res) => {
   console.log(req.body + 'read the profile');
   console.log(req.userData.userId);

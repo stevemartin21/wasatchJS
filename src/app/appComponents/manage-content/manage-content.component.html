@@ -1,4 +1,4 @@
-<app-app-navigation></app-app-navigation>
+
 
 
 <div class='container'>
@@ -7,8 +7,8 @@
 
 
 
-    <ul class='list-group' *ngFor='let project of contents'>
-        <li class='list-group-item mt-3 mb-3'>
+    <ul class='list-group' *ngFor='let project of contents; let i = index'>
+        <li class='list-group-item mt-3 mb-3' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex">
           <div class='card'>
             <div class='card-header'>{{project.title}}</div>
             <div class='card-body'>
@@ -42,7 +42,7 @@
                   </div>
 
 
-                <div class='mt-2'>
+                <div class='mt-2' *ngIf='isAuth'>
                   <a class='btn btn-success' [routerLink]="['/editContent', project._id]" >Edit</a>
                   <button class='btn btn-danger' (click)='onDelete(project._id)'>Delete</button>
               </div>
@@ -50,5 +50,52 @@
           </div>
         </li>
     </ul>
+
+    <!--Bottom Table UI-->
+    <div class="d-flex justify-content-center ">
+
+      <!--Pagination -->
+      <nav class="my-4 pt-2">
+        <ul class="pagination pagination-circle pg-elegant-color mb-0">
+
+          <!--First-->
+          <li class="page-item clearfix d-none d-md-block" (click)="firstPage()" [ngClass]="{disabled: activePage == 1}">
+            <a class="page-link font-weight-bold">First</a>
+          </li>
+
+          <!--Arrow left-->
+          <li class="page-item" (click)="previousPage($event)" [ngClass]="{disabled: activePage == 1}">
+            <a class="page-link" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only font-weight-bold ">Previous</span>
+            </a>
+          </li>
+
+          <!--Numbers-->
+          <li #pages *ngFor="let page of paginators | slice:firstVisiblePaginator:lastVisiblePaginator; let i = index" class="page-item" [ngClass]="{active: i + firstVisiblePaginator + 1 == activePage}">
+              <a class="page-link waves-lightfont-weight-bold " (click)="changePage($event)" mdbWavesEffect>{{page}}</a>
+          </li>
+
+
+
+          <!--Arrow right-->
+          <li class="page-item" (click)='nextPage($event)' [ngClass]="{disabled: activePage == numberOfPaginators}">
+            <a class="page-link" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only font-weight-bold">Next</span>
+            </a>
+          </li>
+
+          <!--First-->
+          <li class="page-item clearfix d-none d-md-block" (click)="lastPage()" [ngClass]="{disabled: activePage == numberOfPaginators}">
+            <a class="page-link font-weight-bold">Last</a>
+          </li>
+
+        </ul>
+      </nav>
+      <!--/Pagination -->
+
+    </div>
+    <!--Bottom Table UI-->
 
     </div>

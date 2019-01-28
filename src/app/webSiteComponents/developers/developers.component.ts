@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ReadDataService } from '../../services/read-data.service';
 
 @Component({
   selector: 'app-developers',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DevelopersComponent implements OnInit {
 
-  constructor() { }
+  profiles: any[];
+
+  constructor(
+    private readDataService: ReadDataService
+  ) { }
 
   ngOnInit() {
+    this.readDataService.getPublicProfiles().subscribe(profiles => {
+      console.log(profiles);
+      this.profiles = profiles;
+    })
   }
 
 }

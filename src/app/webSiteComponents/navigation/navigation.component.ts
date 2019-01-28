@@ -8,7 +8,7 @@ import { CreateDataService } from '../../services/create-data.service';
 })
 export class NavigationComponent implements OnInit {
 
-  frontOrBack = 'false';
+  frontOrBack: Boolean = false;
 
   constructor(private createDataService: CreateDataService) { }
 
@@ -16,8 +16,12 @@ export class NavigationComponent implements OnInit {
     console.log('Nav Started');
     this.createDataService.getStatusCheck().subscribe(response => {
       console.log(response);
-      console.log('Nav Started 2');
+      this.frontOrBack = response;
     });
+  }
+
+  logout() {
+    this.createDataService.logout();
   }
 
 }

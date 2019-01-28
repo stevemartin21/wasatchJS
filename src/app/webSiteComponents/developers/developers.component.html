@@ -1,3 +1,27 @@
-<p>
-  developers works!
-</p>
+<div class='container'>
+
+  <ul class='list-group' *ngFor='let developer of profiles'>
+
+    <li class='list-group-item'>
+
+    <div class='card'>
+
+      <div class='card-header'>{{developer.fname}}</div>
+
+      <div class='card-body'>
+
+        <ul class='list-group'>
+
+            <li class='list-group-item'>{{developer.email}}</li>
+            <li class='list-group-item'>{{developer.phone}}</li>
+            <li class='list-group-item'>{{developer.webSite}}</li>
+            <li class='list-group-item'>{{developer.gitHub}}</li>
+        </ul>
+      </div>
+    </div>
+    <a class='btn btn-default' >See More detals</a>
+    </li>
+
+    </ul>
+
+</div>
