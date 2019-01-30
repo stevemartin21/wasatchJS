@@ -17,9 +17,15 @@ export class CreateDataService {
 
   token: String;
   isAuth = false;
+  isAdmin = false;
+  front = false;
+  isRecruiter = false;
   userId: String;
   expiresIn: String;
+  frontCheck = new Subject<Boolean>();
   statusCheck = new Subject<Boolean>();
+  recruiterCheck = new Subject<Boolean>();
+  adminCheck = new Subject<Boolean>();
   userIdCheck  = new Subject<String>();
 
 
@@ -46,12 +52,29 @@ export class CreateDataService {
     this.token = null;
     this.isAuth = false;
     this.statusCheck.next(false);
+    this.adminCheck.next(false);
+    this.recruiterCheck.next(false);
+    this.frontCheck.next(true);
+    this.isAdmin = false;
+    this.isRecruiter = false;
     this.router.navigate(['/']);
   }
 
   getStatusCheck() {
    return this.statusCheck.asObservable();
   }
+
+  getFrontCheck() {
+    return this.frontCheck.asObservable();
+   }
+
+  getAdminCheck() {
+    return this.adminCheck.asObservable();
+   }
+
+   getRecruiterCheck() {
+    return this.recruiterCheck.asObservable();
+   }
 
   createUser(name: string, email: string, password: string) {
     const newUser: User = {
@@ -72,7 +95,8 @@ export class CreateDataService {
       email: email,
       password: password
     };
-    this.http.post<{token: string, expiresIn: string, userId: string}>('http://localhost:3000/create/token', newToken)
+    this.http.post<{isAdmin: boolean, isRecruiter: boolean,
+      token: string, expiresIn: string, userId: string}>('http://localhost:3000/create/token', newToken)
       .subscribe(response => {
         this.token = response.token;
         console.log(this.token);
@@ -80,11 +104,27 @@ export class CreateDataService {
         this.isAuth = true;
         this.expiresIn = response.expiresIn;
         this.userId = response.userId;
+        this.isAdmin = response.isAdmin;
+        this.isRecruiter = response.isRecruiter;
+        console.log(this.isAdmin);
+        console.log(this.isRecruiter);
         this.userIdCheck.next(this.userId);
+        this.adminCheck.next(this.isAdmin);
+        this.recruiterCheck.next(this.isRecruiter);
+        if (this.isAdmin ) {
+          this.statusCheck.next(false);
+        } else {
+          this.statusCheck.next(true);
+        }
 
+        this.frontCheck.next(false);
 
-        this.statusCheck.next(true);
-        this.router.navigate(['/dashboard']);
+        if (this.isAdmin ) {
+          this.router.navigate(['/recruiterDashboard']);
+        } else {
+          this.router.navigate(['/dashboard']);
+        }
+
 
       });
   }

@@ -9,6 +9,7 @@ import {ReadDataService } from '../../services/read-data.service';
 export class DevelopersComponent implements OnInit {
 
   profiles: any[];
+  projects: any[];
 
   constructor(
     private readDataService: ReadDataService
@@ -18,7 +19,12 @@ export class DevelopersComponent implements OnInit {
     this.readDataService.getPublicProfiles().subscribe(profiles => {
       console.log(profiles);
       this.profiles = profiles;
-    })
+    });
+
+    this.readDataService.getPublicProjects().subscribe(projects => {
+      console.log(projects);
+      this.projects = projects;
+    });
   }
 
 }

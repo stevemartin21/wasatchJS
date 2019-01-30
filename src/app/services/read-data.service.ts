@@ -58,12 +58,24 @@ export class ReadDataService {
     return this.http.get<Content>(`http://localhost:3000/read/content/${id}`);
   }
 
+  getDeveloperContent(id) {
+    return this.http.get<Content>(`http://localhost:3000/read/developerContent/${id}`);
+  }
+
   getProfiles() {
     return this.http.get<Profile[]>('http://localhost:3000/read/profiles');
   }
 
   getPublicProfiles() {
     return this.http.get<any[]>('http://localhost:3000/read/publicProfiles');
+  }
+
+  getPublicProjects() {
+    return this.http.get<any[]>('http://localhost:3000/read/publicProjects');
+  }
+
+  getPublicProfile(id) {
+    return this.http.get<any>(`http://localhost:3000/read/publicProfile/${id}`);
   }
 
   getProfile(id) {

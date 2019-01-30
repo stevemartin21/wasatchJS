@@ -22,10 +22,25 @@ router.post('/user', (req, res) => {
       res.status(400).json({message: 'There is already a user with that email'})
     } else {
 
+        let isAdmin;
+        let isRecruiter;
+
+        if(req.body.email === 'stevo@stevo.com') {
+            isAdmin = true
+            isRecruiter = true
+        } else {
+          isAdmin = false
+          isRecruiter = false
+        }
+
+
+
       const newUser = new User ({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        isAdmin: isAdmin,
+        isRecruiter: isRecruiter
       })
 
       bcrypt.genSalt(10, (err, salt ) => {
@@ -43,8 +58,10 @@ router.post('/user', (req, res) => {
 
 let selectedUser;
 router.post('/token', (req, res) => {
+  console.log(req.body)
   User.findOne({email: req.body.email})
     .then(user => {
+      console.log(user)
       if(!user) {
        return res.status(400).json({message: 'You must be registered to log in'})
       }
@@ -52,6 +69,7 @@ router.post('/token', (req, res) => {
 
      return  bcrypt.compare(req.body.password, user.password)
         .then(success => {
+          console.log(success)
           if(!success) {
            return res.status(400).json({message: 'passwords do not match'})
           }
@@ -59,7 +77,9 @@ router.post('/token', (req, res) => {
          const token =  jwt.sign({
            email: selectedUser.email,
            name: selectedUser.name,
-           userId: selectedUser._id
+           userId: selectedUser._id,
+           isAdmin: selectedUser.isAdmin,
+           isRecruiter: selectedUser.isRecruiter
          },
          'thisisthesecretyabbadabbado123',
          {expiresIn: '1h'}
@@ -67,7 +87,9 @@ router.post('/token', (req, res) => {
          res.status(200).json({
            token: token,
            expiresIn: '3600',
-           userId: selectedUser._id
+           userId: selectedUser._id,
+           isAdmin: selectedUser.isAdmin,
+           isRecruiter: selectedUser.isRecruiter
          })
 
         }).catch(err => console.log(err))
@@ -83,7 +105,7 @@ router.post('/profile', verifyToken, (req, res) => {
     email: req.body.email,
     webSite: req.body.webSite,
     gitHub: req.body.gitHub,
-    creator: req.userData.userId
+    creator: req.userData.userId,
   })
 
   newProfile.save().then(profile => {

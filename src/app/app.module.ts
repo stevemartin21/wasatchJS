@@ -41,6 +41,10 @@ import { ManageProblemsComponent } from './appComponents/manage-problems/manage-
 
 import { PublicProfileComponent } from './appComponents/public-profile/public-profile.component';
 import { MainProfileComponent } from './appComponents/main-profile/main-profile.component';
+import { AddJobComponent } from './recruiterComponents/add-job/add-job.component';
+import { AddBoosterComponent } from './recruiterComponents/add-booster/add-booster.component';
+import { ManageCandidatesComponent } from './recruiterComponents/manage-candidates/manage-candidates.component';
+import { RecruiterDashboardComponent } from './recruiterComponents/recruiter-dashboard/recruiter-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +76,11 @@ import { MainProfileComponent } from './appComponents/main-profile/main-profile.
     AddProblemComponent,
     ManageProblemsComponent,
     PublicProfileComponent,
-    MainProfileComponent
+    MainProfileComponent,
+    AddJobComponent,
+    AddBoosterComponent,
+    ManageCandidatesComponent,
+    RecruiterDashboardComponent
   ],
   imports: [
     BrowserModule,

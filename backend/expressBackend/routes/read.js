@@ -63,15 +63,21 @@ router.get('/project/:id', verifyToken, (req, res) => {
   }).catch(err =>  res.status(400).json(err))
 })
 
-router.get('/content', verifyToken, (req, res) => {
+router.get('/content', verifyToken,  (req, res) => {
   Content.find({creator: req.userData.userId}).then(contents => {
     console.log(contents)
     res.status(200).json(contents);
   }).catch(err => res.json(err));
 })
 
-router.get('/content/:id', verifyToken, (req, res) => {
+router.get('/content/:id',  (req, res) => {
   Content.findOne({_id: req.params.id}).then(content => {
+    res.status(200).json(content)
+  }).catch(err =>  res.status(400).json(err))
+})
+
+router.get('/developerContent/:id',  (req, res) => {
+  Content.find({creator: req.params.id}).then(content => {
     res.status(200).json(content)
   }).catch(err =>  res.status(400).json(err))
 })
@@ -84,16 +90,41 @@ router.get('/profiles', verifyToken, (req, res) => {
 })
 
 router.get('/publicProfiles',  (req, res) => {
-  Profile.find().then(profiles => {
+  Profile.find()
+  .populate('creator')
+  .then(profiles => {
+    profiles.map(profile => {
+      console.log(profile)
+    })
     console.log(profiles);
     res.status(200).json(profiles)
   }).catch(err => res.json(err));
 })
 
-router.get('/profile/:id', verifyToken, (req, res) => {
-  console.log(req.body + 'read the profile');
+router.get('/publicProjects',  (req, res) => {
+  Project.find()
+  .populate('creator')
+  .then(profiles => {
+    console.log(profiles);
+    res.status(200).json(profiles)
+  }).catch(err => res.json(err));
+})
+
+router.get('/profile/:id',  (req, res) => {
+  console.log(req.body);
   console.log(req.userData.userId);
   Profile.findOne({creator: req.userData.userId}).then(profile => {
+    console.log(profile);
+    res.status(200).json(profile)
+  }).catch(err =>  res.status(400).json(err))
+})
+
+router.get('/publicProfile/:id',  (req, res) => {
+  console.log(req.body);
+
+  Profile.findOne({_id: req.params.id})
+  .populate('creator', '_id')
+  .then(profile => {
     console.log(profile);
     res.status(200).json(profile)
   }).catch(err =>  res.status(400).json(err))

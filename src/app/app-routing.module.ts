@@ -19,6 +19,11 @@ import {AddProfileComponent } from './appComponents/add-profile/add-profile.comp
 import {AddProblemComponent} from './appComponents/add-problem/add-problem.component';
 import {ManageProblemsComponent} from './appComponents/manage-problems/manage-problems.component';
 import {MainProfileComponent} from './appComponents/main-profile/main-profile.component';
+import {PublicProfileComponent} from './appComponents/public-profile/public-profile.component';
+import {RecruiterDashboardComponent} from './recruiterComponents/recruiter-dashboard/recruiter-dashboard.component';
+import {AddJobComponent} from './recruiterComponents/add-job/add-job.component';
+import {AddBoosterComponent} from './recruiterComponents/add-booster/add-booster.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -48,6 +53,10 @@ const routes: Routes = [
   {path: 'manageProblems', component: ManageProblemsComponent },
   {path: 'addProfile', component: AddProfileComponent },
   {path: 'mainProfile', component: MainProfileComponent },
+  {path: 'publicProfile/:id', component: PublicProfileComponent },
+  {path: 'recruiterDashboard', component: RecruiterDashboardComponent},
+  {path: 'addJob', component: AddJobComponent},
+  {path: 'addBooster', component: AddBoosterComponent}
 
 
 ];
