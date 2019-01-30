@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { Profile } from '../models/profile';
+import { Job } from '../models/job';
+import { Booster } from '../models/booster';
 import { Skill } from '../models/skill';
 import { Project } from '../models/project';
 import { Education } from '../models/education';
@@ -235,4 +237,41 @@ export class CreateDataService {
       this.http.post('http://localhost:3000/create/problem', newProblem)
         .subscribe(response => console.log(response));
     }
+
+    createJob(_id: string, employer: string, jobTitle: string,
+      compensation: string, contract: string, description: string ) {
+        const newJob = {
+          _id: null,
+          employer: employer,
+          jobTitle: jobTitle,
+          compensation: compensation,
+          contract: contract,
+          description: description
+        };
+
+        this.http.post('http://localhost:3000/create/job', newJob)
+          .subscribe(response => console.log(response));
+    }
+
+    createBooster(_id: string, title: string, description: string,
+      link: string, complete: string) {
+          const newBooster = {
+            _id: null,
+            title: title,
+            description: description,
+            link: link,
+            complete: complete
+          };
+
+          this.http.post('http://localhost:3000/create/booster', newBooster)
+            .subscribe(response => {
+              console.log(response);
+            });
+
+      }
 }
+
+/*
+
+
+*/

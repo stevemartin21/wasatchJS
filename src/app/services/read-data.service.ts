@@ -5,6 +5,8 @@ import { Profile } from '../models/profile';
 import { Skill } from '../models/skill';
 import { Project } from '../models/project';
 import { Education } from '../models/education';
+import { Job } from '../models/job';
+import { Booster } from '../models/booster';
 import { Experience } from '../models/experience';
 import { Content } from '../models/content';
 import { Problem } from '../models/problem';
@@ -88,6 +90,22 @@ export class ReadDataService {
 
   getProblem(id) {
     return this.http.get<Problem>(`http://localhost:3000/read/problem/${id}`);
+  }
+
+  getJobs() {
+    return this.http.get<Job[]>('http://localhost:3000/read/jobs');
+  }
+
+  getJob(id) {
+    return this.http.get<Job>(`http://localhost:3000/read/job/${id}`);
+  }
+
+  getBoosters() {
+    return this.http.get<Booster[]>('http://localhost:3000/read/boosters');
+  }
+
+  getBooster(id) {
+    return this.http.get<Booster>(`http://localhost:3000/read/booster/${id}`);
   }
 
 }

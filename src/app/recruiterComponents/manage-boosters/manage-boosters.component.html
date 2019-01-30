@@ -1,0 +1,88 @@
+<div class='container mt-5 mb-5'>
+
+  <!--Table-->
+  <table class="table table-striped w-auto">
+
+    <!--Table head-->
+    <thead>
+        <tr>
+
+            <th>Employer</th>
+            <th>Job Title</th>
+            <th>Compensation</th>
+            <th>Contract</th>
+            <th>Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody >
+        <tr  *ngFor="let booster of boosters; let i = index" >
+
+            <td *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex" class='font-weight-bold' >{{booster.title}}</td>
+            <td *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex" class='font-weight-bold'>{{booster.description}}</td>
+            <td *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex" class='font-weight-bold'>{{booster.link}}</td>
+            <td *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex" class='font-weight-bold'>{{booster.complete}}</td>
+
+            <td *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex" class='font-weight-bold'><button class='btn btn-success' [routerLink]="['/editBooster', booster._id]">Edit</button></td>
+            <td *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex" class='font-weight-bold'><button class='btn btn-danger' (click)="onDelete(booster._id)">Delete</button></td>
+        </tr>
+
+    </tbody>
+    <!--Table body-->
+
+
+  </table>
+  <!--Table-->
+
+   <!--Bottom Table UI-->
+   <div class="d-flex justify-content-center ">
+
+    <!--Pagination -->
+    <nav class="my-4 pt-2">
+      <ul class="pagination pagination-circle pg-elegant-color mb-0">
+
+        <!--First-->
+        <li class="page-item clearfix d-none d-md-block" (click)="firstPage()" [ngClass]="{disabled: activePage == 1}">
+          <a class="page-link font-weight-bold">First</a>
+        </li>
+
+        <!--Arrow left-->
+        <li class="page-item" (click)="previousPage($event)" [ngClass]="{disabled: activePage == 1}">
+          <a class="page-link" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only font-weight-bold ">Previous</span>
+          </a>
+        </li>
+
+        <!--Numbers-->
+        <li #pages *ngFor="let page of paginators | slice:firstVisiblePaginator:lastVisiblePaginator; let i = index" class="page-item" [ngClass]="{active: i + firstVisiblePaginator + 1 == activePage}">
+            <a class="page-link waves-lightfont-weight-bold " (click)="changePage($event)" mdbWavesEffect>{{page}}</a>
+        </li>
+
+
+
+        <!--Arrow right-->
+        <li class="page-item" (click)='nextPage($event)' [ngClass]="{disabled: activePage == numberOfPaginators}">
+          <a class="page-link" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only font-weight-bold">Next</span>
+          </a>
+        </li>
+
+        <!--First-->
+        <li class="page-item clearfix d-none d-md-block" (click)="lastPage()" [ngClass]="{disabled: activePage == numberOfPaginators}">
+          <a class="page-link font-weight-bold">Last</a>
+        </li>
+
+      </ul>
+    </nav>
+    <!--/Pagination -->
+
+  </div>
+  <!--Bottom Table UI-->
+
+  </div>

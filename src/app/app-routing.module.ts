@@ -23,7 +23,8 @@ import {PublicProfileComponent} from './appComponents/public-profile/public-prof
 import {RecruiterDashboardComponent} from './recruiterComponents/recruiter-dashboard/recruiter-dashboard.component';
 import {AddJobComponent} from './recruiterComponents/add-job/add-job.component';
 import {AddBoosterComponent} from './recruiterComponents/add-booster/add-booster.component';
-
+import {ManageJobsComponent} from './recruiterComponents/manage-jobs/manage-jobs.component';
+import {ManageBoostersComponent} from './recruiterComponents/manage-boosters/manage-boosters.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -56,7 +57,11 @@ const routes: Routes = [
   {path: 'publicProfile/:id', component: PublicProfileComponent },
   {path: 'recruiterDashboard', component: RecruiterDashboardComponent},
   {path: 'addJob', component: AddJobComponent},
-  {path: 'addBooster', component: AddBoosterComponent}
+  {path: 'addBooster', component: AddBoosterComponent},
+  {path: 'manageBoosters', component: ManageBoostersComponent},
+  {path: 'manageJobs', component: ManageJobsComponent},
+  {path: 'editJob/:id', component: AddJobComponent},
+  {path: 'editBooster/:id', component: AddBoosterComponent}
 
 
 ];

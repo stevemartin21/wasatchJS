@@ -6,6 +6,8 @@ var Education = require('../models/education');
 var Experience = require('../models/experience');
 var Skill = require('../models/skill');
 var Project = require('../models/project');
+var Job = require('../models/job');
+var Booster = require('../models/booster');
 var Content = require('../models/content');
 var Problem = require('../models/problem');
 
@@ -135,6 +137,43 @@ router.put('/problem/:id', verifyToken, (req, res) => {
   Problem.updateOne({_id: req.params.id, creator: req.userData.userId}, updatedProblem)
     .then(problem => {
       res.status(200).json(problem)
+    }).catch(err => res.status(400).json(err))
+
+})
+
+router.put('/job/:id', verifyToken, (req, res) => {
+
+  const updatedJob = new Job ({
+    _id: req.params.id,
+   employer: req.body.employer,
+   jobTitle: req.body.jobTitle,
+   compensation: req.body.compensation,
+   contract: req.body.contract,
+   description: req.body.description
+
+  })
+
+  Job.updateOne({_id: req.params.id, creator: req.userData.userId}, updatedJob)
+    .then(job => {
+      res.status(200).json(job)
+    }).catch(err => res.status(400).json(err))
+
+})
+
+router.put('/booster/:id', verifyToken, (req, res) => {
+
+  const updatedBooster = new Job ({
+    _id: req.params.id,
+   title: req.body.title,
+   description: req.body.description,
+   link: req.body.link,
+   complete: req.body.complete
+
+  })
+
+  Booster.updateOne({_id: req.params.id, creator: req.userData.userId}, updatedBooster)
+    .then(booster => {
+      res.status(200).json(booster)
     }).catch(err => res.status(400).json(err))
 
 })

@@ -45,6 +45,9 @@ import { AddJobComponent } from './recruiterComponents/add-job/add-job.component
 import { AddBoosterComponent } from './recruiterComponents/add-booster/add-booster.component';
 import { ManageCandidatesComponent } from './recruiterComponents/manage-candidates/manage-candidates.component';
 import { RecruiterDashboardComponent } from './recruiterComponents/recruiter-dashboard/recruiter-dashboard.component';
+import { ManageJobsComponent } from './recruiterComponents/manage-jobs/manage-jobs.component';
+import { ManageBoostersComponent } from './recruiterComponents/manage-boosters/manage-boosters.component';
+import { AdvancementComponent } from './webSiteComponents/advancement/advancement.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +83,10 @@ import { RecruiterDashboardComponent } from './recruiterComponents/recruiter-das
     AddJobComponent,
     AddBoosterComponent,
     ManageCandidatesComponent,
-    RecruiterDashboardComponent
+    RecruiterDashboardComponent,
+    ManageJobsComponent,
+    ManageBoostersComponent,
+    AdvancementComponent
   ],
   imports: [
     BrowserModule,

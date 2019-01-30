@@ -4,6 +4,8 @@ var User = require('../models/user');
 var Profile = require('../models/profile');
 var Education = require('../models/education');
 var Experience = require('../models/experience');
+var Job = require('../models/job');
+var Booster = require('../models/booster');
 var Skill = require('../models/skill');
 var Project = require('../models/project');
 var Content = require('../models/content');
@@ -142,6 +144,33 @@ router.get('/problem/:id', verifyToken, (req, res) => {
     res.status(200).json(problem)
   }).catch(err =>  res.status(400).json(err))
 })
+
+router.get('/jobs', verifyToken, (req, res) => {
+  Job.find({creator: req.userData.userId}).then(jobs => {
+    console.log(jobs)
+    res.status(200).json(jobs)
+  }).catch(err => res.json(err));
+})
+
+router.get('/job/:id', verifyToken, (req, res) => {
+  Job.findOne({_id: req.params.id}).then(job => {
+    res.status(200).json(job)
+  }).catch(err =>  res.status(400).json(err))
+})
+
+router.get('/boosters', verifyToken, (req, res) => {
+  Booster.find({creator: req.userData.userId}).then(boosters => {
+    console.log(boosters)
+    res.status(200).json(boosters)
+  }).catch(err => res.json(err));
+})
+
+router.get('/booster/:id', verifyToken, (req, res) => {
+  Booster.findOne({_id: req.params.id}).then(booster => {
+    res.status(200).json(booster)
+  }).catch(err =>  res.status(400).json(err))
+})
+
 
 
 

@@ -8,6 +8,8 @@ var Skill = require('../models/skill');
 var Project = require('../models/project');
 var Content = require('../models/content');
 var Problem = require('../models/problem');
+var Job = require('../models/job');
+var Booster = require('../models/booster');
 const verifyToken = require('../middleware/verify-token');
 
 // create user
@@ -74,6 +76,26 @@ router.delete('/profile/:id', verifyToken, (req, res) => {
       res.status(200).json(profile);
     }).catch(err => res.json(err));
 })
+
+
+router.delete('/job/:id', verifyToken, (req, res) => {
+  console.log('Delete Yo yo');
+  console.log(req.params.id);
+  Job.deleteOne({_id: req.params.id, creator: req.userData.userId})
+    .then(job => {
+      res.status(200).json(job);
+    }).catch(err => res.json(err));
+})
+
+router.delete('/booster/:id', verifyToken, (req, res) => {
+  console.log('Delete Yo yo');
+  console.log(req.params.id);
+  Booster.deleteOne({_id: req.params.id, creator: req.userData.userId})
+    .then(booster => {
+      res.status(200).json(booster);
+    }).catch(err => res.json(err));
+})
+
 
 
 

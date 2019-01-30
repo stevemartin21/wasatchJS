@@ -150,7 +150,38 @@ export class UpdateDataService {
  }
 
 
+ updateJob(_id: string, employer: string, jobTitle: string,
+  compensation: string, contract: string, description: string)  {
+   const updatedJob = {
+     _id: _id,
+     employer: employer,
+     jobTitle: jobTitle,
+     compensation: compensation,
+     contract: contract,
+     description: description
+   };
+   this.http.put(`http://localhost:3000/update/job/${_id}`, updatedJob)
+   .subscribe(
+     response =>  console.log(response)
+   );
+   this.router.navigate(['/dashboard']);
+}
 
+updateBooster(_id: string, title: string, description: string,
+  link: string, complete: string)  {
+   const updatedBooster = {
+     _id: _id,
+     title: title,
+     description: description,
+     link: link,
+      complete: complete
+   };
+   this.http.put(`http://localhost:3000/update/booster/${_id}`, updatedBooster)
+   .subscribe(
+     response =>  console.log(response)
+   );
+   this.router.navigate(['/dashboard']);
+}
 
 }
 

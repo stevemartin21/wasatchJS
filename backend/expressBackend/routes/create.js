@@ -5,6 +5,8 @@ var Profile = require('../models/profile');
 var Education = require('../models/education');
 var Experience = require('../models/experience');
 var Skill = require('../models/skill');
+var Job = require('../models/job');
+var Booster = require('../models/booster');
 var Project = require('../models/project');
 var Content = require('../models/content');
 var Problem = require('../models/problem');
@@ -210,5 +212,35 @@ router.post('/problem', verifyToken, (req, res) => {
     res.status(200).json(problem);
   }).catch(err => res.status(400).json(err))
 })
+
+router.post('/job', verifyToken, (req, res) => {
+  const newJob = new Job({
+    employer: req.body.employer,
+    jobTitle: req.body.jobTitle,
+    compensation: req.body.compensation,
+    contract: req.body.contract,
+    description: req.body.description,
+    creator: req.userData.userId
+  })
+
+  newJob.save().then(job => {
+    res.status(200).json(job);
+  }).catch(err => res.status(400).json(err))
+})
+
+router.post('/booster', verifyToken, (req, res) => {
+  const newBooster = new Booster({
+    title: req.body.title,
+    description: req.body.description,
+    link: req.body.link,
+    complete: req.body.complete,
+    creator: req.userData.userId
+  })
+
+  newBooster.save().then(booster => {
+    res.status(200).json(booster);
+  }).catch(err => res.status(400).json(err))
+})
+
 
 module.exports = router;

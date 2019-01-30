@@ -1,8 +1,7 @@
 export interface Booster {
   _id: String;
-  employer: String;
-  jobTitle: String;
-  compensation: String;
-  contract: String;
+  title: String;
   description: String;
+  link: String;
+  complete: String;
 }
