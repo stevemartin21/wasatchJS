@@ -3,7 +3,7 @@ import { ReadDataService } from '../../services/read-data.service';
 import { Subscription } from 'rxjs';
 import {Project } from '../../models/project';
 import { DeleteDataService } from '../../services/delete-data.service';
-
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -28,19 +28,21 @@ export class ManageProjectsComponent implements OnInit {
   lastVisiblePaginator = this.numberOfVisiblePaginators;
 
   constructor(private readDataService: ReadDataService,
-    private deleteDataService: DeleteDataService) { }
+    private deleteDataService: DeleteDataService,
+    private router: Router) { }
 
   ngOnInit() {
 
-    this.readDataService.getProjects()
+    this.readDataService.getProfileInfo()
       .subscribe(response => {
-        this.projects = response;
+        this.projects = response.projects;
         this.addPaginators();
       } );
   }
 
   onDelete(id: string) {
     this.deleteDataService.deleteProject(id);
+    this.router.navigate(['/dashboard']);
   }
 
   changePage(event: any) {

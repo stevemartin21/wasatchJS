@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var Profile = require('../models/profile');
+var Recruiter = require('../models/recruiter');
 var Education = require('../models/education');
 var Experience = require('../models/experience');
 var Skill = require('../models/skill');
@@ -18,6 +19,7 @@ var jwt = require('jsonwebtoken');
 // create user
 
 router.post('/user', (req, res) => {
+  console.log(req.body.password)
 
   User.findOne({email: req.body.email}).then(user => {
     if(user) {
@@ -41,9 +43,12 @@ router.post('/user', (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
+        type: req.body.type,
         isAdmin: isAdmin,
         isRecruiter: isRecruiter
       })
+
+      console.log(newUser)
 
       bcrypt.genSalt(10, (err, salt ) => {
         bcrypt.hash(req.body.password, salt,  (err, hash) => {
@@ -80,6 +85,7 @@ router.post('/token', (req, res) => {
            email: selectedUser.email,
            name: selectedUser.name,
            userId: selectedUser._id,
+           type: selectedUser.type,
            isAdmin: selectedUser.isAdmin,
            isRecruiter: selectedUser.isRecruiter
          },
@@ -91,6 +97,7 @@ router.post('/token', (req, res) => {
            expiresIn: '3600',
            userId: selectedUser._id,
            isAdmin: selectedUser.isAdmin,
+           type: selectedUser.type,
            isRecruiter: selectedUser.isRecruiter
          })
 
@@ -114,132 +121,174 @@ router.post('/profile', verifyToken, (req, res) => {
     res.status(200).json(profile)
   }).catch(err => res.json(err));
 
-
 })
 
-router.post('/education', verifyToken, (req, res ) => {
-  const newEducation = new Education ({
-    schoolName: req.body.schoolName,
-    schoolType: req.body.schoolType,
-    degree: req.body.degree,
-    degreeType: req.body.degreeType,
-    to: req.body.to,
-    from: req.body.from,
-    notes: req.body.notes,
-    creator: req.userData.userId
+router.post('/recruiter', verifyToken, (req, res) => {
+
+  const newRecruiter = new Recruiter ({
+    fname: req.body.fname,
+    lname: req.body.lname,
+    phone: req.body.phone,
+    email: req.body.email,
+    webSite: req.body.webSite,
+    company: req.body.company,
+    creator: req.userData.userId,
   })
 
-  newEducation.save().then(education => {
-      res.status(200).json(education);
-  }).catch(err => res.status(400).json(err))
+  newRecruiter.save().then(profile => {
+    res.status(200).json(profile)
+  }).catch(err => res.json(err));
+
 })
 
-router.post('/experience', verifyToken, (req, res ) => {
-    const newExperience = new Experience({
-      employer: req.body.employer,
-      jobTitle: req.body.jobTitle,
-      to: req.body.to,
-      from: req.body.from,
-      description: req.body.description,
-      creator: req.userData.userId
+// new experience //  creator: req.userData.userId,
+
+router.post('/newExperience', verifyToken, (req, res) => {
+    Profile.findOne({creator: req.userData.userId})
+      .then(profile => {
+        const newExp = {
+          employer: req.body.employer,
+          jobTitle: req.body.jobTitle,
+          from: req.body.from,
+          to: req.body.to,
+          description: req.body.description
+        }
+        profile.experience.unshift(newExp);
+
+        profile.save().then(profile => {
+          res.status(200).json(profile)
+        })
+      })
+})
+
+// new Education
+
+router.post('/newEducation', verifyToken, (req, res) => {
+  Profile.findOne({creator: req.userData.userId})
+    .then(profile => {
+      const newEdu = {
+          schoolName: req.body.schoolName,
+          schoolType: req.body.schoolType,
+          degree: req.body.degree,
+          degreeType: req.body.degreeType,
+          to: req.body.to,
+          from: req.body.from,
+          notes: req.body.notes
+      }
+      profile.education.unshift(newEdu);
+
+      profile.save().then(profile => {
+        res.status(200).json(profile)
+      })
     })
-
-    console.log(newExperience + '1')
-
-    newExperience.save().then(experience => {
-      console.log(experience + '2');
-      res.status(200).json(experience);
-    }).catch(err => res.status(400).json(err))
 })
 
-router.post('/skill', verifyToken, (req, res) => {
-  const newSkill = new Skill({
-    name: req.body.name,
-    type: req.body.type,
-    description: req.body.description,
-    years: req.body.years,
-    creator: req.userData.userId
-  })
-  console.log(newSkill + '1')
+router.post('/newSkill', verifyToken, (req, res) => {
+  Profile.findOne({creator: req.userData.userId})
+    .then(profile => {
+      const newSkill = {
+        name: req.body.name,
+        type: req.body.type,
+        description: req.body.description,
+        years: req.body.years,
+      }
+      profile.skills.unshift(newSkill);
 
-  newSkill.save().then(skill => {
-    console.log(newSkill +'2')
-    res.status(200).json(skill)
-  }).catch(err => res.status(400).json(err))
-})
-
-router.post('/project', verifyToken, (req, res) => {
-  const newProject = new Project({
-      name: req.body.name,
-      description: req.body.description,
-      skills: req.body.skills,
-      framework: req.body.framework,
-      backend: req.body.backend,
-      database: req.body.database,
-      link: req.body.link,
-      creator: req.userData.userId
-  })
-
-  newProject.save().then(project => {
-    res.status(200).json(project)
-  }).catch(err => res.status(400).json(err))
-})
-
-router.post('/content', verifyToken, (req, res) => {
-    const newContent = new Content({
-      title: req.body.title,
-      description: req.body.description,
-      topic: req.body.topic,
-      link: req.body.link,
-      creator: req.userData.userId
+      profile.save().then(profile => {
+        res.status(200).json(profile)
+      })
     })
-
-    newContent.save().then(content => {
-      res.status(200).json(content);
-    }).catch(err => res.status(400).json(err))
 })
 
-router.post('/problem', verifyToken, (req, res) => {
-  const newProblem = new Problem({
-    title: req.body.title,
-    description: req.body.description,
-    steps: req.body.steps,
-    appliedLearning: req.body.appliedLearning,
-    creator: req.userData.userId
-  })
+router.post('/newProject', verifyToken, (req, res) => {
+  Profile.findOne({creator: req.userData.userId})
+    .then(profile => {
+      const newProject = {
+        name: req.body.name,
+        description: req.body.description,
+        skills: req.body.skills,
+        framework: req.body.framework,
+        backend: req.body.backend,
+        database: req.body.database,
+        link: req.body.link,
+      }
+      profile.projects.unshift(newProject);
 
-  newProblem.save().then(problem => {
-    res.status(200).json(problem);
-  }).catch(err => res.status(400).json(err))
+      profile.save().then(profile => {
+        res.status(200).json(profile)
+      })
+    })
 })
 
-router.post('/job', verifyToken, (req, res) => {
-  const newJob = new Job({
-    employer: req.body.employer,
-    jobTitle: req.body.jobTitle,
-    compensation: req.body.compensation,
-    contract: req.body.contract,
-    description: req.body.description,
-    creator: req.userData.userId
-  })
+router.post('/newSolution', verifyToken, (req, res) => {
+  Profile.findOne({creator: req.userData.userId})
+    .then(profile => {
+      const newSolution = {
+        title: req.body.title,
+        description: req.body.description,
+        steps: req.body.steps,
+        appliedLearning: req.body.appliedLearning,
+      }
+      profile.solutions.unshift(newSolution);
 
-  newJob.save().then(job => {
-    res.status(200).json(job);
-  }).catch(err => res.status(400).json(err))
+      profile.save().then(profile => {
+        res.status(200).json(profile)
+      })
+    })
 })
 
-router.post('/booster', verifyToken, (req, res) => {
-  const newBooster = new Booster({
-    title: req.body.title,
-    description: req.body.description,
-    link: req.body.link,
-    complete: req.body.complete,
-    creator: req.userData.userId
-  })
+router.post('/newContent', verifyToken, (req, res) => {
+  Profile.findOne({creator: req.userData.userId})
+    .then(profile => {
+      const newContent = {
+        title: req.body.title,
+        description: req.body.description,
+        topic: req.body.topic,
+        link: req.body.link,
+      }
+      profile.content.unshift(newContent);
 
-  newBooster.save().then(booster => {
-    res.status(200).json(booster);
-  }).catch(err => res.status(400).json(err))
+      profile.save().then(profile => {
+        res.status(200).json(profile)
+      })
+    })
+})
+
+
+router.post('/newJob', verifyToken, (req, res) => {
+  Recruiter.findOne({creator: req.userData.userId})
+    .then(recruiter => {
+      const newJob = {
+        employer: req.body.employer,
+        jobTitle: req.body.jobTitle,
+        compensation: req.body.compensation,
+        contract: req.body.contract,
+        description: req.body.description
+      }
+      recruiter.jobs.unshift(newJob);
+
+      recruiter.save().then(recruiter => {
+        res.status(200).json(recruiter)
+      })
+    })
+})
+
+router.post('/newBooster', verifyToken, (req, res) => {
+  Recruiter.findOne({creator: req.userData.userId})
+    .then(recruiter => {
+      const newBooster = {
+        title: req.body.title,
+        description: req.body.description,
+        link: req.body.link,
+        complete: req.body.complete,
+        level: req.body.level,
+      }
+      recruiter.boosters.unshift(newBooster);
+
+      recruiter.save().then(recruiter => {
+        res.status(200).json(recruiter)
+      })
+    })
 })
 
 

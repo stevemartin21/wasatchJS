@@ -19,6 +19,8 @@ export class AddBoosterComponent implements OnInit {
   private mode = 'create';
   booster: Booster;
 
+  optionsSelect: Array<any>;
+
   constructor(private createDataService: CreateDataService,
     private readDataService: ReadDataService,
     private updateDataService: UpdateDataService,
@@ -27,12 +29,23 @@ export class AddBoosterComponent implements OnInit {
 
   ngOnInit() {
 
+    this.optionsSelect = [
+      { value: 'Student', label: 'Student/Intern' },
+      { value: 'Junior', label: 'Junior' },
+      { value: 'Junior-Mid', label: 'Junior-Mid' },
+      { value: 'Mid', label: 'Mid' },
+      { value: 'Mid-Senior', label: 'Mid-Senior' },
+      { value: 'Senior', label: 'Senior' },
+      { value: 'Architect', label: 'Architect' },
+      ];
+
 
     this.form = new FormGroup({
       title: new FormControl(null, {validators: [Validators.required]}),
       description: new FormControl(null, {validators: [Validators.required]}),
       link: new FormControl(null, {validators: [Validators.required]}),
       complete: new FormControl(null, {validators: [Validators.required]}),
+      level: new FormControl(null, {validators: [Validators.required]})
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -50,6 +63,7 @@ export class AddBoosterComponent implements OnInit {
             description: this.booster.description,
             link: this.booster.link,
             complete: this.booster.complete,
+            level: this.booster.level
           });
         });
       } else {
@@ -59,7 +73,7 @@ export class AddBoosterComponent implements OnInit {
     });
   }
 
-  saveJob() {
+  saveBooster() {
 
     if ( this.form.invalid) {
       return;
@@ -72,7 +86,8 @@ export class AddBoosterComponent implements OnInit {
         this.form.value.title,
         this.form.value.description,
         this.form.value.link,
-        this.form.value.complete
+        this.form.value.complete,
+        this.form.value.level
       );
     } else {
       this.updateDataService.updateBooster(
@@ -80,7 +95,8 @@ export class AddBoosterComponent implements OnInit {
         this.form.value.title,
         this.form.value.description,
         this.form.value.link,
-        this.form.value.complete
+        this.form.value.complete,
+        this.form.value.level
       );
     }
 

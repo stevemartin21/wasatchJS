@@ -4,4 +4,5 @@ export interface Booster {
   description: String;
   link: String;
   complete: String;
+  level: String;
 }

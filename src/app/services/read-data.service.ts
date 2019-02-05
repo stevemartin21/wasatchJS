@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { Profile } from '../models/profile';
+import { Recruiter } from '../models/recruiter';
 import { Skill } from '../models/skill';
 import { Project } from '../models/project';
 import { Education } from '../models/education';
@@ -20,12 +21,12 @@ export class ReadDataService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  getEducations() {
-    return this.http.get<Education[]>('http://localhost:3000/read/educations');
+  getProfileInfo() {
+    return this.http.get<any>('http://localhost:3000/read/profile');
   }
 
   getEducation(id) {
-    return this.http.get<Education>(`http://localhost:3000/read/education/${id}`);
+    return this.http.get<any>(`http://localhost:3000/read/newEducation/${id}`);
   }
 
   getExperiences() {
@@ -33,7 +34,7 @@ export class ReadDataService {
   }
 
   getExperience(id) {
-    return this.http.get<Experience>(`http://localhost:3000/read/experience/${id}`);
+    return this.http.get<any>(`http://localhost:3000/read/newExperience/${id}`);
   }
 
   getSkills() {
@@ -41,15 +42,15 @@ export class ReadDataService {
   }
 
   getSkill(id) {
-    return this.http.get<Skill>(`http://localhost:3000/read/skill/${id}`);
+    return this.http.get<Skill>(`http://localhost:3000/read/newSkill/${id}`);
   }
 
   getProjects() {
-    return this.http.get<Project[]>('http://localhost:3000/read/projects');
+    return this.http.get<Project[]>('http://localhost:3000/read/newProjects');
   }
 
   getProject(id) {
-    return this.http.get<Project>(`http://localhost:3000/read/project/${id}`);
+    return this.http.get<Project>(`http://localhost:3000/read/newProject/${id}`);
   }
 
   getContents() {
@@ -57,7 +58,7 @@ export class ReadDataService {
   }
 
   getContent(id) {
-    return this.http.get<Content>(`http://localhost:3000/read/content/${id}`);
+    return this.http.get<Content>(`http://localhost:3000/read/newContent/${id}`);
   }
 
   getDeveloperContent(id) {
@@ -68,9 +69,23 @@ export class ReadDataService {
     return this.http.get<Profile[]>('http://localhost:3000/read/profiles');
   }
 
+  getRecruiters() {
+    return this.http.get<Recruiter[]>('http://localhost:3000/read/recruiters');
+  }
+
+  getRecruiter() {
+    return this.http.get<Recruiter>('http://localhost:3000/read/recruiter');
+  }
+
+  getRecruiterById(id) {
+    return this.http.get<Recruiter>(`http://localhost:3000/read/recruiter/${id}`);
+  }
+
   getPublicProfiles() {
     return this.http.get<any[]>('http://localhost:3000/read/publicProfiles');
   }
+
+
 
   getPublicProjects() {
     return this.http.get<any[]>('http://localhost:3000/read/publicProjects');
@@ -84,12 +99,14 @@ export class ReadDataService {
     return this.http.get<Profile>(`http://localhost:3000/read/profile/${id}`);
   }
 
+
+
   getProblems() {
     return this.http.get<Problem[]>('http://localhost:3000/read/problems');
   }
 
   getProblem(id) {
-    return this.http.get<Problem>(`http://localhost:3000/read/problem/${id}`);
+    return this.http.get<Problem>(`http://localhost:3000/read/newSolution/${id}`);
   }
 
   getJobs() {

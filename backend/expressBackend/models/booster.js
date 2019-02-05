@@ -5,6 +5,7 @@ const boosterSchema = mongoose.Schema({
   description: {type: String},
   link: {type: String},
   complete: {type: String},
+  level: {type: String},
   creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User' , required: true }
 })
 

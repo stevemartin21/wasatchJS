@@ -15,76 +15,156 @@ const verifyToken = require('../middleware/verify-token');
 
 // create user
 
-router.put('/education/:id', verifyToken, (req, res) => {
+//  Experience
 
-    const updatedEducation = new Education ({
-      _id: req.params.id,
-      schoolName: req.body.schoolName,
-      schoolType: req.body.schoolType,
-      degree: req.body.degree,
-      degreeType: req.body.degreeType,
-      to: req.body.to,
-      from: req.body.from,
-      notes: req.body.notes
-    })
+router.put('/newExperience/:id', verifyToken, (req, res) => {
+  Profile.findOne({creator: req.userData.userId})
+    .then(profile => {
+      console.log(profile)
+      const findIndex = profile.experience
+      .map(item => item.id)
+      .indexOf(req.params.id);
 
-    Education.updateOne({_id: req.params.id, creator: req.userData.userId}, updatedEducation)
-      .then(education => {
-        res.status(200).json(education)
-      }).catch(err => res.status(400).json(err))
+      const updatedExperience = {
+        employer: req.body.employer,
+        jobTitle: req.body.jobTitle,
+        to: req.body.to,
+        from: req.body.from,
+        description: req.body.description
+      }
+      console.log(updatedExperience)
 
+       profile.experience.splice(findIndex, 1);
+       profile.experience.unshift(updatedExperience)
+       profile.save().then(foundProfile => {
+        res.status(200).json(foundProfile)
+       })
+    }).catch(err => res.status(400).json(err));
 })
 
-router.put('/experience/:id', verifyToken,  (req, res) => {
+router.put('/newEducation/:id', verifyToken, (req, res) => {
+  Profile.findOne({creator: req.userData.userId})
+    .then(profile => {
+      console.log(profile)
+      const findIndex = profile.education
+      .map(item => item.id)
+      .indexOf(req.params.id);
 
-  const updatedExperience = new Experience ({
-    _id: req.params.id,
-    employer: req.body.employer,
-    jobTitle: req.body.jobTitle,
-    to: req.body.to,
-    from: req.body.from,
-    description: req.body.description
-  })
+      const updatedEducation = {
+        schoolName: req.body.schoolName,
+        schoolType: req.body.schoolType,
+        degree: req.body.degree,
+        degreeType: req.body.degreeType,
+        to: req.body.to,
+        from: req.body.from,
+        notes: req.body.notes
+      }
+      console.log(updatedEducation)
 
-  Experience.updateOne({_id: req.params.id, creator: req.userData.userId}, updatedExperience)
-    .then(experience => {
-      res.status(200).json(experience)
-    }).catch(err => res.status(400).json(err))
-
+       profile.education.splice(findIndex, 1);
+       profile.education.unshift(updatedEducation)
+       profile.save().then(foundProfile => {
+        res.status(200).json(foundProfile)
+       })
+    }).catch(err => res.status(400).json(err));
 })
 
-router.put('/skill/:id', verifyToken, (req, res) => {
+router.put('/newSkill/:id', verifyToken, (req, res) => {
+  Profile.findOne({creator: req.userData.userId})
+    .then(profile => {
+      console.log(profile);
+      const findIndex = profile.skills
+      .map(item => item.id)
+      .indexOf(req.params.id);
 
-  const updatedSkill = new Skill ({
-    _id: req.params.id,
-    name: req.body.name,
-    type: req.body.type,
-    description: req.body.description,
-    years: req.body.years
-  })
+      const updatedSkills = {
+        name: req.body.name,
+        type: req.body.type,
+        description: req.body.description,
+        years: req.body.years
+      }
+      console.log(updatedSkills)
 
-  Skill.updateOne({_id: req.params.id, creator: req.userData.userId}, updatedSkill)
-    .then(skill => {
-      res.status(200).json(skill)
-    }).catch(err => res.status(400).json(err))
-
+       profile.skills.splice(findIndex, 1);
+       profile.skills.unshift(updatedSkills)
+       profile.save().then(foundProfile => {
+        res.status(200).json(foundProfile)
+       })
+    }).catch(err => res.status(400).json(err));
 })
 
-router.put('/content/:id', verifyToken, (req, res) => {
+router.put('/newContent/:id', verifyToken, (req, res) => {
+  Profile.findOne({creator: req.userData.userId})
+    .then(profile => {
+      console.log(profile);
+      const findIndex = profile.skills
+      .map(item => item.id)
+      .indexOf(req.params.id);
 
-  const updatedContent = new Content ({
-    _id: req.params.id,
-    title: req.body.title,
-    description: req.body.description,
-    topic: req.body.topic,
-    link: req.body.link
-  })
+      const updatedContent = {
+        title: req.body.title,
+        description: req.body.description,
+        topic: req.body.topic,
+        link: req.body.link
+      }
+      console.log(updatedContent)
 
-  Content.updateOne({_id: req.params.id, creator: req.userData.userId}, updatedContent)
-    .then(content => {
-      res.status(200).json(content)
-    }).catch(err => res.status(400).json(err))
+       profile.content.splice(findIndex, 1);
+       profile.content.unshift(updatedContent)
+       profile.save().then(foundProfile => {
+        res.status(200).json(foundProfile)
+       })
+    }).catch(err => res.status(400).json(err));
+})
 
+router.put('/newProject/:id', verifyToken, (req, res) => {
+  Profile.findOne({creator: req.userData.userId})
+    .then(profile => {
+      console.log(profile);
+      const findIndex = profile.skills
+      .map(item => item.id)
+      .indexOf(req.params.id);
+
+      const updatedProject = {
+        description: req.body.description,
+        skills: req.body.skills,
+        framework: req.body.framework,
+        backend: req.body.backend,
+        database: req.body.database,
+        link: req.body.link
+      }
+      console.log(updatedProject)
+
+       profile.projects.splice(findIndex, 1);
+       profile.projects.unshift(updatedProject)
+       profile.save().then(foundProfile => {
+        res.status(200).json(foundProfile)
+       })
+    }).catch(err => res.status(400).json(err));
+})
+
+router.put('/newSolution/:id', verifyToken, (req, res) => {
+  Profile.findOne({creator: req.userData.userId})
+    .then(profile => {
+      console.log(profile);
+      const findIndex = profile.skills
+      .map(item => item.id)
+      .indexOf(req.params.id);
+
+      const updatedSolution = {
+        title: req.body.title,
+        description: req.body.description,
+        steps: req.body.steps,
+        appliedLearning: req.body.appliedLearning
+      }
+      console.log(updatedSolution)
+
+       profile.solutions.splice(findIndex, 1);
+       profile.solutions.unshift(updatedSolution)
+       profile.save().then(foundProfile => {
+        res.status(200).json(foundProfile)
+       })
+    }).catch(err => res.status(400).json(err));
 })
 
 router.put('/profile/:id', verifyToken, (req, res) => {
@@ -106,40 +186,9 @@ router.put('/profile/:id', verifyToken, (req, res) => {
 
 })
 
-router.put('/project/:id', verifyToken, (req, res) => {
 
-  const updatedProject = new Project ({
-    _id: req.params.id,
-    description: req.body.description,
-    skills: req.body.skills,
-    framework: req.body.framework,
-    backend: req.body.backend,
-    database: req.body.database,
-    link: req.body.link
-  })
 
-  Project.updateOne({_id: req.params.id, creator: req.userData.userId}, updatedProject)
-    .then(project => {
-      res.status(200).json(project)
-    }).catch(err => res.status(400).json(err))
 
-})
-
-router.put('/problem/:id', verifyToken, (req, res) => {
-
-  const updatedProblem = new Problem ({
-    _id: req.params.id,
-   title: req.body.title,
-   description: req.body.description,
-   steps: req.body.steps
-  })
-
-  Problem.updateOne({_id: req.params.id, creator: req.userData.userId}, updatedProblem)
-    .then(problem => {
-      res.status(200).json(problem)
-    }).catch(err => res.status(400).json(err))
-
-})
 
 router.put('/job/:id', verifyToken, (req, res) => {
 
@@ -162,12 +211,13 @@ router.put('/job/:id', verifyToken, (req, res) => {
 
 router.put('/booster/:id', verifyToken, (req, res) => {
 
-  const updatedBooster = new Job ({
+  const updatedBooster = new Booster ({
     _id: req.params.id,
    title: req.body.title,
    description: req.body.description,
    link: req.body.link,
-   complete: req.body.complete
+   complete: req.body.complete,
+   level: req.body.level
 
   })
 

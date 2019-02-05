@@ -1,9 +1,10 @@
 
 
+<!-- Main navigation -->
 <header>
 
   <!-- Full Page Intro -->
-  <div class="view" style="background-image: url('../../../assets/code.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+  <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/89.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <!-- Mask & flexbox options-->
     <div class="mask rgba-indigo-strong d-flex justify-content-center align-items-center">
       <!-- Content -->
@@ -29,58 +30,32 @@
                 <!--Header-->
                 <div class="text-center">
                   <h3 class="dark-grey-text">
-                    <strong>Add Project</strong>
+                    <strong>Register</strong>
                   </h3>
                   <hr>
                 </div>
                 <!--Body-->
-                <form [formGroup]='form' (submit)='saveProject()' >
-
+                <form [formGroup]='form' (submit)='createUser()' >
                 <div class="md-form">
-
-                  <input type="text" id="form1" class="form-control" mdbInputDirective formControlName='name'>
-                  <label for="form1">Name</label>
+                  <i class="fa fa-user prefix grey-text"></i>
+                  <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='name'>
+                  <label for="form3">Your name</label>
+                </div>
+                <div class="md-form">
+                  <i class="fa fa-envelope prefix grey-text"></i>
+                  <input type="text" id="form2" class="form-control" mdbInputDirective formControlName='email'>
+                  <label for="form2">Your email</label>
                 </div>
 
                 <div class="md-form">
-
-                  <input type="text" id="form2" class="form-control" mdbInputDirective formControlName='description'>
-                  <label for="form2">Description</label>
-                </div>
-
-                <div class="md-form">
-
-                  <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='skills'>
-                  <label for="form3">Skills</label>
-                </div>
-
-                <div class="md-form">
-
-                  <input type="text" id="form4" class="form-control" mdbInputDirective formControlName='framework'>
-                  <label for="form4">Framework</label>
-                </div>
-
-                <div class="md-form">
-
-                  <input type="text" id="form5" class="form-control" mdbInputDirective formControlName='backend'>
-                  <label for="form5">Backend</label>
-                </div>
-
-                <div class="md-form">
-
-                  <input type="text" id="form7" class="form-control" mdbInputDirective formControlName='database'>
-                  <label for="form7">Database</label>
-                </div>
-
-                <div class="md-form">
-
-                  <input type="text" id="form6" class="form-control" mdbInputDirective formControlName='link'>
-                  <label for="form6">Link</label>
-                </div>
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='password'>
+                    <label for="form3">Password</label>
+                  </div>
 
 
                 <div class="text-center mt-3">
-                  <button class='btn btn-elegant' mdbWavesEffect>Submit</button>
+                  <button mdbBtn color="indigo" mdbWavesEffect>Send</button>
                   <hr>
 
                 </div>

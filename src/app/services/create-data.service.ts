@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { Profile } from '../models/profile';
+import { Recruiter } from '../models/recruiter';
 import { Job } from '../models/job';
 import { Booster } from '../models/booster';
 import { Skill } from '../models/skill';
@@ -78,17 +79,23 @@ export class CreateDataService {
     return this.recruiterCheck.asObservable();
    }
 
-  createUser(name: string, email: string, password: string) {
+  createUser(name: string, email: string, type: string, password: string) {
     const newUser: User = {
       name: name,
       email: email,
+      type: type,
       password: password
     };
 
     console.log(newUser);
 
-    this.http.post('http://localhost:3000/create/user', newUser).subscribe(
-      user => console.log(user)
+    this.http.post('http://localhost:3000/create/user', newUser)
+      .subscribe(user => {
+        if (user) {
+          this.router.navigate(['/login']);
+        }
+
+      }
     );
   }
 
@@ -97,7 +104,7 @@ export class CreateDataService {
       email: email,
       password: password
     };
-    this.http.post<{isAdmin: boolean, isRecruiter: boolean,
+    this.http.post<{isAdmin: boolean, isRecruiter: boolean, type: string,
       token: string, expiresIn: string, userId: string}>('http://localhost:3000/create/token', newToken)
       .subscribe(response => {
         this.token = response.token;
@@ -106,7 +113,12 @@ export class CreateDataService {
         this.isAuth = true;
         this.expiresIn = response.expiresIn;
         this.userId = response.userId;
-        this.isAdmin = response.isAdmin;
+        if (response.type === 'recruiter') {
+          this.isAdmin = true;
+        } else {
+          this.isAdmin = false;
+        }
+
         this.isRecruiter = response.isRecruiter;
         console.log(this.isAdmin);
         console.log(this.isRecruiter);
@@ -146,6 +158,21 @@ export class CreateDataService {
         .subscribe(response => console.log(response));
   }
 
+  createRecruiter (fname: string, lname: string, phone: string, email: string, webSite: string, company: string) {
+    const newRecruiter: Recruiter = {
+      _id: null,
+      fname: fname,
+      lname: lname,
+      phone: phone,
+      email: email,
+      webSite: webSite,
+      company: company
+    };
+
+    this.http.post('http://localhost:3000/create/recruiter', newRecruiter)
+      .subscribe(response => console.log(response));
+}
+
   createEducation(schoolName: string, schoolType: string, degree: string,
     degreeType: string, from: string, to: string, notes: string) {
 
@@ -160,7 +187,7 @@ export class CreateDataService {
         notes: notes
       };
 
-      this.http.post('http://localhost:3000/create/education', newEducation)
+      this.http.post('http://localhost:3000/create/newEducation', newEducation)
         .subscribe(response => console.log(response));
 
   }
@@ -178,7 +205,7 @@ export class CreateDataService {
         description: description
     };
 
-    this.http.post('http://localhost:3000/create/experience', newExperience)
+    this.http.post('http://localhost:3000/create/newExperience', newExperience)
       .subscribe(response => console.log(response));
   }
 
@@ -191,7 +218,7 @@ export class CreateDataService {
       years: years
     };
 
-    this.http.post('http://localhost:3000/create/skill', newSkill)
+    this.http.post('http://localhost:3000/create/newSkill', newSkill)
       .subscribe(response => console.log(response));
   }
 
@@ -208,7 +235,7 @@ export class CreateDataService {
           link: link
         };
 
-        this.http.post('http://localhost:3000/create/project', newProject)
+        this.http.post('http://localhost:3000/create/newProject', newProject)
           .subscribe(response => console.log(response));
     }
 
@@ -221,7 +248,7 @@ export class CreateDataService {
         link: link
       };
 
-      this.http.post('http://localhost:3000/create/content', newContent)
+      this.http.post('http://localhost:3000/create/newContent', newContent)
         .subscribe(response  => console.log(response));
     }
 
@@ -234,7 +261,9 @@ export class CreateDataService {
         appliedLearning: appliedLearning
       };
 
-      this.http.post('http://localhost:3000/create/problem', newProblem)
+      console.log(newProblem);
+
+      this.http.post('http://localhost:3000/create/newSolution', newProblem)
         .subscribe(response => console.log(response));
     }
 
@@ -249,29 +278,31 @@ export class CreateDataService {
           description: description
         };
 
-        this.http.post('http://localhost:3000/create/job', newJob)
+        this.http.post('http://localhost:3000/create/newJob', newJob)
           .subscribe(response => console.log(response));
     }
 
     createBooster(_id: string, title: string, description: string,
-      link: string, complete: string) {
+      link: string, complete: string, level: string) {
           const newBooster = {
             _id: null,
             title: title,
             description: description,
             link: link,
-            complete: complete
+            complete: complete,
+            level: level
           };
 
-          this.http.post('http://localhost:3000/create/booster', newBooster)
+          console.log(newBooster);
+
+          this.http.post('http://localhost:3000/create/newBooster', newBooster)
             .subscribe(response => {
               console.log(response);
             });
-
       }
 }
 
 /*
-
+//
 
 */

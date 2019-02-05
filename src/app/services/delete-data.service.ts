@@ -1,16 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user';
-import { Profile } from '../models/profile';
-import { Skill } from '../models/skill';
-import { Project } from '../models/project';
-import { Education } from '../models/education';
-import { Experience } from '../models/experience';
-import { Content } from '../models/content';
-import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-import { Job } from '../models/job';
-import { Booster } from '../models/booster';
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +12,7 @@ export class DeleteDataService {
   deleteEducation(id: string) {
     console.log('Clicked Delete Service');
     console.log(id);
-    this.http.delete(`http://localhost:3000/delete/education/${id}`)
+    this.http.delete(`http://localhost:3000/delete/newEducation/${id}`)
       .subscribe(response => console.log(response));
 
   }
@@ -30,7 +20,7 @@ export class DeleteDataService {
   deleteExperience(id: string) {
     console.log('Clicked Delete Service');
     console.log(id);
-    this.http.delete(`http://localhost:3000/delete/experience/${id}`)
+    this.http.delete(`http://localhost:3000/delete/newExperience/${id}`)
       .subscribe(response => console.log(response));
 
   }
@@ -38,7 +28,7 @@ export class DeleteDataService {
   deleteSkill(id: string) {
     console.log('Clicked Delete Service');
     console.log(id);
-    this.http.delete(`http://localhost:3000/delete/skill/${id}`)
+    this.http.delete(`http://localhost:3000/delete/newSkill/${id}`)
       .subscribe(response => console.log(response));
 
   }
@@ -46,7 +36,7 @@ export class DeleteDataService {
   deleteProject(id: string) {
     console.log('Clicked Delete Service');
     console.log(id);
-    this.http.delete(`http://localhost:3000/delete/project/${id}`)
+    this.http.delete(`http://localhost:3000/delete/newProject/${id}`)
       .subscribe(response => console.log(response));
 
   }
@@ -54,7 +44,7 @@ export class DeleteDataService {
   deleteContent(id: string) {
     console.log('Clicked Delete Service');
     console.log(id);
-    this.http.delete(`http://localhost:3000/delete/content/${id}`)
+    this.http.delete(`http://localhost:3000/delete/newContent/${id}`)
       .subscribe(response => console.log(response));
 
   }
@@ -62,7 +52,7 @@ export class DeleteDataService {
   deleteProblem(id: string) {
     console.log('Clicked Delete Service');
     console.log(id);
-    this.http.delete(`http://localhost:3000/delete/problem/${id}`)
+    this.http.delete(`http://localhost:3000/delete/newSolution/${id}`)
       .subscribe(response => console.log(response));
 
   }

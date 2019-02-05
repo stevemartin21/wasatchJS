@@ -1,0 +1,39 @@
+<div class='container mt-5 mb-5'>
+
+    <ul class='list-group' *ngFor='let recruiter of recruiters'>
+
+      <li class='list-group-item'>
+
+      <div class='card'>
+
+        <div class='card-header'>{{recruiter.fname}} {{recruiter.lname}}</div>
+
+        <div class='card-body'>
+
+          <div class='row'>
+
+            <div class='col-10'>
+
+          <ul class='list-group'>
+
+              <li class='list-group-item'>{{recruiter.email}}</li>
+              <li class='list-group-item'>{{recruiter.phone}}</li>
+              <li class='list-group-item'>{{recruiter.webSite}}</li>
+              <li class='list-group-item'>{{recruiter.company}}</li>
+          </ul>
+        </div>
+        <div class='col-2'>
+          <h5><mdb-badge  default="true" class="mr-2" >Jobs  {{recruiter.jobs.length}}</mdb-badge></h5>
+          <h5><mdb-badge  primary="true" class="mr-2">Boosters {{recruiter.boosters.length}}</mdb-badge></h5>
+
+        </div>
+        </div>
+        </div>
+      </div>
+      <a class='btn btn-default' [routerLink]="['/publicRecruiter', recruiter._id]" >See More detals</a>
+      </li>
+
+      </ul>
+
+  </div>
+

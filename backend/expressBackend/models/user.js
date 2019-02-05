@@ -6,6 +6,7 @@ const userSchema = mongoose.Schema({
   password: {type: String},
   isAdmin: {type: Boolean},
   isRecruiter: {type: Boolean},
+  type: {type: String},
   profile: {type: mongoose.Schema.Types.ObjectId, ref: 'Profile'  }
 })
 

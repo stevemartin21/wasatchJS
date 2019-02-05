@@ -6,9 +6,13 @@
 
     <div class='card'>
 
-      <div class='card-header'>{{developer.fname}}</div>
+      <div class='card-header'>{{developer.fname}} {{developer.lname}}</div>
 
       <div class='card-body'>
+
+        <div class='row'>
+
+          <div class='col-10'>
 
         <ul class='list-group'>
 
@@ -17,6 +21,16 @@
             <li class='list-group-item'>{{developer.webSite}}</li>
             <li class='list-group-item'>{{developer.gitHub}}</li>
         </ul>
+      </div>
+      <div class='col-2'>
+        <h5><mdb-badge  default="true" class="mr-2" >Education  {{developer.education.length}}</mdb-badge></h5>
+        <h5><mdb-badge  primary="true" class="mr-2">Experience {{developer.experience.length}}</mdb-badge></h5>
+        <h5><mdb-badge danger='true' class="mr-2" >Skills {{developer.skills.length}}</mdb-badge></h5>
+        <h5><mdb-badge success='true' class="mr-2">Projects {{developer.projects.length}}</mdb-badge></h5>
+        <h5><mdb-badge info='true' class="mr-2" >Solutions {{developer.solutions.length}}</mdb-badge></h5>
+        <h5><mdb-badge color="red" class="mr-2">Content {{developer.content.length}}</mdb-badge></h5>
+      </div>
+      </div>
       </div>
     </div>
     <a class='btn btn-default' [routerLink]="['/publicProfile', developer._id]" >See More detals</a>

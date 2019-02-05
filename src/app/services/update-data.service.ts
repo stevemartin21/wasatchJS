@@ -34,7 +34,7 @@ export class UpdateDataService {
         notes: notes
       };
 
-      this.http.put(`http://localhost:3000/update/education/${_id}`, updatedEducation).subscribe(
+      this.http.put(`http://localhost:3000/update/newEducation/${_id}`, updatedEducation).subscribe(
         response =>  console.log(response)
       );
 
@@ -54,7 +54,7 @@ export class UpdateDataService {
         description: description
       };
 
-      this.http.put(`http://localhost:3000/update/experience/${_id}`, updatedExperience)
+      this.http.put(`http://localhost:3000/update/newExperience/${_id}`, updatedExperience)
       .subscribe(
         response =>  console.log(response)
       );
@@ -76,7 +76,7 @@ export class UpdateDataService {
         database: database,
         link: link
       };
-      this.http.put(`http://localhost:3000/update/project/${_id}`, updatedProject)
+      this.http.put(`http://localhost:3000/update/newProject/${_id}`, updatedProject)
       .subscribe(
         response =>  console.log(response)
       );
@@ -92,7 +92,7 @@ export class UpdateDataService {
         description: description,
         years: years
       };
-      this.http.put(`http://localhost:3000/update/skill/${_id}`, updatedSkill)
+      this.http.put(`http://localhost:3000/update/newSkill/${_id}`, updatedSkill)
       .subscribe(
         response =>  console.log(response)
       );
@@ -108,7 +108,7 @@ export class UpdateDataService {
         topic: topic,
         link: link
       };
-      this.http.put(`http://localhost:3000/update/content/${_id}`, updatedContent)
+      this.http.put(`http://localhost:3000/update/newContent/${_id}`, updatedContent)
       .subscribe(
         response =>  console.log(response)
       );
@@ -133,6 +133,24 @@ export class UpdateDataService {
       this.router.navigate(['/dashboard']);
   }
 
+  updateRecruiter(_id: string, fname: string, lname: string,
+    phone: string, email: string, webSite: string, company: string)  {
+     const updatedRecruiter = {
+       _id: _id,
+       fname: fname,
+       lname: lname,
+       phone: phone,
+       email: email,
+       webSite: webSite,
+       company: company
+     };
+     this.http.put(`http://localhost:3000/update/profile/${_id}`, updatedRecruiter)
+     .subscribe(
+       response =>  console.log(response)
+     );
+     this.router.navigate(['/dashboard']);
+ }
+
   updateProblem(_id: string, title: string, description: string,
     steps: string, appliedLearning: string)  {
      const updatedProblem = {
@@ -142,7 +160,7 @@ export class UpdateDataService {
        steps: steps,
        appliendLearning: appliedLearning
      };
-     this.http.put(`http://localhost:3000/update/problem/${_id}`, updatedProblem)
+     this.http.put(`http://localhost:3000/update/newSolution/${_id}`, updatedProblem)
      .subscribe(
        response =>  console.log(response)
      );
@@ -168,13 +186,14 @@ export class UpdateDataService {
 }
 
 updateBooster(_id: string, title: string, description: string,
-  link: string, complete: string)  {
+  link: string, complete: string, level: string)  {
    const updatedBooster = {
      _id: _id,
      title: title,
      description: description,
      link: link,
-      complete: complete
+      complete: complete,
+      level: level
    };
    this.http.put(`http://localhost:3000/update/booster/${_id}`, updatedBooster)
    .subscribe(

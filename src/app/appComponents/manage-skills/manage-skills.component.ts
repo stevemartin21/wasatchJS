@@ -3,6 +3,8 @@ import { ReadDataService } from '../../services/read-data.service';
 import { Subscription } from 'rxjs';
 import { Skill } from '../../models/skill';
 import { DeleteDataService } from '../../services/delete-data.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-manage-skills',
@@ -26,12 +28,13 @@ export class ManageSkillsComponent implements OnInit {
   lastVisiblePaginator = this.numberOfVisiblePaginators;
 
   constructor(private readDataService: ReadDataService,
-    private deleteDataService: DeleteDataService ) { }
+    private deleteDataService: DeleteDataService,
+    private router: Router ) { }
 
   ngOnInit() {
-  this.skillsSub =  this.readDataService.getSkills()
+  this.skillsSub =  this.readDataService.getProfileInfo()
   .subscribe(response => {
-    this.skills = response;
+    this.skills = response.skills;
     this.addPaginators();
   });
   }
@@ -39,6 +42,7 @@ export class ManageSkillsComponent implements OnInit {
   onDelete(id: string) {
 
     this.deleteDataService.deleteSkill(id);
+    this.router.navigate(['/dashboard']);
 
   }
 

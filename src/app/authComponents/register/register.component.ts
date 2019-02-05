@@ -11,14 +11,20 @@ import { CreateDataService } from '../../services/create-data.service';
 export class RegisterComponent implements OnInit {
 
 
-  form: FormGroup;
+   form: FormGroup;
+   optionsSelect: Array<any>;
 
   constructor(private createDataService: CreateDataService) { }
 
   ngOnInit() {
+    this.optionsSelect = [
+      { value: 'developer', label: 'Developer' },
+      { value: 'recruiter', label: 'Recruiter' }
+      ];
     this.form = new FormGroup({
       name: new FormControl(null, {validators: [Validators.required]}),
       email: new FormControl(null, {validators: [Validators.required]}),
+      type: new FormControl(null, {validators: [Validators.required]}),
       password: new FormControl(null, {validators: [Validators.required]})
     });
   }
@@ -32,6 +38,7 @@ export class RegisterComponent implements OnInit {
     this.createDataService.createUser(
       this.form.value.name,
       this.form.value.email,
+      this.form.value.type,
       this.form.value.password
     );
     this.form.reset();

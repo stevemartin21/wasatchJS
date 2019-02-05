@@ -1,10 +1,7 @@
-
-
-<!-- Main navigation -->
 <header>
 
     <!-- Full Page Intro -->
-    <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/89.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="view" style="background-image: url('../../../assets/databig.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
       <!-- Mask & flexbox options-->
       <div class="mask rgba-indigo-strong d-flex justify-content-center align-items-center">
         <!-- Content -->
@@ -30,39 +27,52 @@
                   <!--Header-->
                   <div class="text-center">
                     <h3 class="dark-grey-text">
-                      <strong>Register</strong>
+                      <strong>My Profile</strong>
                     </h3>
                     <hr>
                   </div>
                   <!--Body-->
-                  <form [formGroup]='form' (submit)='createUser()' >
-                  <div class="md-form">
-                    <i class="fa fa-user prefix grey-text"></i>
-                    <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='name'>
-                    <label for="form3">Your name</label>
-                  </div>
-                  <div class="md-form">
-                    <i class="fa fa-envelope prefix grey-text"></i>
-                    <input type="text" id="form2" class="form-control" mdbInputDirective formControlName='email'>
-                    <label for="form2">Your email</label>
-                  </div>
-                  <div class="md-form">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <mdb-select [options]="optionsSelect" placeholder="Choose your option" formControlName='type'></mdb-select>
-                    </div>
-                  </div>
-                </div>
+                  <form [formGroup]='form' (submit)='saveProfile()' >
 
                   <div class="md-form">
-                      <i class="fa fa-lock prefix grey-text"></i>
-                      <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='password'>
-                      <label for="form3">Password</label>
+
+                    <input type="text" id="form1" class="form-control" mdbInputDirective formControlName='fname'>
+                    <label for="form1"> First Name</label>
+                  </div>
+
+                  <div class="md-form">
+
+                    <input type="text" id="form2" class="form-control" mdbInputDirective formControlName='lname'>
+                    <label for="form2"> Last Name</label>
+                  </div>
+
+                  <div class="md-form">
+
+                    <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='phone'>
+                    <label for="form3"> Phone</label>
+                  </div>
+
+                  <div class="md-form">
+
+                    <input type="text" id="form4" class="form-control" mdbInputDirective formControlName='email'>
+                    <label for="form4"> Email</label>
+                  </div>
+
+                  <div class="md-form">
+
+                    <input type="text" id="form5" class="form-control" mdbInputDirective formControlName='webSite'>
+                    <label for="form5">Web Site</label>
+                  </div>
+
+                  <div class="md-form">
+
+                      <input type="text" id="form6" class="form-control" mdbInputDirective formControlName='company'>
+                      <label for="form6">Company </label>
                     </div>
 
 
                   <div class="text-center mt-3">
-                    <button mdbBtn color="indigo" mdbWavesEffect>Submit</button>
+                    <button class='btn btn-elegant' mdbWavesEffect>Send</button>
                     <hr>
 
                   </div>
@@ -82,5 +92,7 @@
     <!-- Full Page Intro -->
   </header>
   <!-- Main navigation -->
+
+
 
 

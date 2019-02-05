@@ -25,6 +25,11 @@ import {AddJobComponent} from './recruiterComponents/add-job/add-job.component';
 import {AddBoosterComponent} from './recruiterComponents/add-booster/add-booster.component';
 import {ManageJobsComponent} from './recruiterComponents/manage-jobs/manage-jobs.component';
 import {ManageBoostersComponent} from './recruiterComponents/manage-boosters/manage-boosters.component';
+import {RecruitersComponent} from './webSiteComponents/recruiters/recruiters.component';
+// import {AdvancementComponent } from './webSiteComponents/advancement/advancement.component.ts
+import {CareerPathComponent} from './webSiteComponents/career-path/career-path.component';
+import {JobBoardComponent} from './webSiteComponents/job-board/job-board.component';
+import {RecruiterProfileComponent} from './recruiterComponents/recruiter-profile/recruiter-profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -61,7 +66,11 @@ const routes: Routes = [
   {path: 'manageBoosters', component: ManageBoostersComponent},
   {path: 'manageJobs', component: ManageJobsComponent},
   {path: 'editJob/:id', component: AddJobComponent},
-  {path: 'editBooster/:id', component: AddBoosterComponent}
+  {path: 'editBooster/:id', component: AddBoosterComponent},
+  {path: 'recruiters', component: RecruitersComponent},
+  {path: 'careerPath', component: CareerPathComponent},
+  {path: 'jobBoard', component: JobBoardComponent},
+  {path: 'addRecruiterProfile', component: RecruiterProfileComponent}
 
 
 ];

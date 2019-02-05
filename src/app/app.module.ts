@@ -47,7 +47,13 @@ import { ManageCandidatesComponent } from './recruiterComponents/manage-candidat
 import { RecruiterDashboardComponent } from './recruiterComponents/recruiter-dashboard/recruiter-dashboard.component';
 import { ManageJobsComponent } from './recruiterComponents/manage-jobs/manage-jobs.component';
 import { ManageBoostersComponent } from './recruiterComponents/manage-boosters/manage-boosters.component';
-import { AdvancementComponent } from './webSiteComponents/advancement/advancement.component';
+
+import { ManageUsersComponent } from './recruiterComponents/manage-users/manage-users.component';
+import { AddUserComponent } from './recruiterComponents/add-user/add-user.component';
+import { RecruitersComponent } from './webSiteComponents/recruiters/recruiters.component';
+import { CareerPathComponent } from './webSiteComponents/career-path/career-path.component';
+import { JobBoardComponent } from './webSiteComponents/job-board/job-board.component';
+import { RecruiterProfileComponent } from './recruiterComponents/recruiter-profile/recruiter-profile.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +92,12 @@ import { AdvancementComponent } from './webSiteComponents/advancement/advancemen
     RecruiterDashboardComponent,
     ManageJobsComponent,
     ManageBoostersComponent,
-    AdvancementComponent
+    ManageUsersComponent,
+    AddUserComponent,
+    RecruitersComponent,
+    CareerPathComponent,
+    JobBoardComponent,
+    RecruiterProfileComponent
   ],
   imports: [
     BrowserModule,

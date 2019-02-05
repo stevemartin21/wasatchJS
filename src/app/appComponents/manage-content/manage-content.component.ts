@@ -4,7 +4,7 @@ import {Subscription } from 'rxjs';
 import { Content } from '../../models/content';
 import { DeleteDataService } from '../../services/delete-data.service';
 import {CreateDataService} from '../../services/create-data.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-content',
@@ -30,13 +30,14 @@ export class ManageContentComponent implements OnInit {
 
   constructor(private readDataService: ReadDataService,
     private deleteDataService: DeleteDataService,
-    private createDataService: CreateDataService) { }
+    private createDataService: CreateDataService,
+    private router: Router ) { }
 
   ngOnInit() {
 
-    this.readDataService.getContents()
+    this.readDataService.getProfileInfo()
       .subscribe(contents => {
-        this.contents = contents;
+        this.contents = contents.content;
         this.isAuth = true;
         this.addPaginators();
       });
@@ -45,6 +46,7 @@ export class ManageContentComponent implements OnInit {
 
   onDelete(id: string) {
     this.deleteDataService.deleteContent(id);
+    this.router.navigate(['/dashboard']);
   }
 
   changePage(event: any) {

@@ -3,7 +3,7 @@ import { Experience } from '../../models/experience';
 import { ReadDataService } from '../../services/read-data.service';
 import {Subscription } from 'rxjs';
 import { DeleteDataService } from '../../services/delete-data.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-experience',
@@ -27,13 +27,14 @@ export class ManageExperienceComponent implements OnInit {
   lastVisiblePaginator = this.numberOfVisiblePaginators;
 
   constructor(private readDataService: ReadDataService,
-    private deleteDataService: DeleteDataService) { }
+    private deleteDataService: DeleteDataService,
+    private router: Router) { }
 
   ngOnInit() {
 
-   this.experiencesSub = this.experiencesSub = this.readDataService.getExperiences()
+   this.experiencesSub = this.experiencesSub = this.readDataService.getProfileInfo()
       .subscribe(response => {
-        this.experiences = response;
+        this.experiences = response.experience;
         this.addPaginators();
       });
     }
@@ -42,6 +43,7 @@ export class ManageExperienceComponent implements OnInit {
 
   onDelete(id: string) {
     this.deleteDataService.deleteExperience(id);
+    this.router.navigate(['/dashboard']);
 
   }
 
