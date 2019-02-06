@@ -159,7 +159,7 @@ export class CreateDataService {
   }
 
   createRecruiter (fname: string, lname: string, phone: string, email: string, webSite: string, company: string) {
-    const newRecruiter: Recruiter = {
+    const newRecruiter = {
       _id: null,
       fname: fname,
       lname: lname,

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -7,7 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DeleteDataService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private router: Router) { }
 
   deleteEducation(id: string) {
     console.log('Clicked Delete Service');
@@ -68,16 +70,24 @@ export class DeleteDataService {
   deleteJob(id: string) {
     console.log('Clicked Delete Service');
     console.log(id);
-    this.http.delete(`http://localhost:3000/delete/job/${id}`)
-      .subscribe(response => console.log(response));
+    this.http.delete(`http://localhost:3000/delete/newJob/${id}`)
+      .subscribe(response => {
+        console.log(response);
+        this.router.navigate(['/recruiterDashboard']);
+      });
 
   }
+
 
   deleteBooster(id: string) {
     console.log('Clicked Delete Service');
     console.log(id);
-    this.http.delete(`http://localhost:3000/delete/booster/${id}`)
-      .subscribe(response => console.log(response));
+    this.http.delete(`http://localhost:3000/delete/newBooster/${id}`)
+      .subscribe(response =>  {
+        //
+        console.log(response);
+        this.router.navigate(['/recruiterDashboard']);
+      });
 
   }
 }

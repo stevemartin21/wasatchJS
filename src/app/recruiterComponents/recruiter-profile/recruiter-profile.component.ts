@@ -43,7 +43,7 @@ export class RecruiterProfileComponent implements OnInit {
       if (paramMap.has('id')) {
         this.mode = 'edit';
         this.recruiterId = paramMap.get('id');
-        this.readDataService.getRecruiter(this.recruiterId).subscribe(recruiter => {
+        this.readDataService.getRecruiter().subscribe(recruiter => {
           this.recruiter = recruiter;
 
 
@@ -95,3 +95,5 @@ export class RecruiterProfileComponent implements OnInit {
   }
 
 }
+
+// more javascript

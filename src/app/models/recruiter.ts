@@ -1,3 +1,5 @@
+
+
 export interface Recruiter {
     _id: String;
     fname: String;
@@ -6,4 +8,6 @@ export interface Recruiter {
     email: String;
     webSite: String;
     company: String;
+    boosters: Object[];
+    jobs: Object[];
   }

@@ -8,6 +8,7 @@ var Skill = require('../models/skill');
 var Project = require('../models/project');
 var Job = require('../models/job');
 var Booster = require('../models/booster');
+var Recruiter = require('../models/recruiter');
 var Content = require('../models/content');
 var Problem = require('../models/problem');
 
@@ -187,45 +188,55 @@ router.put('/profile/:id', verifyToken, (req, res) => {
 })
 
 
+router.put('/newBooster/:id', verifyToken, (req, res) => {
+  Recruiter.findOne({creator: req.userData.userId})
+    .then(recruiter => {
+      console.log(recruiter);
+      const findIndex = recruiter.boosters
+      .map(item => item.id)
+      .indexOf(req.params.id);
 
+      const updatedBooster = {
+        title: req.body.title,
+        description: req.body.description,
+        link: req.body.link,
+        complete: req.body.complete,
+        level: req.body.level
+      }
+      console.log(updatedBooster)
 
-
-router.put('/job/:id', verifyToken, (req, res) => {
-
-  const updatedJob = new Job ({
-    _id: req.params.id,
-   employer: req.body.employer,
-   jobTitle: req.body.jobTitle,
-   compensation: req.body.compensation,
-   contract: req.body.contract,
-   description: req.body.description
-
-  })
-
-  Job.updateOne({_id: req.params.id, creator: req.userData.userId}, updatedJob)
-    .then(job => {
-      res.status(200).json(job)
-    }).catch(err => res.status(400).json(err))
-
+       recruiter.boosters.splice(findIndex, 1);
+       recruiter.boosters.unshift(updatedBooster)
+       recruiter.save().then(foundProfile => {
+        res.status(200).json(foundProfile)
+       })
+    }).catch(err => res.status(400).json(err));
 })
 
-router.put('/booster/:id', verifyToken, (req, res) => {
+router.put('/newJob/:id', verifyToken, (req, res) => {
+  console.log(req.param.id);
+  Recruiter.findOne({creator: req.userData.userId})
+    .then(recruiter => {
+      console.log(recruiter);
+      const findIndex = recruiter.jobs
+      .map(item => item.id)
+      .indexOf(req.params.id);
 
-  const updatedBooster = new Booster ({
-    _id: req.params.id,
-   title: req.body.title,
-   description: req.body.description,
-   link: req.body.link,
-   complete: req.body.complete,
-   level: req.body.level
+      const updatedJob = {
+        employer: req.body.employer,
+        jobTitle: req.body.jobTitle,
+        compensation: req.body.compensation,
+        contract: req.body.contract,
+        description: req.body.description
+      }
+      console.log(updatedJob)
 
-  })
-
-  Booster.updateOne({_id: req.params.id, creator: req.userData.userId}, updatedBooster)
-    .then(booster => {
-      res.status(200).json(booster)
-    }).catch(err => res.status(400).json(err))
-
+       recruiter.jobs.splice(findIndex, 1);
+       recruiter.jobs.unshift(updatedJob)
+       recruiter.save().then(foundProfile => {
+        res.status(200).json(foundProfile)
+       })
+    }).catch(err => res.status(400).json(err));
 })
 
 

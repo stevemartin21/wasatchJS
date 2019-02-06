@@ -1,6 +1,9 @@
 <div class='container mt-5 mb-5'>
+
+
+
     <div class='row'>
-        <div class='col-4'>
+        <div class='col-6'>
             <div class='card elegant-color text-white'>
                 <div class='card-header text-center'>
                   See Candidates
@@ -13,7 +16,7 @@
               </div>
         </div>
 
-        <div class='col-4'>
+        <div class='col-6'>
             <div class='card primary-color text-white'>
                 <div class='card-header text-center'>
                   Add Jobs
@@ -25,21 +28,50 @@
                 </div>
               </div>
         </div>
+      </div>
 
-        <div class='col-4'>
+
+      <div class='row mt-5'>
+
+        <div class='col-6'>
             <div class='card stylish-color text-white'>
                 <div class='card-header text-center'>
                   Add Career Booster
                 </div>
                 <div class='card-body'>
                     <div class='mt-2'>
-                        <a class='btn btn-success btn-block' [routerLink]="['/addBoost']" >Click</a>
+                        <a class='btn btn-success btn-block' [routerLink]="['/addBooster']" >Click</a>
                     </div>
                 </div>
               </div>
         </div>
+        <div class='col-6'>
+            <div class='card default-color text-white'>
+                <div class='card-header text-center'>
+                  See Profile
+                </div>
+                <div class='card-body'>
+                    <div class='mt-2'>
+                        <a class='btn btn-success btn-block' [routerLink]="['/addBooster']" >Click</a>
+                    </div>
+                </div>
+              </div>
+        </div>
+      </div>
+
+      <h1 class='text-center mt-5 mb-5'>My Current Jobs</h1>
+
+      <app-manage-jobs></app-manage-jobs>
+
+      <h1 class='text-center mt-5 mb-5'>My Current Boosters</h1>
+
+      <app-manage-boosters></app-manage-boosters>
+
+
+
+
     </div>
-  </div>
+
 
 
 

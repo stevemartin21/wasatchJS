@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { ReadDataService } from '../../services/read-data.service';
 import {Subscription } from 'rxjs';
-import { Booster } from '../../models/booster';
+import { Recruiter } from '../../models/recruiter';
 import { DeleteDataService } from '../../services/delete-data.service';
 import {CreateDataService} from '../../services/create-data.service';
 
@@ -12,7 +12,7 @@ import {CreateDataService} from '../../services/create-data.service';
 })
 export class ManageBoostersComponent implements OnInit {
 
-  boosters: Booster[];
+  recruiter: any;
   boostersSub: Subscription;
   isAuth: Boolean = false;
 
@@ -32,9 +32,10 @@ export class ManageBoostersComponent implements OnInit {
     private createDataService: CreateDataService) { }
 
   ngOnInit() {
-    this.readDataService.getBoosters()
-    .subscribe(boosters => {
-      this.boosters = boosters;
+    this.readDataService.getRecruiter()
+    .subscribe(recruiter => {
+      console.log(recruiter);
+      this.recruiter = recruiter[0].boosters;
       this.isAuth = true;
       this.addPaginators();
     });
@@ -107,17 +108,15 @@ export class ManageBoostersComponent implements OnInit {
   }
 
   addPaginators() {
-    if (this.boosters.length % this.itemsPerPage === 0) {
-      this.numberOfPaginators = Math.floor(this.boosters.length / this.itemsPerPage);
+    if (this.recruiter.length % this.itemsPerPage === 0) {
+      this.numberOfPaginators = Math.floor(this.recruiter.length / this.itemsPerPage);
     } else {
-      this.numberOfPaginators = Math.floor(this.boosters.length / this.itemsPerPage + 1);
+      this.numberOfPaginators = Math.floor(this.recruiter.length / this.itemsPerPage + 1);
     }
 
     for (let i = 1; i <= this.numberOfPaginators; i++) {
       this.paginators.push(i);
     }
   }
-
-
 
 }

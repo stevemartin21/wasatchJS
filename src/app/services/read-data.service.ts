@@ -114,7 +114,7 @@ export class ReadDataService {
   }
 
   getJob(id) {
-    return this.http.get<Job>(`http://localhost:3000/read/job/${id}`);
+    return this.http.get<Job>(`http://localhost:3000/read/newJob/${id}`);
   }
 
   getBoosters() {
@@ -122,7 +122,7 @@ export class ReadDataService {
   }
 
   getBooster(id) {
-    return this.http.get<Booster>(`http://localhost:3000/read/booster/${id}`);
+    return this.http.get<any>(`http://localhost:3000/read/newBooster/${id}`);
   }
 
 }

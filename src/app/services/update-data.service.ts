@@ -178,7 +178,7 @@ export class UpdateDataService {
      contract: contract,
      description: description
    };
-   this.http.put(`http://localhost:3000/update/job/${_id}`, updatedJob)
+   this.http.put(`http://localhost:3000/update/newJob/${_id}`, updatedJob)
    .subscribe(
      response =>  console.log(response)
    );
@@ -195,7 +195,7 @@ updateBooster(_id: string, title: string, description: string,
       complete: complete,
       level: level
    };
-   this.http.put(`http://localhost:3000/update/booster/${_id}`, updatedBooster)
+   this.http.put(`http://localhost:3000/update/newBooster/${_id}`, updatedBooster)
    .subscribe(
      response =>  console.log(response)
    );

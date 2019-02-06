@@ -20,7 +20,7 @@
 
   <!--Table body-->
   <tbody >
-      <tr  *ngFor="let job of jobs; let i = index" >
+      <tr  *ngFor="let job of recruiter; let i = index" >
 
           <td *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex" class='font-weight-bold' >{{job.employer}}</td>
           <td *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex" class='font-weight-bold'>{{job.jobTitle}}</td>

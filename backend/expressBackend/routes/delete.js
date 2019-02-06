@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var Profile = require('../models/profile');
+var Recruiter = require('../models/recruiter')
 var Education = require('../models/education');
 var Experience = require('../models/experience');
 var Skill = require('../models/skill');
@@ -123,24 +124,41 @@ router.delete('/profile/:id', verifyToken, (req, res) => {
     }).catch(err => res.json(err));
 })
 
+router.delete('/newBooster/:id', verifyToken, (req, res) => {
+  Recruiter.findOne({creator: req.userData.userId})
+    .then(recruiter => {
+      const removeIndex = recruiter.boosters
+      .map(item => item.id)
+      .indexOf(req.params.id);
 
-router.delete('/job/:id', verifyToken, (req, res) => {
-  console.log('Delete Yo yo');
-  console.log(req.params.id);
-  Job.deleteOne({_id: req.params.id, creator: req.userData.userId})
-    .then(job => {
-      res.status(200).json(job);
-    }).catch(err => res.json(err));
+      recruiter.boosters.splice(removeIndex, 1);
+
+      recruiter.save().then(recruiter => {
+        res.status(200).json(recruiter)
+      })
+        .catch(err => res.status(400).json(err))
+    })
 })
 
-router.delete('/booster/:id', verifyToken, (req, res) => {
-  console.log('Delete Yo yo');
-  console.log(req.params.id);
-  Booster.deleteOne({_id: req.params.id, creator: req.userData.userId})
-    .then(booster => {
-      res.status(200).json(booster);
-    }).catch(err => res.json(err));
+router.delete('/newJob/:id', verifyToken, (req, res) => {
+  console.log(req.param.id)
+  Recruiter.findOne({creator: req.userData.userId})
+    .then(recruiter => {
+      console.log(recruiter);
+      const removeIndex = recruiter.jobs
+      .map(item => item.id)
+      .indexOf(req.params.id);
+      console.log(removeIndex);
+
+      recruiter.jobs.splice(removeIndex, 1);
+
+      recruiter.save().then(recruiter => {
+        res.status(200).json(recruiter)
+      })
+        .catch(err => res.status(400).json(err))
+    })
 })
+
 
 
 

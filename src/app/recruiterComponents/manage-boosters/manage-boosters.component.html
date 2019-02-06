@@ -7,11 +7,11 @@
     <thead>
         <tr>
 
-            <th>Employer</th>
-            <th>Job Title</th>
-            <th>Compensation</th>
-            <th>Contract</th>
+            <th>Title</th>
             <th>Description</th>
+            <th>Link</th>
+            <th>Complete</th>
+
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -20,7 +20,7 @@
 
     <!--Table body-->
     <tbody >
-        <tr  *ngFor="let booster of boosters; let i = index" >
+        <tr  *ngFor="let booster of recruiter; let i = index" >
 
             <td *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex" class='font-weight-bold' >{{booster.title}}</td>
             <td *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex" class='font-weight-bold'>{{booster.description}}</td>

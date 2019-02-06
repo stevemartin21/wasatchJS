@@ -46,6 +46,12 @@
                     <label for="form2"> Last Name</label>
                   </div>
 
+                  <div class='md-form'>
+
+                    <button class='btn btn-primary' type='button' (click)='filePicker.click'>Select Profile Pic</button>
+                    <input type='file' #filePicker>
+                  </div>
+
                   <div class="md-form">
 
                     <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='phone'>

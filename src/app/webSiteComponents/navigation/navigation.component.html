@@ -9,7 +9,7 @@
 
       <!-- Links -->
       <ul class="navbar-nav ml-auto" *ngIf='front'>
-          <li class="nav-item active">
+          <li class="nav-item ">
               <a class="nav-link waves-light" mdbWavesEffect routerLink="/" >Home<span class="sr-only" >(current)</span></a>
           </li>
           <li class="nav-item">
@@ -18,12 +18,17 @@
           <li class="nav-item">
             <a class="nav-link waves-light" mdbWavesEffect routerLink="/recruiters">Recruiters</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect routerLink="/jobBoard">Job Board</a>
-      </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect routerLink="/careerPath">Career Path</a>
-      </li>
+         <!-- Dropdown -->
+         <li class="nav-item dropdown  " dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Tech Careers<span class="caret"></span></a>
+            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/jobBoard">Job Board</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/careerTypes">Career Types</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/careerPath">Career Path</a>
+            </div>
+        </li>
+
           <li class="nav-item">
               <a class="nav-link waves-light" mdbWavesEffect routerLink="/register">Register</a>
           </li>
@@ -50,14 +55,14 @@
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
             Add to Profile<span class="caret"></span></a>
             <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addProfile">Add Profile</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addEducation">Add Education</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addExperience">Add Experience</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addSkill">Add Skill</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addProfile"> Profile</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addEducation"> Education</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addExperience"> Experience</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addSkill"> Skill</a>
                 <div class="divider dropdown-divider"></div>
-                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addProject">Add Project</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addProblem">Add Problem</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addContent">Add Content</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addProject"> Project</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addProblem"> Problem</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addContent"> Content</a>
             </div>
         </li>
 
@@ -93,19 +98,19 @@
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           Manage Business<span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-              <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/manageCandidates">Manage Candidates</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/manageJobs">Manage Jobs</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/manageBoosters">Manage Boosters</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/manageCandidates"> Candidates</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/manageJobs">Jobs</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/manageBoosters"> Boosters</a>
           </div>
       </li>
 
               <!-- Dropdown -->
               <li class="nav-item dropdown  " dropdown>
                 <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-                Add to Candidate<span class="caret"></span></a>
+                Add Item<span class="caret"></span></a>
                 <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                    <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addJob">Add Job</a>
-                    <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addBooster">Add Career Booster</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addJob"> Job</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addBooster"> Career Booster</a>
 
                 </div>
             </li>

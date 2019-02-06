@@ -217,6 +217,35 @@ router.get('/booster/:id', verifyToken, (req, res) => {
   }).catch(err =>  res.status(400).json(err))
 })
 
+router.get('/newBooster/:id', verifyToken, (req, res) => {
+  Recruiter.findOne({creator: req.userData.userId})
+    .then(recruiter => {
+      const findIndex = recruiter.boosters
+      .map(item => item.id)
+      .indexOf(req.params.id);
+
+      const foundProfile = recruiter.boosters[findIndex];
+      console.log(foundProfile);
+
+      res.status(200).json(foundProfile)
+    }).catch(err => res.status(400).json(err));
+})
+
+router.get('/newJob/:id', verifyToken, (req, res) => {
+  Recruiter.findOne({creator: req.userData.userId})
+    .then(recruiter => {
+      const findIndex = recruiter.jobs
+      .map(item => item.id)
+      .indexOf(req.params.id);
+
+      const foundProfile = recruiter.jobs[findIndex];
+      console.log(foundProfile);
+
+      res.status(200).json(foundProfile)
+    }).catch(err => res.status(400).json(err));
+})
+
+
 
 
 

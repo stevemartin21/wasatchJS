@@ -30,6 +30,7 @@ import {RecruitersComponent} from './webSiteComponents/recruiters/recruiters.com
 import {CareerPathComponent} from './webSiteComponents/career-path/career-path.component';
 import {JobBoardComponent} from './webSiteComponents/job-board/job-board.component';
 import {RecruiterProfileComponent} from './recruiterComponents/recruiter-profile/recruiter-profile.component';
+import {CareerTypesComponent} from './webSiteComponents/career-types/career-types.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -70,8 +71,8 @@ const routes: Routes = [
   {path: 'recruiters', component: RecruitersComponent},
   {path: 'careerPath', component: CareerPathComponent},
   {path: 'jobBoard', component: JobBoardComponent},
-  {path: 'addRecruiterProfile', component: RecruiterProfileComponent}
-
+  {path: 'addRecruiterProfile', component: RecruiterProfileComponent},
+  {path: 'careerTypes', component: CareerTypesComponent},
 
 ];
 

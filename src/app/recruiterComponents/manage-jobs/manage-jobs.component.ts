@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular
 import { ReadDataService } from '../../services/read-data.service';
 import {Subscription } from 'rxjs';
 import { Job } from '../../models/job';
+import { Recruiter } from '../../models/recruiter';
 import { DeleteDataService } from '../../services/delete-data.service';
 import {CreateDataService} from '../../services/create-data.service';
 
@@ -13,6 +14,7 @@ import {CreateDataService} from '../../services/create-data.service';
 export class ManageJobsComponent implements OnInit {
 
   jobs: Job[];
+  recruiter: any;
   jobsSub: Subscription;
   isAuth: Boolean = false;
 
@@ -33,9 +35,9 @@ export class ManageJobsComponent implements OnInit {
     private createDataService: CreateDataService) { }
 
   ngOnInit() {
-    this.readDataService.getJobs()
-    .subscribe(jobs => {
-      this.jobs = jobs;
+    this.readDataService.getRecruiter()
+    .subscribe(recruiter => {
+      this.recruiter = recruiter[0].jobs;
       this.isAuth = true;
       this.addPaginators();
     });
@@ -108,10 +110,10 @@ export class ManageJobsComponent implements OnInit {
   }
 
   addPaginators() {
-    if (this.jobs.length % this.itemsPerPage === 0) {
-      this.numberOfPaginators = Math.floor(this.jobs.length / this.itemsPerPage);
+    if (this.recruiter.length % this.itemsPerPage === 0) {
+      this.numberOfPaginators = Math.floor(this.recruiter.length / this.itemsPerPage);
     } else {
-      this.numberOfPaginators = Math.floor(this.jobs.length / this.itemsPerPage + 1);
+      this.numberOfPaginators = Math.floor(this.recruiter.length / this.itemsPerPage + 1);
     }
 
     for (let i = 1; i <= this.numberOfPaginators; i++) {

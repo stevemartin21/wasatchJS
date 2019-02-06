@@ -18,11 +18,11 @@
       <div class='col-4'>
           <div class='card primary-color text-white'>
               <div class='card-header text-center'>
-                See Jobs
+                See Personalized Jobs
               </div>
               <div class='card-body'>
                   <div class='mt-2'>
-                      <a class='btn btn-success btn-block' [routerLink]="['/editProfile', 5]" >Click</a>
+                      <a class='btn btn-success btn-block' [routerLink]="['/boosters']" >Click</a>
                   </div>
               </div>
             </div>
@@ -31,16 +31,41 @@
       <div class='col-4'>
           <div class='card stylish-color text-white'>
               <div class='card-header text-center'>
-                See Career Path Steps
+                See Personalized Boosters
               </div>
               <div class='card-body'>
                   <div class='mt-2'>
-                      <a class='btn btn-success btn-block' [routerLink]="['/editProfile', 5]" >Click</a>
+                      <a class='btn btn-success btn-block' [routerLink]="['/jobs']" >Click</a>
                   </div>
               </div>
             </div>
       </div>
   </div>
+  <h1 class='text-center mt-5 mb-5'>My Content</h1>
+
+  <app-manage-content></app-manage-content>
+
+  <h1 class='text-center mt-5 mb-5'>My Education</h1>
+
+  <app-manage-education></app-manage-education>
+
+  <h1 class='text-center mt-5 mb-5'>My Experience</h1>
+
+  <app-manage-experience></app-manage-experience>
+
+  <h1 class='text-center mt-5 mb-5'>My Projects</h1>
+
+  <app-manage-projects></app-manage-projects>
+
+  <h1 class='text-center mt-5 mb-5'>My Skills</h1>
+
+  <app-manage-skills></app-manage-skills>
+
+  <h1 class='text-center mt-5 mb-5'>My Solutions</h1>
+
+  <app-manage-problems></app-manage-problems>
+
+
 </div>
 
 

@@ -54,6 +54,7 @@ import { RecruitersComponent } from './webSiteComponents/recruiters/recruiters.c
 import { CareerPathComponent } from './webSiteComponents/career-path/career-path.component';
 import { JobBoardComponent } from './webSiteComponents/job-board/job-board.component';
 import { RecruiterProfileComponent } from './recruiterComponents/recruiter-profile/recruiter-profile.component';
+import { CareerTypesComponent } from './webSiteComponents/career-types/career-types.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { RecruiterProfileComponent } from './recruiterComponents/recruiter-profi
     RecruitersComponent,
     CareerPathComponent,
     JobBoardComponent,
-    RecruiterProfileComponent
+    RecruiterProfileComponent,
+    CareerTypesComponent
   ],
   imports: [
     BrowserModule,
