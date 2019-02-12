@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { Profile } from '../models/profile';
+import { Recruiter } from '../models/recruiter';
 import { Skill } from '../models/skill';
 import { Project } from '../models/project';
 import { Education } from '../models/education';
@@ -43,7 +44,8 @@ export class UpdateDataService {
   }
 
   updateExperience(_id: string, employer: string,
-    jobTitle: string, from: string, to: string, description: string)  {
+    jobTitle: string, from: string, to: string, description: string,
+    experienceType: string, companyType: string)  {
 
       const updatedExperience = {
         _id: null,
@@ -51,7 +53,9 @@ export class UpdateDataService {
         jobTitle: jobTitle,
         from: from,
         to: to,
-        description: description
+        description: description,
+        experienceType: experienceType,
+        companyType: companyType
       };
 
       this.http.put(`http://localhost:3000/update/newExperience/${_id}`, updatedExperience)
@@ -100,13 +104,14 @@ export class UpdateDataService {
   }
 
   updateContent(_id: string, title: string, description: string,
-    topic: string, link: string)  {
+    topic: string, link: string, type: string)  {
       const updatedContent = {
         _id: _id,
         title: title,
         description: description,
         topic: topic,
-        link: link
+        link: link,
+        type: type
       };
       this.http.put(`http://localhost:3000/update/newContent/${_id}`, updatedContent)
       .subscribe(
@@ -116,17 +121,62 @@ export class UpdateDataService {
   }
 
   updateProfile(_id: string, fname: string, lname: string,
-     phone: string, email: string, webSite: string, gitHub: string)  {
-      const updatedProfile = {
-        _id: _id,
-        fname: fname,
-        lname: lname,
-        phone: phone,
-        email: email,
-        webSite: webSite,
-        gitHub: gitHub
-      };
-      this.http.put(`http://localhost:3000/update/profile/${_id}`, updatedProfile)
+     phone: string, email: string, webSite: string,
+     gitHub: string, image: string, jobType: string,
+     companyType: string, frontEnd: string, backEnd: string,
+     mobile: string, headline: string, highlight: string,
+     philosophy: string, usp: string, level: string)  {
+
+      let profileData;
+
+      if (typeof image === 'object') {
+        profileData = new FormData();
+
+        profileData.append('fname', fname);
+        profileData.append('lname', lname);
+        profileData.append('phone', phone);
+        profileData.append('email', email);
+        profileData.append('webSite', webSite);
+        profileData.append('gitHub', gitHub);
+        profileData.append('image', image, email);
+        profileData.append('jobType', jobType);
+        profileData.append('companyType', companyType);
+        profileData.append('frontEnd', frontEnd);
+        profileData.append('backEnd', backEnd);
+        profileData.append('mobile', mobile);
+        profileData.append('headline', headline);
+        profileData.append('highlight', highlight);
+        profileData.append('philosophy', philosophy);
+        profileData.append('usp', usp);
+        profileData.append('level', level);
+      } else {
+        profileData = {
+          fname: fname,
+          lname: lname,
+          phone: phone,
+          email: email,
+          webSite: webSite,
+          gitHub: gitHub,
+          imagePath: image,
+          jobType: jobType,
+          companyType: companyType,
+          frontEnd: frontEnd,
+          backEnd: backEnd,
+          mobile: mobile,
+          headline: headline,
+          highlight: highlight,
+          philosophy: philosophy,
+          usp: usp,
+          level: level
+
+        };
+      }
+
+      console.log(profileData);
+      console.log('Updated Profile'); //
+
+
+      this.http.put(`http://localhost:3000/update/developerProfile/${_id}`, profileData)
       .subscribe(
         response =>  console.log(response)
       );
@@ -134,21 +184,52 @@ export class UpdateDataService {
   }
 
   updateRecruiter(_id: string, fname: string, lname: string,
-    phone: string, email: string, webSite: string, company: string)  {
-     const updatedRecruiter = {
-       _id: _id,
-       fname: fname,
-       lname: lname,
-       phone: phone,
-       email: email,
-       webSite: webSite,
-       company: company
-     };
-     this.http.put(`http://localhost:3000/update/profile/${_id}`, updatedRecruiter)
-     .subscribe(
-       response =>  console.log(response)
+    phone: string, email: string, webSite: string, company: string,
+     image: string | File, position: string,
+     headline: string, highlight: string, philosophy: string,
+     usp: string, specialty: string )  {
+
+      let recruiterData;
+      if (typeof image === 'object') {
+         recruiterData = new FormData();
+
+        recruiterData.append('fname', fname);
+        recruiterData.append('lname', lname);
+        recruiterData.append('phone', phone);
+        recruiterData.append('email', email);
+        recruiterData.append('webSite', webSite);
+        recruiterData.append('company', company);
+        recruiterData.append('image', image, email);
+        recruiterData.append('position', position);
+        recruiterData.append('highlight', highlight);
+        recruiterData.append('philosophy', philosophy);
+        recruiterData.append('usp', usp);
+        recruiterData.append('specialty', specialty);
+      } else {
+        recruiterData = {
+          _id: _id,
+          fname: fname,
+          lname: lname,
+          phone: phone,
+          email: email,
+          webSite: webSite,
+          company: company,
+          imagePath: image,
+          position: position,
+          headline: headline,
+          philosophy: philosophy,
+          usp: usp,
+          specialty: specialty
+        };
+      }
+
+      console.log(recruiterData);
+
+
+     this.http.put(`http://localhost:3000/update/recruiterProfile/${_id}`, recruiterData)
+     .subscribe(response =>  console.log(response)
      );
-     this.router.navigate(['/dashboard']);
+     this.router.navigate(['/recruiterDashboard']);
  }
 
   updateProblem(_id: string, title: string, description: string,
@@ -182,7 +263,7 @@ export class UpdateDataService {
    .subscribe(
      response =>  console.log(response)
    );
-   this.router.navigate(['/dashboard']);
+   this.router.navigate(['/recruiterDashboard']);
 }
 
 updateBooster(_id: string, title: string, description: string,
@@ -199,7 +280,7 @@ updateBooster(_id: string, title: string, description: string,
    .subscribe(
      response =>  console.log(response)
    );
-   this.router.navigate(['/dashboard']);
+   this.router.navigate(['/recruiterDashboard']);
 }
 
 }

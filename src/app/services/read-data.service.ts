@@ -21,9 +21,7 @@ export class ReadDataService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  getProfileInfo() {
-    return this.http.get<any>('http://localhost:3000/read/profile');
-  }
+
 
   getEducation(id) {
     return this.http.get<any>(`http://localhost:3000/read/newEducation/${id}`);
@@ -69,6 +67,10 @@ export class ReadDataService {
     return this.http.get<Profile[]>('http://localhost:3000/read/profiles');
   }
 
+  getProfileInfo() {
+    return this.http.get<any>('http://localhost:3000/read/profile');
+  }
+
   getRecruiters() {
     return this.http.get<Recruiter[]>('http://localhost:3000/read/recruiters');
   }
@@ -78,8 +80,16 @@ export class ReadDataService {
   }
 
   getRecruiterById(id) {
-    return this.http.get<Recruiter>(`http://localhost:3000/read/recruiter/${id}`);
+    return this.http.get<Recruiter>(`http://localhost:3000/read/recruiterById/${id}`);
   }
+
+  getProfileById(id) {
+    return this.http.get<Profile>(`http://localhost:3000/read/profileById/${id}`);
+  }
+
+
+
+
 
   getPublicProfiles() {
     return this.http.get<any[]>('http://localhost:3000/read/publicProfiles');

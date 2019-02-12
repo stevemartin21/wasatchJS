@@ -1,0 +1,20 @@
+<div class='container mt-5 mb-5'>
+
+    <div class='card'>
+
+        <div class='card-header'>{{profile.fname}} {{profile.lname}} </div>
+
+
+        <ul class='list-group'>
+            <li class='list-group-item'>{{profile.email}}</li>
+            <li class='list-group-item'>{{profile.phone}}</li>
+            <li class='list-group-item'>{{profile.webSite}}</li>
+            <li class='list-group-item'><img class='myPic z-depth-1 rounded-circle' [src]="profile.imagePath"></li>
+            <button class='btn btn-success' [routerLink]="['/editDeveloperProfile', profile._id]">Edit</button>
+          <button class='btn btn-danger' (click)="onDelete(profile._id)">Delete</button>
+        </ul>
+        <div class='card-footer'>My Profile</div>
+    </div>
+</div>
+
+<!-- <li class='list-group-item'><img class='myPic z-depth-1 rounded-circle' [src]="profile.imagePath"></li>-->

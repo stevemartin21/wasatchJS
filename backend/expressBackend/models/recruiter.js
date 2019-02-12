@@ -8,6 +8,13 @@ const recruiterSchema = mongoose.Schema({
   email: {type: String},
   company: {type: String},
   webSite: {type: String},
+  position: {type: String},
+  headline: {type: String},
+  highlight: {type: String},
+  philosophy: {type: String},
+  usp: {type: String},
+  specialty: {type: String},
+  imagePath:{ type: String, required: true },
   creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User' , required: true },
   boosters: [
     {

@@ -8,6 +8,18 @@ const profileSchema = mongoose.Schema({
   email: {type: String},
   webSite: {type: String},
   gitHub: {type: String},
+  jobType: {type: String},
+  companyType: {type: String},
+  frontEnd: {type: String},
+  backEnd: {type: String},
+  mobile: {type: String},
+  headline: {type: String},
+  highlight: {type: String},
+  philosophy: {type: String},
+  usp: {type: String},
+  level: {type: String},
+
+  imagePath:{ type: String, required: true },
   creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User' , required: true },
   experience: [
     {

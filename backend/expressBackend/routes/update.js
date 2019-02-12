@@ -11,8 +11,36 @@ var Booster = require('../models/booster');
 var Recruiter = require('../models/recruiter');
 var Content = require('../models/content');
 var Problem = require('../models/problem');
+const multer = require("multer");
 
 const verifyToken = require('../middleware/verify-token');
+
+const MIME_TYPE_MAP = {
+  "image/png": "png",
+  "image/jpeg": "jpg",
+  "image/jpg": "jpg"
+};
+
+
+const storage = multer.diskStorage({
+
+  destination: (req, file, cb) => {
+    const isValid = MIME_TYPE_MAP[file.mimetype];
+    let error = new Error("Invalid mime type");
+    if (isValid) {
+      error = null;
+    }
+    cb(error, "./images");
+  },
+  filename: (req, file, cb) => {
+    const name = file.originalname
+      .toLowerCase()
+      .split(" ")
+      .join("-");
+    const ext = MIME_TYPE_MAP[file.mimetype];
+    cb(null, name + "-" + Date.now() + "." + ext);
+  }
+});
 
 // create user
 
@@ -31,7 +59,9 @@ router.put('/newExperience/:id', verifyToken, (req, res) => {
         jobTitle: req.body.jobTitle,
         to: req.body.to,
         from: req.body.from,
-        description: req.body.description
+        description: req.body.description,
+        experienceType: req.body.experienceType,
+        companyType: req.body.companyType
       }
       console.log(updatedExperience)
 
@@ -106,7 +136,8 @@ router.put('/newContent/:id', verifyToken, (req, res) => {
         title: req.body.title,
         description: req.body.description,
         topic: req.body.topic,
-        link: req.body.link
+        link: req.body.link,
+        type: req.body.type
       }
       console.log(updatedContent)
 
@@ -239,21 +270,95 @@ router.put('/newJob/:id', verifyToken, (req, res) => {
     }).catch(err => res.status(400).json(err));
 })
 
+router.put('/recruiterProfile/:id',
+ verifyToken,
+ multer({ storage: storage }).single("image"),
+  (req, res) => {
+    console.log(req.body); //
+
+    let imagePath = req.body.imagePath;
+    if (req.file) {
+      const url = req.protocol + "://" + req.get("host");
+      imagePath = url + "/images/" + req.file.filename
+    }
+  const newRecruiter = {
+
+    fname: req.body.fname,
+    lname: req.body.lname,
+    phone: req.body.phone,
+    email: req.body.email,
+    webSite: req.body.webSite,
+    company: req.body.company,
+    position: req.body.position,
+    headline: req.body.headline,
+    highlight: req.body.highlight,
+    philosophy: req.body.philosophy,
+    usp: req.body.usp,
+    specialty: req.body.specialty,
+    imagePath: imagePath
+
+  }
+
+  console.log(newRecruiter);
+
+  Recruiter.updateOne({_id: req.params.id }, newRecruiter)
+    .then(result => {
+      if (result.nModified > 0) {
+        res.status(200).json({ message: "Update successful!" });
+      } else {
+        res.status(401).json({ message: "Not authorized!" });
+      }
+    }).catch(err => res.json(err));
+})
+
+router.put('/developerProfile/:id',
+ verifyToken,
+ multer({ storage: storage }).single("image"),
+  (req, res) => {
+    console.log(req.body); //
+
+    let imagePath = req.body.imagePath;
+    if (req.file) {
+      const url = req.protocol + "://" + req.get("host");
+      imagePath = url + "/images/" + req.file.filename
+    }
+  const newDeveloper = {
+
+    fname: req.body.fname,
+    lname: req.body.lname,
+    phone: req.body.phone,
+    email: req.body.email,
+    webSite: req.body.webSite,
+    gitHub: req.body.gitHub,
+    jobType: req.body.jobType,
+    companyType: req.body.companyType,
+    frontEnd: req.body.frontEnd,
+    backEnd: req.body.backEnd,
+    mobile: req.body.mobile,
+    headline: req.body.headline,
+    highlight: req.body.highlight,
+    philosophy: req.body.philosophy,
+    usp: req.body.usp,
+    level: req.body.level,
+    imagePath: imagePath
+
+  }
+
+  console.log(newDeveloper);
+
+  Profile.updateOne({_id: req.params.id }, newDeveloper)
+    .then(result => {
+      if (result.nModified > 0) {
+        res.status(200).json({ message: "Update successful!" });
+      } else {
+        res.status(401).json({ message: "Not authorized!" });
+      }
+    }).catch(err => res.json(err));
+})
+
 
 
 
 module.exports = router;
 
-/*
 
-   name: {type: String},
-  description: {type: String},
-  skills: {type: String},
-  framework: {type: String},
-  backend: {type: String},
-  database: {type: String},
-  link: {type: String}
-
-
-
-*/

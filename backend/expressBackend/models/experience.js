@@ -6,6 +6,8 @@ const experienceSchema = mongoose.Schema({
   to: {type: String},
   from: {type: String},
   description: {type: String},
+  experienceType: {type: String},
+  companyType: {type: String},
   creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User' , required: true }
 })
 

@@ -50,12 +50,19 @@
           <li class="nav-item  ">
               <a class="nav-link waves-light " mdbWavesEffect routerLink="/dashboard" >Dashboard<span class="sr-only" >(current)</span></a>
           </li>
+
+          <li class="nav-item">
+              <a class="nav-link waves-light " mdbWavesEffect routerLink="/addProfile" >Add Profile</a>
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link waves-light " mdbWavesEffect routerLink="/developerProfile" >See Profile</a>
+          </li>
           <!-- Dropdown -->
           <li class="nav-item dropdown  " dropdown>
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
             Add to Profile<span class="caret"></span></a>
             <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-                <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addProfile"> Profile</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addEducation"> Education</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addExperience"> Experience</a>
                 <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/addSkill"> Skill</a>
@@ -93,6 +100,10 @@
               <a class="nav-link waves-light" mdbWavesEffect routerLink="/addRecruiterProfile" >Add Profile</a>
           </li>
 
+          <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="/myRecruiterProfile" >See Profile</a>
+          </li>
+
 
         <li class="nav-item dropdown  " dropdown>
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
@@ -114,6 +125,8 @@
 
                 </div>
             </li>
+
+
 
             <li class="nav-item ">
                 <div class=" waves-light btn btn-default" mdbWavesEffect (click)='logout()'  >Logout</div>

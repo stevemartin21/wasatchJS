@@ -48,17 +48,21 @@
                   <label for="form2">Job Title</label>
                 </div>
 
-                <div class="md-form">
-
-                  <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='to'>
-                  <label for="form3">To</label>
+                <div class="row mt-3">
+                  <div class="col-md-12">
+                    <mdb-select [options]="optionsSelect" placeholder="Choose Experience Type" formControlName='experienceType'></mdb-select>
+                  </div>
                 </div>
 
-                <div class="md-form">
-
-                  <input type="text" id="form4" class="form-control" mdbInputDirective formControlName='from'>
-                  <label for="form4">From</label>
+                <div class="row mt-3">
+                  <div class="col-md-12">
+                    <mdb-select [options]="optionsSelect2" placeholder="Choose Company Type" formControlName='companyType'></mdb-select>
+                  </div>
                 </div>
+
+                <mdb-date-picker  [options]="myDatePickerOptions" [placeholder]="'Selected From'" formControlName='from'></mdb-date-picker>
+
+                <mdb-date-picker  [options]="myDatePickerOptions2" [placeholder]="'Selected To'" formControlName='to'></mdb-date-picker>
 
                 <div class="md-form">
 
@@ -66,7 +70,7 @@
                   <label for="form5">Description</label>
                 </div>
                 <div class="text-center mt-3">
-                  <button class='btn btn-elegant' mdbWavesEffect>Send</button>
+                  <button class='btn btn-elegant' mdbWavesEffect>Submit</button>
                   <hr>
 
                 </div>

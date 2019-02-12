@@ -18,6 +18,33 @@ var jwt = require('jsonwebtoken');
 
 // create user
 
+const multer = require("multer");
+
+const MIME_TYPE_MAP = {
+  "image/png": "png",
+  "image/jpeg": "jpg",
+  "image/jpg": "jpg"
+};
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const isValid = MIME_TYPE_MAP[file.mimetype];
+    let error = new Error("Invalid mime type");
+    if (isValid) {
+      error = null;
+    }
+    cb(error, "./images");
+  },
+  filename: (req, file, cb) => {
+    const name = file.originalname
+      .toLowerCase()
+      .split(" ")
+      .join("-");
+    const ext = MIME_TYPE_MAP[file.mimetype];
+    cb(null, name + "-" + Date.now() + "." + ext);
+  }
+});
+
 router.post('/user', (req, res) => {
   console.log(req.body.password)
 
@@ -105,7 +132,14 @@ router.post('/token', (req, res) => {
     })
 })
 
-router.post('/profile', verifyToken, (req, res) => {
+router.post('/profile', verifyToken,
+multer({ storage: storage }).single("image"),
+ (req, res) => {
+
+  const url = req.protocol + "://" + req.get("host");
+    console.log(url);
+    console.log(req.file.filename);
+    console.log('2')
 
   const newProfile = new Profile ({
     fname: req.body.fname,
@@ -114,6 +148,17 @@ router.post('/profile', verifyToken, (req, res) => {
     email: req.body.email,
     webSite: req.body.webSite,
     gitHub: req.body.gitHub,
+    jobType: req.body.jobType,
+    companyType: req.body.companyType,
+    frontEnd: req.body.frontEnd,
+    backEnd: req.body.backEnd,
+    mobile: req.body.mobile,
+    headline: req.body.headline,
+    highlight: req.body.highlight,
+    philosophy: req.body.philosophy,
+    usp: req.body.usp,
+    level: req.body.level,
+    imagePath: url + "/images/" + req.file.filename,
     creator: req.userData.userId,
   })
 
@@ -123,8 +168,17 @@ router.post('/profile', verifyToken, (req, res) => {
 
 })
 
-router.post('/recruiter', verifyToken, (req, res) => {
+router.post('/recruiter',
+ verifyToken,
+ multer({ storage: storage }).single("image"),
+  (req, res) => {
 
+    console.log('1')
+
+    const url = req.protocol + "://" + req.get("host");
+    console.log(url);
+    console.log(req.file.filename);
+    console.log('2')
   const newRecruiter = new Recruiter ({
     fname: req.body.fname,
     lname: req.body.lname,
@@ -132,11 +186,31 @@ router.post('/recruiter', verifyToken, (req, res) => {
     email: req.body.email,
     webSite: req.body.webSite,
     company: req.body.company,
+    position: req.body.position,
+    headline: req.body.headline,
+    highlight: req.body.highlight,
+    philosophy: req.body.philosophy,
+    usp: req.body.usp,
+    specialty: req.body.specialty,
+    imagePath: url + "/images/" + req.file.filename,
     creator: req.userData.userId,
   })
+  console.log('3')
 
-  newRecruiter.save().then(profile => {
-    res.status(200).json(profile)
+  console.log(newRecruiter);
+
+  newRecruiter.save().then(recruiter => {
+    console.log('4');
+    console.log(recruiter)
+
+    res.status(200).json({
+      message: 'Image profile created successfully',
+      recruiter: {
+        ...recruiter,
+
+      }
+
+    })
   }).catch(err => res.json(err));
 
 })
@@ -151,7 +225,9 @@ router.post('/newExperience', verifyToken, (req, res) => {
           jobTitle: req.body.jobTitle,
           from: req.body.from,
           to: req.body.to,
-          description: req.body.description
+          description: req.body.description,
+          experienceType: req.body.experienceType,
+          companyType: req.body.companyType
         }
         profile.experience.unshift(newExp);
 
@@ -245,6 +321,7 @@ router.post('/newContent', verifyToken, (req, res) => {
         description: req.body.description,
         topic: req.body.topic,
         link: req.body.link,
+        type: req.body.type
       }
       profile.content.unshift(newContent);
 

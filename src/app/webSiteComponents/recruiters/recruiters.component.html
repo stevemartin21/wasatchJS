@@ -1,3 +1,150 @@
+
+
+  <div class='container  mb-5'>
+
+      <ul class='list-group' *ngFor='let recruiter of recruiters let i = index '>
+<li class='list-group-item  playingCard elegant-color' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex" >
+  <mdb-flipping-card #cards>
+      <!--Front Side-->
+      <div class="face front tp-box_side tp-box_front">
+
+        <!-- Image-->
+        <div class="card-up">
+          <img [src]="recruiter.imagePath" class="img-fluid ">
+        </div>
+        <!--Avatar-->
+
+        <!--Content -->
+        <div class="card-body">
+          <h3 class='text-center  font-weight-bold mb-0 ' > {{recruiter.fname}} {{recruiter.lname}}</h3>
+          <h5 class='text-center mt-2 mb-2 font-weight-bold mb-0 ' >  {{recruiter.position}}</h5>
+          <div class='row mt-2'>
+              <div class='col-8'>
+
+              <p class=' text-left mb-0 '> {{recruiter.email}}</p>
+              <p class=' text-left  mb-0 '>{{recruiter.phone}}</p>
+              <p class=' text-left mb-0 '>{{recruiter.company}}</p>
+            </div>
+            <div class='col-4'>
+
+                <mdb-badge primary="true" >Current Jobs  {{recruiter.jobs.length}}</mdb-badge>
+                <mdb-badge success="true" >Boosters {{recruiter.boosters.length}}</mdb-badge>
+                <mdb-badge warning="true" >Jobs Placed 15</mdb-badge>
+                <a  data-card="card-1" (click)="cards.toggle()">
+                    <mdb-badge default="true" class="mt-2 " > Rotate to Back</mdb-badge>
+                </a>
+            </div>
+            </div>
+        <div>
+
+          <!--Triggering button-->
+
+        </div>
+        </div>
+      </div>
+
+      <!--/.Front Side-->
+
+      <!--Back Side-->
+      <div class="back tp-box_side tp-box_back">
+          <h4 class='text-center font-weight-bold'>Recruiter Details</h4>
+        <!--Content-->
+        <hr>
+
+        <p class=' text-left mb-0  '><span class='font-weight-bold mr-3'>Headline:</span> {{recruiter.headline}}</p>
+        <hr>
+                <p class=' text-left mb-0 '><span class='font-weight-bold mr-3'>Specialty: </span> {{recruiter.specialty}}</p>
+          <hr>
+                <p class=' text-left mb-0 ' ><span class='font-weight-bold'>Progamming Philosophy:</span> {{recruiter.philosophy}}</p>
+                <hr>
+                <p class=' text-left mb-0 ' ><span class='font-weight-bold'>Career Highlight:</span> {{recruiter.highlight}}</p>
+                <hr>
+                <p class=' text-left mb-0 '><span class='font-weight-bold'>Unique Selling Proposition:</span> {{recruiter.usp}}</p>
+        <!--Social Icons-->
+
+        <!--Triggering button-->
+        <a class="rotate-btn" data-card="card-2" (click)="cards.toggle()">
+          <i class="fa fa-undo"></i> Click here to rotate back</a>
+
+      </div>
+      <!--/.Back Side-->
+    </mdb-flipping-card>
+  </li>
+
+  </ul>
+
+   <!--Bottom Table UI-->
+   <div class="d-flex justify-content-center ">
+
+      <!--Pagination -->
+      <nav class="my-4">
+        <ul class="pagination pagination-circle pg-elegant-color mb-0">
+
+          <!--First-->
+          <li class="page-item clearfix d-none d-md-block" (click)="firstPage()" [ngClass]="{disabled: activePage == 1}">
+            <a class="page-link font-weight-bold">First</a>
+          </li>
+
+          <!--Arrow left-->
+          <li class="page-item" (click)="previousPage($event)" [ngClass]="{disabled: activePage == 1}">
+            <a class="page-link" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only font-weight-bold ">Previous</span>
+            </a>
+          </li>
+
+          <!--Numbers-->
+          <li #pages *ngFor="let page of paginators | slice:firstVisiblePaginator:lastVisiblePaginator; let i = index" class="page-item" [ngClass]="{active: i + firstVisiblePaginator + 1 == activePage}">
+              <a class="page-link waves-lightfont-weight-bold " (click)="changePage($event)" mdbWavesEffect>{{page}}</a>
+          </li>
+
+
+
+          <!--Arrow right-->
+          <li class="page-item" (click)='nextPage($event)' [ngClass]="{disabled: activePage == numberOfPaginators}">
+            <a class="page-link" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only font-weight-bold">Next</span>
+            </a>
+          </li>
+
+          <!--First-->
+          <li class="page-item clearfix d-none d-md-block" (click)="lastPage()" [ngClass]="{disabled: activePage == numberOfPaginators}">
+            <a class="page-link font-weight-bold">Last</a>
+          </li>
+
+        </ul>
+      </nav>
+      <!--/Pagination -->
+
+    </div>
+    <!--Bottom Table UI-->
+
+  </div>
+
+<!--
+  <ul class="list-inline">
+          <li class="list-inline-item">
+            <a class="icons-sm fb-ic">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="icons-sm tw-ic">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="icons-sm gplus-ic">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="icons-sm li-ic">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+        </ul>
 <div class='container mt-5 mb-5'>
 
     <ul class='list-group' *ngFor='let recruiter of recruiters'>
@@ -20,6 +167,7 @@
               <li class='list-group-item'>{{recruiter.phone}}</li>
               <li class='list-group-item'>{{recruiter.webSite}}</li>
               <li class='list-group-item'>{{recruiter.company}}</li>
+              <li class='list-group-item'><img class='myPic z-depth-1 rounded-circle' [src]="recruiter.imagePath"></li>
           </ul>
         </div>
         <div class='col-2'>
@@ -37,3 +185,5 @@
 
   </div>
 
+
+-->

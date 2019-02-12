@@ -6,6 +6,7 @@ import { ReadDataService } from '../../services/read-data.service';
 import { UpdateDataService } from '../../services/update-data.service';
 import {Experience} from '../../models/experience';
 import { Router } from '@angular/router';
+import { IMyOptions } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-add-experience',
@@ -18,6 +19,17 @@ export class AddExperienceComponent implements OnInit {
   private  experienceId;
   private mode = 'create';
   experience: Experience;
+  optionsSelect: Array<any>;
+  optionsSelect2: Array<any>;
+
+  public myDatePickerOptions: IMyOptions = {
+    // Your options
+    };
+
+
+public myDatePickerOptions2: IMyOptions = {
+    // Your options
+    };
 
   constructor(private createDataService: CreateDataService,
     private readDataService: ReadDataService,
@@ -26,6 +38,23 @@ export class AddExperienceComponent implements OnInit {
     private router: Router ) { }
 
   ngOnInit() {
+
+    this.optionsSelect = [
+      { value: 'contract', label: 'Contract' },
+      { value: 'project', label: 'project' },
+      { value: 'partTime', label: 'Part Time' },
+      { value: 'fullTime', label: 'Full Time' },
+      { value: 'other', label: 'Other' },
+      ];
+
+      this.optionsSelect2 = [
+        { value: 'startUp', label: 'Start Up' },
+        { value: 'small', label: 'Small' },
+        { value: 'medium', label: 'Medium' },
+        { value: 'large', label: 'Large' },
+        { value: 'other', label: 'Other' },
+
+        ];
 
     this.form = new FormGroup({
       employer: new FormControl(null, {validators: [Validators.required]}),

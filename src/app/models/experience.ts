@@ -5,4 +5,6 @@ export interface Experience {
   from: String;
   to: String;
   description: String;
+  experienceType: String;
+  companyType: String;
 }

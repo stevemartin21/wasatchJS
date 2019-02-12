@@ -4,4 +4,5 @@ export interface Content {
   description: String;
   topic: String;
   link: String;
+  type: String;
 }

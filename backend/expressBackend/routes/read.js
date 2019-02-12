@@ -140,6 +140,13 @@ router.get('/recruiterById/:id', verifyToken,   (req, res) => {
   }).catch(err => res.json(err));
 })
 
+router.get('/profileById/:id', verifyToken,   (req, res) => {
+  Profile.find({_id: req.params.id}).then(profile => {
+    console.log(profile);
+    res.status(200).json(profile)
+  }).catch(err => res.json(err));
+})
+
 
 router.get('/publicProfiles',  (req, res) => {
   Profile.find()

@@ -18,6 +18,8 @@ export class AddContentComponent implements OnInit {
   private  contentId;
   private mode = 'create';
   content: Content;
+  optionsSelect: Array<any>;
+  optionsSelect2: Array<any>;
 
   constructor(private createDataService: CreateDataService,
     private readDataService: ReadDataService,
@@ -26,11 +28,30 @@ export class AddContentComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+
+    this.optionsSelect = [
+      { value: 'opinion', label: 'Opinion' },
+      { value: 'explaination', label: 'Explaination' },
+      { value: 'demonstration', label: 'Demonstration' },
+      { value: 'analysis', label: 'Analysis' },
+      { value: 'other', label: 'Other' },
+      ];
+
+      this.optionsSelect2 = [
+        { value: 'article', label: 'Article' },
+        { value: 'post', label: 'Blog Post' },
+        { value: 'video', label: 'Video' },
+        { value: 'codeDemo', label: 'Code Demo' },
+        { value: 'other', label: 'Other' },
+
+        ];
+
     this.form = new FormGroup({
       title: new FormControl(null, {validators: [Validators.required]}),
       description: new FormControl(null, {validators: [Validators.required]}),
       topic: new FormControl(null, {validators: [Validators.required]}),
-      link: new FormControl(null, {validators: [Validators.required]})
+      link: new FormControl(null, {validators: [Validators.required]}),
+      type: new FormControl(null, {validators: [Validators.required]})
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -47,7 +68,8 @@ export class AddContentComponent implements OnInit {
             title: this.content.title,
             description: this.content.description,
             topic: this.content.topic,
-            link: this.content.link
+            link: this.content.link,
+            type: this.content.type
           });
         });
       } else {
@@ -68,7 +90,8 @@ export class AddContentComponent implements OnInit {
         this.form.value.title,
         this.form.value.description,
         this.form.value.topic,
-        this.form.value.link
+        this.form.value.link,
+        this.form.value.type
       );
     } else {
       this.updateDataService.updateContent(
@@ -76,7 +99,8 @@ export class AddContentComponent implements OnInit {
         this.form.value.title,
         this.form.value.description,
         this.form.value.topic,
-        this.form.value.link
+        this.form.value.link,
+        this.form.value.type
       );
     }
 

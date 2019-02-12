@@ -143,33 +143,67 @@ export class CreateDataService {
       });
   }
 
-  createProfile (fname: string, lname: string, phone: string, email: string, webSite: string, gitHub: string) {
-      const newProfile: Profile = {
-        _id: null,
-        fname: fname,
-        lname: lname,
-        phone: phone,
-        email: email,
-        webSite: webSite,
-        gitHub: gitHub
-      };
+  createProfile (fname: string, lname: string, phone: string, email: string,
+    webSite: string, gitHub: string, image: string,
+    jobType: string, companyType: string, frontEnd: string, backEnd: string,
+    mobile: string, headline: string, highlight: string, philosophy: string,
+    usp: string, level: string) {
+      const profileData = new FormData();
 
-      this.http.post('http://localhost:3000/create/profile', newProfile)
+      profileData.append('fname', fname);
+      profileData.append('lname', lname);
+      profileData.append('phone', phone);
+      profileData.append('email', email);
+      profileData.append('webSite', webSite);
+      profileData.append('gitHub', gitHub);
+
+      profileData.append('image', image, email);
+      profileData.append('jobType', jobType);
+      profileData.append('companyType', companyType);
+      profileData.append('frontEnd', frontEnd);
+      profileData.append('backEnd', backEnd);
+      profileData.append('mobile', mobile);
+      profileData.append('headline', headline);
+      profileData.append('highlight', highlight);
+      profileData.append('philosophy', philosophy);
+      profileData.append('usp', usp);
+      profileData.append('level', level);
+
+      console.log(profileData);
+
+
+      this.http.post('http://localhost:3000/create/profile', profileData)
         .subscribe(response => console.log(response));
   }
 
-  createRecruiter (fname: string, lname: string, phone: string, email: string, webSite: string, company: string) {
-    const newRecruiter = {
-      _id: null,
-      fname: fname,
-      lname: lname,
-      phone: phone,
-      email: email,
-      webSite: webSite,
-      company: company
-    };
+  createRecruiter (fname: string, lname: string,
+     phone: string, email: string, webSite: string,
+      company: string, image: string, position: string,
+      headline: string, highlight: string, philosophy: string,
+      usp: string, specialty: string) {
 
-    this.http.post('http://localhost:3000/create/recruiter', newRecruiter)
+    console.log('recruiter created 1');
+    const recruiterData = new FormData();
+
+    recruiterData.append('fname', fname);
+    recruiterData.append('lname', lname);
+    recruiterData.append('phone', phone);
+    recruiterData.append('email', email);
+    recruiterData.append('webSite', webSite);
+    recruiterData.append('company', company);
+    recruiterData.append('image', image, email);
+    recruiterData.append('position', position);
+    recruiterData.append('headline', headline);
+    recruiterData.append('highlight', highlight);
+    recruiterData.append('philosophy', philosophy);
+    recruiterData.append('usp', usp);
+    recruiterData.append('specialty', specialty);
+
+
+    console.log(recruiterData);
+
+
+    this.http.post<{message: string, recruiter: Recruiter}>('http://localhost:3000/create/recruiter', recruiterData)
       .subscribe(response => console.log(response));
 }
 
@@ -194,7 +228,8 @@ export class CreateDataService {
 
   createExperience (
     employer: string, jobTitle: string, from: string,
-    to: string, description: string
+    to: string, description: string, experienceType: string,
+  companyType: string
   ) {
     const newExperience: Experience = {
         _id: null,
@@ -202,7 +237,10 @@ export class CreateDataService {
         jobTitle: jobTitle,
         from: from,
         to: to,
-        description: description
+        description: description,
+        experienceType: experienceType,
+        companyType: companyType
+        
     };
 
     this.http.post('http://localhost:3000/create/newExperience', newExperience)
@@ -239,13 +277,15 @@ export class CreateDataService {
           .subscribe(response => console.log(response));
     }
 
-    createContent(title: string, description: string, topic: string, link: string) {
+    createContent(title: string, description: string, topic: string,
+       link: string, type: string) {
       const newContent: Content = {
         _id: null,
         title: title,
         description: description,
         topic: topic,
-        link: link
+        link: link,
+        type: type
       };
 
       this.http.post('http://localhost:3000/create/newContent', newContent)

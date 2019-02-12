@@ -1,6 +1,158 @@
-<div class='container mt-5 mb-5'>
+<div class='container  mb-5'>
+    <ul class='list-group' *ngFor='let developer of profiles let i = index'>
+        <li class='list-group-item  playingCard elegant-color' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex">
+          <mdb-flipping-card #cards>
+              <!--Front Side-->
+              <div class="face front tp-box_side tp-box_front">
 
-  <ul class='list-group' *ngFor='let developer of profiles'>
+                <!-- Image-->
+                <div class="card-up">
+                  <img [src]="developer.imagePath" class=" myProfilePic ">
+                </div>
+                <!--Avatar-->
+
+                <!--Content -->
+                <div class="card-body">
+                  <h3 class='text-center  font-weight-bold mb-0 ' > {{developer.fname}} {{developer.lname}}</h3>
+                  <h6 class='text-center mb-0 '>Headline: {{developer.headline}}</h6>
+                  <div class='row mt-2'>
+                      <div class='col-7'>
+
+
+                      <p class=' text-left mb-0 '><span class='font-weight-bold mr-1'>Email:</span> {{developer.email}}</p>
+                      <p class=' text-left  mb-0 '><span class='font-weight-bold mr-1'>Phone:</span>{{developer.phone}}</p>
+                      <p class=' text-left mb-0 '><span class='font-weight-bold mr-1'>Git Hub</span>{{developer.gitHub}}</p>
+                    </div>
+                    <div class='col-5'>
+
+                        <span><mdb-badge primary="true"  >Education  {{developer.education.length}}</mdb-badge></span>
+                        <span ><mdb-badge success="true"  >Expereince {{developer.experience.length}}</mdb-badge></span>
+                        <span><mdb-badge warning="true"  >Skills {{developer.skills.length}}</mdb-badge></span>
+                        <span><mdb-badge info="true" >Projects {{developer.projects.length}}</mdb-badge></span>
+                        <span><mdb-badge danger="true"  >Solutions {{developer.solutions.length}}</mdb-badge></span>
+
+                        <a  data-card="card-1" (click)="cards.toggle()">
+                            <mdb-badge default="true" class="mt-2 " > Rotate to Back</mdb-badge>
+                        </a>
+                    </div>
+                    </div>
+                <div>
+
+                  <!--Triggering button-->
+
+                </div>
+                </div>
+              </div>
+
+              <!--/.Front Side-->
+
+              <!--Back Side-->
+              <div class="back tp-box_side tp-box_back">
+
+                <!--Content-->
+                <h4 class='text-center font-weight-bold'>Job Candidate Details</h4>
+                <hr>
+
+                <p class=' text-left mb-0  '><span class='font-weight-bold mr-3'>Preferred Front End Framework:</span> {{developer.frontEnd}}</p>
+                <p class=' text-left mb-0 '><span class='font-weight-bold mr-3'>Backend Language:</span> {{developer.backEnd}}</p>
+                <p class=' text-left mb-0 '><span class='font-weight-bold mr-3 '>Developer Level</span> {{developer.level}}</p>
+                <p class=' text-left mb-0 '><span class='font-weight-bold mr-3'>Preferred Job Type:</span> {{developer.jobType}}</p>
+                <p class=' text-left mb-0 '><span class='font-weight-bold mr-3'>Preferred Company Type</span> {{developer.companyType}}</p>
+                <hr>
+                <p class=' text-left mb-0 ' ><span class='font-weight-bold'>Progamming Philosophy:</span> {{developer.philosophy}}</p>
+                <hr>
+                <p class=' text-left mb-0 ' ><span class='font-weight-bold'>Career Highlight:</span> {{developer.highlight}}</p>
+                <hr>
+                <p class=' text-left mb-0 '><span class='font-weight-bold'>Unique Selling Proposition:</span> {{developer.usp}}</p>
+                <hr>
+                <!--Social Icons-->
+
+                <!--Triggering button-->
+                <a class="rotate-btn" data-card="card-2" (click)="cards.toggle()">
+                  <i class="fa fa-undo"></i> Click here to rotate back</a>
+
+              </div>
+              <!--/.Back Side-->
+            </mdb-flipping-card>
+          </li>
+
+        </ul>
+
+        <!--Bottom Table UI-->
+   <div class="d-flex justify-content-center ">
+
+      <!--Pagination -->
+      <nav class="my-4">
+        <ul class="pagination pagination-circle pg-elegant-color mb-0">
+
+          <!--First-->
+          <li class="page-item clearfix d-none d-md-block" (click)="firstPage()" [ngClass]="{disabled: activePage == 1}">
+            <a class="page-link font-weight-bold">First</a>
+          </li>
+
+          <!--Arrow left-->
+          <li class="page-item" (click)="previousPage($event)" [ngClass]="{disabled: activePage == 1}">
+            <a class="page-link" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only font-weight-bold ">Previous</span>
+            </a>
+          </li>
+
+          <!--Numbers-->
+          <li #pages *ngFor="let page of paginators | slice:firstVisiblePaginator:lastVisiblePaginator; let i = index" class="page-item" [ngClass]="{active: i + firstVisiblePaginator + 1 == activePage}">
+              <a class="page-link waves-lightfont-weight-bold " (click)="changePage($event)" mdbWavesEffect>{{page}}</a>
+          </li>
+
+
+
+          <!--Arrow right-->
+          <li class="page-item" (click)='nextPage($event)' [ngClass]="{disabled: activePage == numberOfPaginators}">
+            <a class="page-link" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only font-weight-bold">Next</span>
+            </a>
+          </li>
+
+          <!--First-->
+          <li class="page-item clearfix d-none d-md-block" (click)="lastPage()" [ngClass]="{disabled: activePage == numberOfPaginators}">
+            <a class="page-link font-weight-bold">Last</a>
+          </li>
+
+        </ul>
+      </nav>
+      <!--/Pagination -->
+
+    </div>
+    <!--Bottom Table UI-->
+
+
+</div>
+
+<!--
+
+  <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <a class="icons-sm fb-ic">
+                      <i class="fa fa-facebook"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="icons-sm tw-ic">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="icons-sm gplus-ic">
+                      <i class="fa fa-google-plus"></i>
+                    </a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a class="icons-sm li-ic">
+                      <i class="fa fa-linkedin"></i>
+                    </a>
+                  </li>
+                </ul>
+ <ul class='list-group' *ngFor='let developer of profiles'>
 
 
 
@@ -22,6 +174,7 @@
             <li class='list-group-item'>{{developer.phone}}</li>
             <li class='list-group-item'>{{developer.webSite}}</li>
             <li class='list-group-item'>{{developer.gitHub}}</li>
+            <li class='list-group-item'><img class='myPic z-depth-1 rounded-circle' [src]="developer.imagePath"></li>
         </ul>
       </div>
       <div class='col-2'>
@@ -41,4 +194,5 @@
 
     </ul>
 
-</div>
+
+-->

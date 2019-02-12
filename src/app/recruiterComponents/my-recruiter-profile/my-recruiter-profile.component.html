@@ -1,0 +1,21 @@
+<div class='container mt-5 mb-5'>
+
+    <div class='card'>
+
+        <div class='card-header'>{{recruiter.fname}} {{recruiter.lname}} <img class='myPic z-depth-1 rounded-circle' [src]="recruiter.imagePath"></div>
+
+        <ul class='list-group'>
+            <li class='list-group-item'>{{recruiter.email}}</li>
+            <li class='list-group-item'>{{recruiter.phone}}</li>
+            <li class='list-group-item'>{{recruiter.company}}</li>
+            <li class='list-group-item'>{{recruiter.webSite}}</li>
+            <li class='list-group-item'><img class='myPic z-depth-1 rounded-circle' [src]="recruiter.imagePath"></li>
+            <button class='btn btn-success' [routerLink]="['/editRecruiterProfile', recruiter._id]">Edit</button>
+          <button class='btn btn-danger' (click)="onDelete(recruiter._id)">Delete</button>
+        </ul>
+        <div class='card-footer'>My Profile</div>
+    </div>
+</div>
+
+
+

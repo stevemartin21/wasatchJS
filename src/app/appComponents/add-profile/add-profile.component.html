@@ -9,22 +9,14 @@
       <!-- Content -->
       <div class="container">
         <!--Grid row-->
-        <div class="row pt-lg-5 mt-lg-5">
+        <div class="row pt-lg-1 mt-lg-1">
+
+          <!--Grid column asdfsafd-->
           <!--Grid column-->
-          <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left wow fadeInLeft" data-wow-delay="0.3s">
-            <h1 class="display-4 font-weight-bold">Lorem ipsum</h1>
-            <hr class="hr-light">
-            <h6 class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi
-              fuga
-              nesciunt dolorum nulla magnam veniam sapiente, fugiat! Commodi sequi non animi ea
-              dolor molestiae, quisquam iste.</h6>
-            <a mdbBtn color="white" outline="true" mdbWavesEffect>Learn more</a>
-          </div>
-          <!--Grid column-->
-          <!--Grid column-->
-          <div class="col-md-6 col-xl-5 mb-4">
+          <div class="col-md-10 col-xl-10 mb-4 mx-auto">
+              <h1 class="display-4 font-weight-bold text-white text-center mb-3">Add Profile</h1>
             <!--Form-->
-            <mdb-card class="wow fadeInRight" data-wow-delay="0.3s">
+            <mdb-card class="wow fadeInRight mb-5 mx-auto" data-wow-delay="0.3s">
               <mdb-card-body class="z-depth-2">
                 <!--Header-->
                 <div class="text-center">
@@ -36,17 +28,32 @@
                 <!--Body-->
                 <form [formGroup]='form' (submit)='saveProfile()' >
 
+                  <div class='row'>
+
+                    <div class='col-6'>
+
                 <div class="md-form">
 
                   <input type="text" id="form1" class="form-control" mdbInputDirective formControlName='fname'>
                   <label for="form1"> First Name</label>
                 </div>
 
+              </div>
+
+              <div class='col-6'>
+
                 <div class="md-form">
 
                   <input type="text" id="form2" class="form-control" mdbInputDirective formControlName='lname'>
                   <label for="form2"> Last Name</label>
                 </div>
+              </div>
+
+              </div>
+
+              <div class='row'>
+
+                  <div class='col-6'>
 
                 <div class="md-form">
 
@@ -54,11 +61,45 @@
                   <label for="form3"> Phone</label>
                 </div>
 
+              </div>
+
+              <div class='col-6'>
+
                 <div class="md-form">
 
                   <input type="text" id="form4" class="form-control" mdbInputDirective formControlName='email'>
                   <label for="form4"> Email</label>
                 </div>
+              </div>
+
+              </div>
+
+                <div >
+
+                  <button class='btn btn-primary' type='button' (click)='filePicker.click()'>Select Profile Pic</button>
+                  <input type='file' #filePicker (change)='onImagePicked($event)'>
+                </div>
+
+                <div class="image-preview  mb-3  pt-3 pb-3" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+                  <img [src]="imagePreview" [alt]="form.value.email">
+              </div>
+
+              <div class='row'>
+
+                  <div class='col-12'>
+
+              <div class="md-form">
+
+                <input type="text" id="form1" class="form-control" mdbInputDirective formControlName='headline'>
+                <label for="form1"> Headline</label>
+              </div>
+
+              </div>
+            </div>
+
+
+              <div class='row'>
+                  <div class='col-6'>
 
                 <div class="md-form">
 
@@ -66,15 +107,74 @@
                   <label for="form5">Web Site</label>
                 </div>
 
+              </div>
+
+              <div class='col-6'>
+
                 <div class="md-form">
 
                     <input type="text" id="form6" class="form-control" mdbInputDirective formControlName='gitHub'>
                     <label for="form6">Git Hub </label>
                   </div>
+                </div>
+              </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <mdb-select [options]="jobTypes" placeholder="Choose your option" formControlName='jobType'></mdb-select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-12">
+                        <mdb-select [options]="level" placeholder="Choose your option" formControlName='level'></mdb-select>
+                      </div>
+                    </div>
+
+                  <div class="row">
+                      <div class="col-md-12">
+                        <mdb-select [options]="companyTypes" placeholder="Choose your option" formControlName='companyType'></mdb-select>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                          <mdb-select [options]="frontEnd" placeholder="Choose your option" formControlName='frontEnd'></mdb-select>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-12">
+                            <mdb-select [options]="backEnd" placeholder="Choose your option" formControlName='backEnd'></mdb-select>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                              <mdb-select [options]="mobile" placeholder="Choose your option" formControlName='mobile'></mdb-select>
+                            </div>
+                          </div>
+
+                          <div class="md-form">
+                              <textarea type="text" id="form7" class="md-textarea md-textarea-auto form-control" mdbInputDirective formControlName='highlight'></textarea>
+                              <label for="form7">Career Highlight</label>
+                            </div>
+
+                            <div class="md-form">
+                                <textarea type="text" id="form8" class="md-textarea md-textarea-auto form-control" mdbInputDirective formControlName='philosophy'></textarea>
+                                <label for="form8">Programming Philosophy</label>
+                              </div>
+
+                              <div class="md-form">
+                                  <textarea type="text" id="form9" class="md-textarea md-textarea-auto form-control" mdbInputDirective formControlName='usp'></textarea>
+                                  <label for="form9">Unique Selling Proposition</label>
+                                </div>
 
 
                 <div class="text-center mt-3">
-                  <button class='btn btn-elegant' mdbWavesEffect>Send</button>
+                  <button class='btn btn-elegant' mdbWavesEffect>Submit</button>
                   <hr>
 
                 </div>

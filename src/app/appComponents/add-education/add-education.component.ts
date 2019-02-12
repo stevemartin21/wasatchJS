@@ -6,6 +6,7 @@ import { ReadDataService } from '../../services/read-data.service';
 import { UpdateDataService } from '../../services/update-data.service';
 import {Education} from '../../models/education';
 import { Router } from '@angular/router';
+import { IMyOptions } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-add-education',
@@ -19,6 +20,19 @@ export class AddEducationComponent implements OnInit {
   private mode = 'create';
   education: Education;
 
+  optionsSelect: Array<any>;
+  optionsSelect2: Array<any>;
+
+  public myDatePickerOptions: IMyOptions = {
+    // Your options
+    };
+
+
+public myDatePickerOptions2: IMyOptions = {
+    // Your options
+    };
+
+
   constructor(private createDataService: CreateDataService,
     private readDataService: ReadDataService,
     private updateDataService: UpdateDataService,
@@ -26,6 +40,23 @@ export class AddEducationComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+
+    this.optionsSelect = [
+      { value: 'bootCamp', label: 'Boot Camp' },
+      { value: 'onlineBootCamp', label: 'Online Boot Camp' },
+      { value: 'university', label: 'University' },
+      { value: 'techCollege', label: 'Technical College' },
+      { value: 'other', label: 'Other' },
+      ];
+
+      this.optionsSelect2 = [
+        { value: 'bachelors', label: 'Bachelors' },
+        { value: 'masters', label: 'Master' },
+        { value: 'doctrinate', label: 'PHD' },
+        { value: 'certificate', label: 'Certificate' },
+        { value: 'other', label: 'Other' },
+
+        ];
 
 
     this.form = new FormGroup({
