@@ -9,7 +9,7 @@ import {Profile} from '../../models/profile';
 })
 export class DeveloperProfileComponent implements OnInit {
 
-  profile: Profile;
+  profile: any;
 
   constructor(
     private readDataService: ReadDataService
@@ -26,3 +26,5 @@ export class DeveloperProfileComponent implements OnInit {
   }
 
 }
+
+//  this is another one and I need to save it one more time

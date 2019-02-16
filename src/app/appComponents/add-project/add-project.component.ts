@@ -19,6 +19,10 @@ export class AddProjectComponent implements OnInit {
   private  projectId;
   private mode = 'create';
   project: Project;
+  optionsSelect: Array<any>;
+  optionsSelect2: Array<any>;
+  optionsSelect3: Array<any>;
+  optionsSelect4: Array<any>;
 
   constructor(private createDataService: CreateDataService,
     private readDataService: ReadDataService,
@@ -27,6 +31,39 @@ export class AddProjectComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+
+    this.optionsSelect = [
+      { value: 'angular', label: 'Angular' },
+      { value: 'react', label: 'React' },
+      { value: 'vue', label: 'vue' },
+      { value: 'bootstrap', label: 'Bootstrap' },
+      { value: 'other', label: 'Other' },
+      ];
+
+      this.optionsSelect2 = [
+        { value: 'php', label: 'PHP' },
+        { value: 'nodeJS', label: 'Node JS' },
+        { value: 'java', label: 'Java' },
+        { value: 'python', label: 'Python' },
+        { value: '.Net', label: '.Net' },
+        { value: 'C#', label: 'C#' },
+        { value: 'other', label: 'Other' },
+
+        ];
+        this.optionsSelect3 = [
+          { value: 'sql', label: 'SQL' },
+          { value: 'NOSQL', label: 'NOSQL' },
+          { value: 'firebase', label: 'Firebase' },
+          { value: 'other', label: 'Other' },
+          ];
+
+          this.optionsSelect4 = [
+            { value: 'HMTL', label: 'HTML' },
+            { value: 'CSS', label: 'CSS' },
+            { value: 'Bootstrap', label: 'Bootstrap' },
+            ];
+
+
     this.form = new FormGroup({
       name: new FormControl(null, {validators: [Validators.required]}),
       description: new FormControl(null, {validators: [Validators.required]}),

@@ -44,9 +44,10 @@
 
                 <div class="md-form">
 
-                  <input type="text" id="form2" class="form-control" mdbInputDirective formControlName='type'>
-                  <label for="form2">Type</label>
+                  <input type="text" id="form3" class="form-control" mdbInputDirective formControlName='type'>
+                  <label for="form3">Type</label>
                 </div>
+
 
                 <div class="md-form">
 
@@ -54,11 +55,13 @@
                   <label for="form3">Description</label>
                 </div>
 
-                <div class="md-form">
-
-                  <input type="text" id="form4" class="form-control" mdbInputDirective formControlName='years'>
-                  <label for="form4">Years</label>
+                <div class="row mt-3">
+                  <div class="col-md-12">
+                    <mdb-select [options]="optionsSelect" placeholder="Total Years Experience" formControlName='years'></mdb-select>
+                  </div>
                 </div>
+
+
 
 
                 <div class="text-center mt-3">

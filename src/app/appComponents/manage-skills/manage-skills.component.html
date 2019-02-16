@@ -2,26 +2,23 @@
 
 
 <div class='container'>
-
-    <h1 class='text-center mt-5'>Manage Skills</h1>
-
-
-
+    <h1 class='text-center mt-3 mb-3 elegant-color text-white p-3'>My Skills</h1>
     <ul class='list-group' *ngFor='let skill of skills; let i = index '>
         <li class='list-group-item mt-3 mb-3' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex">
           <div class='card'>
-            <div class='card-header'>{{skill.name}}</div>
+            <div class='card-header '></div>
             <div class='card-body'>
+              <h1 class='text-center font-weight-bold'>{{skill.name}}</h1>
               <div class='row'>
                 <div class='col-6'>
                 <div>
-                  <h5>Skill Type</h5>
+                  <h5 class='font-weight-bold  p-1'>Skill Type</h5>
                   <p>{{skill.type}}</p>
                 </div>
               </div>
               <div class='col-6'>
                 <div>
-                  <h5>Years</h5>
+                  <h5 class='font-weight-bold  p-1'>Years</h5>
                   <p>{{skill.years}}</p>
                 </div>
               </div>
@@ -32,14 +29,15 @@
               </div>
 
                 <div>
-                  <h5>Additional Notes</h5>
+                  <h5 class='font-weight-bold  p-1'>Additional Notes</h5>
                   <p>{{skill.description}}</p>
                 </div>
                 <div class='mt-2'>
                   <a class='btn btn-success' [routerLink]="['/editSkill', skill._id]">Edit</a>
                   <button class='btn btn-danger' (click)='onDelete(skill._id)'>Delete</button>
               </div>
-          </div>
+            </div>
+          <div class='card-footer elegant-color text-center text-white'>Skills</div>
           </div>
         </li>
     </ul>
@@ -66,7 +64,7 @@
 
       <!--Numbers-->
       <li #pages *ngFor="let page of paginators | slice:firstVisiblePaginator:lastVisiblePaginator; let i = index" class="page-item" [ngClass]="{active: i + firstVisiblePaginator + 1 == activePage}">
-          <a class="page-link waves-lightfont-weight-bold " (click)="changePage($event)" mdbWavesEffect>{{page}}</a>
+          <a class="page-link waves-light font-weight-bold " (click)="changePage($event)" mdbWavesEffect>{{page}}</a>
       </li>
 
 

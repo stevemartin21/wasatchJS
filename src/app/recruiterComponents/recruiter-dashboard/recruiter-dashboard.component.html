@@ -3,7 +3,7 @@
 
 
     <div class='row'>
-        <div class='col-6'>
+        <div class='col-3'>
             <div class='card elegant-color text-white'>
                 <div class='card-header text-center'>
                   See Candidates
@@ -16,7 +16,7 @@
               </div>
         </div>
 
-        <div class='col-6'>
+        <div class='col-3'>
             <div class='card primary-color text-white'>
                 <div class='card-header text-center'>
                   Add Jobs
@@ -28,12 +28,12 @@
                 </div>
               </div>
         </div>
-      </div>
+      
 
 
-      <div class='row mt-5'>
+      
 
-        <div class='col-6'>
+        <div class='col-3'>
             <div class='card stylish-color text-white'>
                 <div class='card-header text-center'>
                   Add Career Booster
@@ -45,7 +45,7 @@
                 </div>
               </div>
         </div>
-        <div class='col-6'>
+        <div class='col-3'>
             <div class='card default-color text-white'>
                 <div class='card-header text-center'>
                   See Profile
@@ -57,6 +57,41 @@
                 </div>
               </div>
         </div>
+      </div>
+     
+
+      <div class='row'>
+
+          <div class='col-6'>
+
+              <div style="display: block">
+                  <canvas mdbChart
+                      [chartType]="chartType"
+                      [datasets]="chartDatasets"
+                      [labels]="chartLabels"
+                      [colors]="chartColors"
+                      [options]="chartOptions"
+                      [legend]="true"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)">
+                  </canvas>
+                </div>
+
+          </div>
+
+          <div class='col-6'>
+              <h3 class='text-center mb-3 mt-3'>My Portfolio</h3>
+              <div class='card'>
+                <div class='card-body default-color text-white'>
+                  <span class='text-left'>Jobs</span><span class='float-right'>{{recruiter.jobs.length}} </span>
+                </div>
+              </div>
+              <div class='card'>
+                  <div class='card-body info-color text-white'>
+                    <span class='text-left'>Boosters</span><span class='float-right'>{{recruiter.boosters.length}} </span>
+                  </div>
+                </div>
+            </div>
       </div>
 
       <h1 class='text-center mt-5 mb-5'>My Current Jobs</h1>

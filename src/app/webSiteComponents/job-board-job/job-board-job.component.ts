@@ -1,48 +1,29 @@
-import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
-import { ReadDataService } from '../../services/read-data.service';
-import {Subscription } from 'rxjs';
-import { Recruiter } from '../../models/recruiter';
-import { DeleteDataService } from '../../services/delete-data.service';
-import {CreateDataService} from '../../services/create-data.service';
+import { Component, OnInit, Input, ViewChildren, QueryList, ElementRef } from '@angular/core';
+
 
 @Component({
-  selector: 'app-manage-boosters',
-  templateUrl: './manage-boosters.component.html',
-  styleUrls: ['./manage-boosters.component.scss']
+  selector: 'app-job-board-job',
+  templateUrl: './job-board-job.component.html',
+  styleUrls: ['./job-board-job.component.scss']
 })
-export class ManageBoostersComponent implements OnInit {
-
-  recruiter: any;
-  boostersSub: Subscription;
-  isAuth: Boolean = false;
+export class JobBoardJobComponent implements OnInit {
+  @Input() public jobs: [];
 
   @ViewChildren('pages') pages: QueryList<any>;
-  itemsPerPage = 3;
-  numberOfVisiblePaginators = 10;
-  numberOfPaginators: number;
-  paginators: Array<any> = [];
-  activePage = 1;
-  firstVisibleIndex = 0;
-  lastVisibleIndex: number = this.itemsPerPage - 1 ;
-  firstVisiblePaginator = 0;
-  lastVisiblePaginator = this.numberOfVisiblePaginators;
+itemsPerPage = 1;
+numberOfVisiblePaginators = 10;
+numberOfPaginators: number;
+paginators: Array<any> = [];
+activePage = 1;
+firstVisibleIndex = 0;
+lastVisibleIndex: number = this.itemsPerPage - 1 ;
+firstVisiblePaginator = 0;
+lastVisiblePaginator = this.numberOfVisiblePaginators;
 
-  constructor(private readDataService: ReadDataService,
-    private deleteDataService: DeleteDataService,
-    private createDataService: CreateDataService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.readDataService.getRecruiter()
-    .subscribe(recruiter => {
-      console.log(recruiter);
-      this.recruiter = recruiter[0].boosters;
-      this.isAuth = true;
-      this.addPaginators();
-    });
-  }
-
-  onDelete(id: string) {
-    this.deleteDataService.deleteBooster(id);
+    this.addPaginators();
   }
 
   changePage(event: any) {
@@ -108,15 +89,17 @@ export class ManageBoostersComponent implements OnInit {
   }
 
   addPaginators() {
-    if (this.recruiter.length % this.itemsPerPage === 0) {
-      this.numberOfPaginators = Math.floor(this.recruiter.length / this.itemsPerPage);
+    if (this.jobs.length % this.itemsPerPage === 0) {
+      this.numberOfPaginators = Math.floor(this.jobs.length / this.itemsPerPage);
     } else {
-      this.numberOfPaginators = Math.floor(this.recruiter.length / this.itemsPerPage + 1);
+      this.numberOfPaginators = Math.floor(this.jobs.length / this.itemsPerPage + 1);
     }
 
     for (let i = 1; i <= this.numberOfPaginators; i++) {
       this.paginators.push(i);
     }
   }
+
+  //  a new image needed need to save again
 
 }

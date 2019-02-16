@@ -1,32 +1,42 @@
 
 
 <div class='container'>
-
-        <h1 class='text-center mt-5'>Manage Experience</h1>
-
-
+    <h1 class='text-center mt-3 mb-3 elegant-color text-white p-3'>My Experience</h1>
 
         <ul class='list-group' *ngFor='let experience of experiences let i = index '>
-            <li class='list-group-item mt-3 mb-3' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex">
+            <li class='list-group-item mb-3 ' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex">
               <div class='card'>
-                <div class='card-header'>{{experience.employer}}</div>
+                <div class='card-header '></div>
                 <div class='card-body'>
+                  <h1 class='text-center font-weight-bold'>{{experience.employer}}</h1>
+                  <div class='row'>
+                      <div class='col-6'>
+                          <h3 class='text-center font-weight-bold  p-1'>Experience Type</h3>
+                          <p>{{experience.experienceType}}</p>
+                      </div>
+
+                      <div class='col-6'>
+                          <h3 class='text-center font-weight-bold  p-1'>Company Type</h3>
+                          <p>{{experience.companyType}}</p>
+                        </div>
+
+                  </div>
                   <div class='row'>
                     <div class='col-4'>
                     <div>
-                      <h5>Job Title</h5>
+                      <h3 class='text-center font-weight-bold  p-1'>Job Title</h3>
                       <p>{{experience.jobTitle}}</p>
                     </div>
                   </div>
                   <div class='col-4'>
                     <div>
-                      <h5>Degree</h5>
+                      <h3 class='text-center font-weight-bold  p-1'>Degree</h3>
                       <p>{{experience.from}}</p>
                     </div>
                   </div>
                 <div class='col-4'>
                     <div>
-                      <h5>Degree Type</h5>
+                      <h5 class='text-center font-weight-bold p-1'>Degree Type</h5>
                       <p>{{experience.to}}</p>
                   </div>
                 </div>
@@ -36,7 +46,7 @@
                   </div>
 
                     <div>
-                      <h5>Additional Notes</h5>
+                      <h5 class='text-center font-weight-bold p-1'>Additional Notes</h5>
                       <p>{{experience.description}}</p>
                     </div>
                     <div class='mt-2'>
@@ -44,6 +54,7 @@
                       <button class='btn btn-danger' (click)='onDelete(experience._id)'>Delete</button>
                   </div>
               </div>
+              <div class='card-footer elegant-color text-white text-center'>Experience</div>
               </div>
             </li>
         </ul>

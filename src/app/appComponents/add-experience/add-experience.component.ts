@@ -62,6 +62,9 @@ public myDatePickerOptions2: IMyOptions = {
       from: new FormControl(null, {validators: [Validators.required]}),
       to: new FormControl(null, {validators: [Validators.required]}),
       description: new FormControl(null, {validators: [Validators.required]}),
+    experienceType: new FormControl(null, {validators: [Validators.required]}),
+    companyType: new FormControl(null, {validators: [Validators.required]}),
+
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -80,7 +83,9 @@ public myDatePickerOptions2: IMyOptions = {
             jobTitle: this.experience.jobTitle,
             from: this.experience.from,
             to: this.experience.to,
-            description: this.experience.description
+            description: this.experience.description,
+            experienceType: this.experience.experienceType,
+            companyType: this.experience.companyType
           });
         });
 
@@ -106,7 +111,9 @@ public myDatePickerOptions2: IMyOptions = {
         this.form.value.jobTitle,
         this.form.value.from,
         this.form.value.to,
-        this.form.value.description
+        this.form.value.description,
+        this.form.value.experienceType,
+        this.form.value.companyType
       );
     } else {
       this.updateDataService.updateExperience(
@@ -115,7 +122,9 @@ public myDatePickerOptions2: IMyOptions = {
         this.form.value.jobTitle,
         this.form.value.from,
         this.form.value.to,
-        this.form.value.description
+        this.form.value.description,
+        this.form.value.experienceType,
+        this.form.value.companyType
       );
     }
 

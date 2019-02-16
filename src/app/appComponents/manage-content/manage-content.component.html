@@ -2,51 +2,68 @@
 
 
 <div class='container'>
-
-    <h1 class='text-center mt-5'>Manage Content</h1>
-
-
-
-    <ul class='list-group' *ngFor='let project of contents; let i = index'>
-        <li class='list-group-item mt-3 mb-3' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex">
+    <h1 class='text-center mt-3 mb-3 elegant-color text-white p-3'>My Content</h1>
+    <ul class='list-group' *ngFor='let content of contents; let i = index'>
+        <li class='list-group-item  mb-3 ' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex">
           <div class='card'>
-            <div class='card-header'>{{project.title}}</div>
+            <!--<div class='card-header elegant-color text-white p-3'></div>  -->
             <div class='card-body'>
               <div class='row'>
                 <div class='col-6'>
                 <div>
-                  <h5>project Description</h5>
-                  <p>{{project.description}}</p>
+                  <h2 class='font-weight-bold  text-center p-1 mb-2' > Title</h2>
+                  <p>{{content.title}}</p>
                 </div>
               </div>
               <div class='col-6'>
                 <div>
-                  <h5>Project Skills</h5>
-                  <p>{{project.topic}}</p>
+                  <h2 class='font-weight-bold  text-center p-1 mb-2'>Topic</h2>
+                  <p>{{content.topic}}</p>
                 </div>
               </div>
-
-
-
                 <!-- end of row-->
               </div>
 
+              <div class='row'>
+                  <div class='col-6'>
+                  <div>
+                    <h2 class='font-weight-bold  text-center p-1 mb-2'>Type</h2>
+                    <p>{{content.type}}</p>
+                  </div>
+                </div>
+                <div class='col-6'>
+                  <div>
+                    <h2 class='font-weight-bold  text-center p-1 mb-2'>Link</h2>
+                    <p>{{content.link}}</p>
+                  </div>
+                </div>
+                  <!-- end of row-->
+                </div>
 
 
 
 
 
-                <div>
-                    <h5>Link</h5>
-                    <p>{{project.link}}</p>
+
+                <div >
+                    <h2 class='font-weight-bold  text-center p-1 mb-2'>Description</h2><br>
+                    <p>{{content.description}}</p>
                   </div>
 
 
-                <div class='mt-2' *ngIf='isAuth'>
-                  <a class='btn btn-success' [routerLink]="['/editContent', project._id]" >Edit</a>
-                  <button class='btn btn-danger' (click)='onDelete(project._id)'>Delete</button>
+                <div class='mt-2 mx-auto' *ngIf='isAuth'>
+                <div class='row'>
+                  <div class='col-6'>
+                      <a class='btn btn-success mx-auto btn-block' [routerLink]="['/editContent', content._id]" >Edit</a>
+                </div>
+                <div class='col-6'>
+                  <button class='btn btn-danger mx-auto btn-block' (click)='onDelete(content._id)'>Delete</button>
+                </div>
               </div>
+              </div>
+
           </div>
+          <div class='card-footer elegant-color text-white text-center'>Content</div>
           </div>
         </li>
     </ul>
@@ -55,7 +72,7 @@
     <div class="d-flex justify-content-center ">
 
       <!--Pagination -->
-      <nav class="my-4 pt-2">
+      <nav class="my-4 ">
         <ul class="pagination pagination-circle pg-elegant-color mb-0">
 
           <!--First-->

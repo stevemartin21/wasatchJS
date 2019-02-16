@@ -18,6 +18,8 @@ export class AddSkillComponent implements OnInit {
   private  skillId;
   private mode = 'create';
   skill: Skill;
+  optionsSelect: Array<any>;
+  optionsSelect2: Array<any>;
 
   constructor(private createDataService: CreateDataService,
     private readDataService: ReadDataService,
@@ -26,6 +28,28 @@ export class AddSkillComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+
+    this.optionsSelect = [
+      { value: '6 Months or Less', label: '6 Months or Less' },
+      { value: '1 ', label: '1' },
+      { value: '2', label: '2' },
+      { value: '3', label: '3' },
+      { value: '4', label: '4' },
+      { value: '5 or more', label: '5 or more' },
+      { value: 'other', label: 'Other' },
+      ];
+
+      this.optionsSelect2 = [
+        { value: 'php', label: 'PHP' },
+        { value: 'nodeJS', label: 'Node JS' },
+        { value: 'java', label: 'Java' },
+        { value: 'python', label: 'Python' },
+        { value: '.Net', label: '.Net' },
+        { value: 'C#', label: 'C#' },
+        { value: 'other', label: 'Other' },
+
+        ];
+
     this.form = new FormGroup({
       name: new FormControl(null, {validators: [Validators.required]}),
       type: new FormControl(null, {validators: [Validators.required]}),

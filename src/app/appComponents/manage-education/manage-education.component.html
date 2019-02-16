@@ -2,31 +2,30 @@
 
 <div class='container'>
 
-<h1 class='text-center mt-5'>Manage Education</h1>
-
-
+    <h1 class='text-center mt-3 mb-3 elegant-color text-white p-3'>My Education</h1>
 
 <ul class='list-group' *ngFor='let education of educations let i = index'>
-    <li class='list-group-item mt-3 mb-3' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex">
+    <li class='list-group-item mt-1 mb-3 ' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex">
       <div class='card'>
-        <div class='card-header'>{{education.schoolName}}</div>
+        <div class='card-header '></div>
         <div class='card-body'>
+            <h1 class='text-center font-weight-bold mb-2'>{{education.schoolName}}</h1>
           <div class='row'>
             <div class='col-4'>
             <div>
-              <h5>School Type</h5>
+              <h3 class='font-weight-bold  p-1 text-center '>School Type</h3>
               <p>{{education.schoolType}}</p>
             </div>
           </div>
           <div class='col-4'>
             <div>
-              <h5>Degree</h5>
+              <h3 class='font-weight-bold  p-1 text-center ' >Degree</h3>
               <p>{{education.degree}}</p>
             </div>
           </div>
         <div class='col-4'>
             <div>
-              <h5>Degree Type</h5>
+              <h3 class='font-weight-bold  p-1 text-center '>Degree Type</h3>
               <p>{{education.degreeType}}</p>
           </div>
         </div>
@@ -37,19 +36,19 @@
           <div class='row'>
             <div class='col-6'>
             <div>
-              <h5>From</h5>
+              <h3 class='font-weight-bold  p-1 text-center '>From</h3>
               <p>{{education.from}}</p>
             </div>
           </div>
           <div class='col-6'>
             <div>
-              <h5>To</h5>
+              <h3 class='font-weight-bold p-1 text-center '>To</h3>
               <p>{{education.to}}</p>
             </div>
           </div>
           </div>
             <div>
-              <h5>Additional Notes</h5>
+              <h3 class='font-weight-bold  p-1 text-center  '>Additional Notes</h3>
               <p>{{education.notes}}</p>
             </div>
             <div class='mt-2'>
@@ -57,6 +56,7 @@
               <button class='btn btn-danger' (click)='onDelete(education._id)'>Delete</button>
           </div>
       </div>
+      <div class='card-footer elegant-color text-center text-white'>Education</div>
       </div>
     </li>
 </ul>

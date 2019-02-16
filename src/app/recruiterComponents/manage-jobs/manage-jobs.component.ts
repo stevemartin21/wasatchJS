@@ -19,7 +19,7 @@ export class ManageJobsComponent implements OnInit {
   isAuth: Boolean = false;
 
   @ViewChildren('pages') pages: QueryList<any>;
-  itemsPerPage = 1;
+  itemsPerPage = 3;
   numberOfVisiblePaginators = 10;
   numberOfPaginators: number;
   paginators: Array<any> = [];

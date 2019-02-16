@@ -2,27 +2,25 @@
 
 
 <div class='container'>
+    <h1 class='text-center mt-3 mb-3 elegant-color text-white p-3'>My Solutions</h1>
 
-    <h1 class='text-center mt-5'>Manage Solutions</h1>
-
-
-
-    <ul class='list-group' *ngFor='let project of problems let i = index'>
-        <li class='list-group-item mt-3 mb-3' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex">
+    <ul class='list-group' *ngFor='let problem of problems let i = index'>
+        <li class='list-group-item mt-3 mb-3 problemCard' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex">
           <div class='card'>
-            <div class='card-header'>{{project.title}}</div>
+            <div class='card-header '></div>
             <div class='card-body'>
+              <h1 class='text-center'>{{problem.title}}</h1>
               <div class='row'>
                 <div class='col-6'>
                 <div>
-                  <h5>Problem Description</h5>
-                  <p>{{project.description}}</p>
+                  <h3 class='font-weight-bold text-center  p-1'>Problem Description</h3>
+                  <p>{{problem.description}}</p>
                 </div>
               </div>
               <div class='col-6'>
                 <div>
-                  <h5>Problem Solution Steps</h5>
-                  <p>{{project.steps}}</p>
+                  <h3 class='font-weight-bold text-center  p-1'>Problem Solution Steps</h3>
+                  <p>{{problem.steps}}</p>
                 </div>
               </div>
 
@@ -37,16 +35,17 @@
 
 
                 <div>
-                    <h5>Applied Learning</h5>
-                    <p>{{project.appliedLearning}}</p>
+                    <h3 class='font-weight-bold text-center  p-1'>Applied Learning</h3>
+                    <p>{{problem.appliedLearning}}</p>
                   </div>
 
 
                 <div class='mt-2'>
-                  <a class='btn btn-success' [routerLink]="['/editProblem', project._id]" >Edit</a>
-                  <button class='btn btn-danger' (click)='onDelete(project._id)'>Delete</button>
+                  <a class='btn btn-success' [routerLink]="['/editProblem', problem._id]" >Edit</a>
+                  <button class='btn btn-danger' (click)='onDelete(problem._id)'>Delete</button>
               </div>
           </div>
+          <div class='card-footer elegant-color text-white text-center'>Solutions</div>
           </div>
         </li>
     </ul>

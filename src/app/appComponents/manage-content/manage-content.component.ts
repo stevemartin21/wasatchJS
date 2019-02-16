@@ -38,6 +38,7 @@ export class ManageContentComponent implements OnInit {
     this.readDataService.getProfileInfo()
       .subscribe(contents => {
         this.contents = contents.content;
+        console.log(this.contents);
         this.isAuth = true;
         this.addPaginators();
       });

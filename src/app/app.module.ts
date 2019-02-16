@@ -59,6 +59,7 @@ import { DeveloperStatsComponent } from './appComponents/developer-stats/develop
 import { MyProfileComponent } from './appComponents/my-profile/my-profile.component';
 import { MyRecruiterProfileComponent } from './recruiterComponents/my-recruiter-profile/my-recruiter-profile.component';
 import { DeveloperProfileComponent } from './appComponents/developer-profile/developer-profile.component';
+import { JobBoardJobComponent } from './webSiteComponents/job-board-job/job-board-job.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { DeveloperProfileComponent } from './appComponents/developer-profile/dev
     DeveloperStatsComponent,
     MyProfileComponent,
     MyRecruiterProfileComponent,
-    DeveloperProfileComponent
+    DeveloperProfileComponent,
+    JobBoardJobComponent
   ],
   imports: [
     BrowserModule,

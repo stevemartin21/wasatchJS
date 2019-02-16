@@ -1,38 +1,22 @@
-<div class='container mt-1 mb-1'>
-
-    <ul class='list-group' *ngFor='let recruiter of recruiters let i = index'  >
-
-      <li class='list-group-item' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex" >
+<ul class='list-group' *ngFor='let job of jobs let i = index ' >
 
 
-      <div class='card recruiterJobCard' >
 
-        <div class='card-header text-center elegant-color text-white'>Offered by: {{recruiter.fname}} {{recruiter.lname}}</div>
+    <div class='mt-1 mb-1' *ngIf=" i  >= firstVisibleIndex && i <= lastVisibleIndex" >
+      <li class='list-group-item'>{{job.employer}}</li>
+      <li class='list-group-item'>{{job.jobTitle}}</li>
+      <li class='list-group-item'>{{job.contract}}</li>
+      <li class='list-group-item'>{{job.compensation}}</li>
+      <li class='list-group-item'>{{job.description}}</li>
+    </div>
 
-        <div class='card-body'>
+  </ul>
 
-          <div class='row'>
-
-            <div class='col-10'>
-              <app-job-board-job [jobs]=recruiter.jobs></app-job-board-job>
-
-
-        </div>
-
-        </div>
-        </div>
-        <div class='card-footer text-center elegant-color text-white'>Job Offering</div>
-      </div>
-
-      </li>
-
-      </ul>
-
-        <!--Bottom Table UI-->
+      <!--Bottom Table UI-->
    <div class="d-flex justify-content-center ">
 
       <!--Pagination -->
-      <nav class="my-4 mx-auto">
+      <nav class="my-4">
         <ul class="pagination pagination-circle pg-elegant-color mb-0">
 
           <!--First-->
@@ -75,8 +59,4 @@
     </div>
     <!--Bottom Table UI-->
 
-
-
-
-  </div>
 

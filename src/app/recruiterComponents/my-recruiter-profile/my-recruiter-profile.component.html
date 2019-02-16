@@ -1,21 +1,155 @@
+<div class='container  mb-5'>
+
+    <ul class='list-group' >
+<li class='list-group-item  playingCard elegant-color'  >
+<mdb-flipping-card #cards>
+    <!--Front Side-->
+    <div class="face front tp-box_side tp-box_front">
+
+      <!-- Image-->
+      <div class='picContainer elegant-color'>
+      <div class="myProfilePic">
+        <img [src]="recruiter.imagePath" class="myPic   ">
+      </div>
+    </div>
+      <!--Avatar-->
+
+      <!--Content -->
+      <div class="card-body">
+        <h3 class='text-center  font-weight-bold mb-0 ' > {{recruiter.fname}} {{recruiter.lname}}</h3>
+        <h5 class='text-center mt-2 mb-2 font-weight-bold mb-0 ' >  {{recruiter.position}}</h5>
+        <div class='row mt-2'>
+            <div class='col-8'>
+
+            <p class=' text-left mb-0 '> {{recruiter.email}}</p>
+            <p class=' text-left  mb-0 '>{{recruiter.phone}}</p>
+            <p class=' text-left mb-0 '>{{recruiter.company}}</p>
+          </div>
+          <div class='col-4'>
+
+              <mdb-badge primary="true" >Current Jobs  {{recruiter.jobs.length}}</mdb-badge>
+              <mdb-badge success="true" >Boosters {{recruiter.boosters.length}}</mdb-badge>
+              <mdb-badge warning="true" >Jobs Placed 15</mdb-badge>
+              <a  data-card="card-1" (click)="cards.toggle()">
+                  <mdb-badge default="true" class="mt-2 " > Rotate to Back</mdb-badge>
+              </a>
+          </div>
+          </div>
+      <div>
+
+        <!--Triggering button-->
+
+      </div>
+      </div>
+    </div>
+
+    <!--/.Front Side-->
+
+    <!--Back Side-->
+    <div class="back tp-box_side tp-box_back">
+        <h4 class='text-center font-weight-bold'>Recruiter Details</h4>
+      <!--Content-->
+      <hr>
+
+      <p class=' text-left mb-0  '><span class='font-weight-bold mr-3'>Headline:</span> {{recruiter.headline}}</p>
+      <hr>
+              <p class=' text-left mb-0 '><span class='font-weight-bold mr-3'>Specialty: </span> {{recruiter.specialty}}</p>
+        <hr>
+              <p class=' text-left mb-0 ' ><span class='font-weight-bold'>Progamming Philosophy:</span> {{recruiter.philosophy}}</p>
+              <hr>
+              <p class=' text-left mb-0 ' ><span class='font-weight-bold'>Career Highlight:</span> {{recruiter.highlight}}</p>
+              <hr>
+              <p class=' text-left mb-0 '><span class='font-weight-bold'>Unique Selling Proposition:</span> {{recruiter.usp}}</p>
+      <!--Social Icons-->
+
+      <!--Triggering button-->
+      <a class="rotate-btn" data-card="card-2" (click)="cards.toggle()">
+        <i class="fa fa-undo"></i> Click here to rotate back</a>
+
+    </div>
+    <!--/.Back Side-->
+  </mdb-flipping-card>
+  <div class='row'>
+      <div class='col-6'>
+          <div class='btn btn-success btn-block' [routerLink]="['/editRecruiterProfile', recruiter._id]">Edit</div>
+      </div>
+
+      <div class='col-6'>
+          <div class='btn btn-danger btn-block' (click)="onDelete(recruiter._id)">Delete</div>
+
+        </div>
+
+  </div>
+</li>
+
+</ul>
+
+
+
+</div>
+
+<!--
+<ul class="list-inline">
+        <li class="list-inline-item">
+          <a class="icons-sm fb-ic">
+            <i class="fa fa-facebook"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="icons-sm tw-ic">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="icons-sm gplus-ic">
+            <i class="fa fa-google-plus"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="icons-sm li-ic">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </li>
+      </ul>
 <div class='container mt-5 mb-5'>
+
+  <ul class='list-group' *ngFor='let recruiter of recruiters'>
+
+    <li class='list-group-item'>
 
     <div class='card'>
 
-        <div class='card-header'>{{recruiter.fname}} {{recruiter.lname}} <img class='myPic z-depth-1 rounded-circle' [src]="recruiter.imagePath"></div>
+      <div class='card-header'>{{recruiter.fname}} {{recruiter.lname}}</div>
+
+      <div class='card-body'>
+
+        <div class='row'>
+
+          <div class='col-10'>
 
         <ul class='list-group'>
+
             <li class='list-group-item'>{{recruiter.email}}</li>
             <li class='list-group-item'>{{recruiter.phone}}</li>
-            <li class='list-group-item'>{{recruiter.company}}</li>
             <li class='list-group-item'>{{recruiter.webSite}}</li>
+            <li class='list-group-item'>{{recruiter.company}}</li>
             <li class='list-group-item'><img class='myPic z-depth-1 rounded-circle' [src]="recruiter.imagePath"></li>
-            <button class='btn btn-success' [routerLink]="['/editRecruiterProfile', recruiter._id]">Edit</button>
-          <button class='btn btn-danger' (click)="onDelete(recruiter._id)">Delete</button>
         </ul>
-        <div class='card-footer'>My Profile</div>
+      </div>
+      <div class='col-2'>
+        <h5><mdb-badge  default="true" class="mr-2" >Jobs  {{recruiter.jobs.length}}</mdb-badge></h5>
+        <h5><mdb-badge  primary="true" class="mr-2">Boosters {{recruiter.boosters.length}}</mdb-badge></h5>
+
+      </div>
+      </div>
+      </div>
     </div>
+    <a class='btn btn-default' [routerLink]="['/publicRecruiter', recruiter._id]" >See More detals</a>
+    </li>
+
+    </ul>
+
 </div>
 
 
-
+-->

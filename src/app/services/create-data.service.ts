@@ -44,6 +44,7 @@ export class CreateDataService {
 
   getUserIdCheck() {
     console.log('User Id check was called');
+    console.log(this.userIdCheck)
     return this.userIdCheck.asObservable();
   }
 
@@ -240,7 +241,7 @@ export class CreateDataService {
         description: description,
         experienceType: experienceType,
         companyType: companyType
-        
+
     };
 
     this.http.post('http://localhost:3000/create/newExperience', newExperience)
