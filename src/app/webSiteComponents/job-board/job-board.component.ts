@@ -31,6 +31,7 @@ export class JobBoardComponent implements OnInit {
     this.readDataService.getRecruiters().subscribe(recruiters => {
       console.log(recruiters);
       this.recruiters = recruiters;
+      // need to assave again // again
       this.addPaginators();
     });
   }

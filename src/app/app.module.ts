@@ -60,6 +60,13 @@ import { MyProfileComponent } from './appComponents/my-profile/my-profile.compon
 import { MyRecruiterProfileComponent } from './recruiterComponents/my-recruiter-profile/my-recruiter-profile.component';
 import { DeveloperProfileComponent } from './appComponents/developer-profile/developer-profile.component';
 import { JobBoardJobComponent } from './webSiteComponents/job-board-job/job-board-job.component';
+import { DeveloperEducationComponent } from './webSiteComponents/developer-education/developer-education.component';
+import { DeveloperExperienceComponent } from './webSiteComponents/developer-experience/developer-experience.component';
+import { DeveloperSkillsComponent } from './webSiteComponents/developer-skills/developer-skills.component';
+import { DeveloperProjectsComponent } from './webSiteComponents/developer-projects/developer-projects.component';
+import { DeveloperSolutionsComponent } from './webSiteComponents/developer-solutions/developer-solutions.component';
+import { RecruiterBoostersComponent } from './webSiteComponents/recruiter-boosters/recruiter-boosters.component';
+import { RecruiterJobsComponent } from './webSiteComponents/recruiter-jobs/recruiter-jobs.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +116,14 @@ import { JobBoardJobComponent } from './webSiteComponents/job-board-job/job-boar
     MyProfileComponent,
     MyRecruiterProfileComponent,
     DeveloperProfileComponent,
-    JobBoardJobComponent
+    JobBoardJobComponent,
+    DeveloperEducationComponent,
+    DeveloperExperienceComponent,
+    DeveloperSkillsComponent,
+    DeveloperProjectsComponent,
+    DeveloperSolutionsComponent,
+    RecruiterBoostersComponent,
+    RecruiterJobsComponent
   ],
   imports: [
     BrowserModule,
