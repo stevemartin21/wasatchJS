@@ -14,7 +14,7 @@
           <img [src]="recruiter.imagePath" class="myPic   ">
         </div>
       </div>
-        <!--Avatar-->
+        <!--Avatar another one one -->
 
         <!--Content -->
         <div class="card-body">
@@ -95,7 +95,7 @@
             </a>
           </li>
 
-          <!--Numbers-->
+          <!--Numbers this should work-->
           <li #pages *ngFor="let page of paginators | slice:firstVisiblePaginator:lastVisiblePaginator; let i = index" class="page-item" [ngClass]="{active: i + firstVisiblePaginator + 1 == activePage}">
               <a class="page-link waves-lightfont-weight-bold " (click)="changePage($event)" mdbWavesEffect>{{page}}</a>
           </li>

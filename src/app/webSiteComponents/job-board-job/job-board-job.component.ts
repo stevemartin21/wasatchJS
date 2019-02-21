@@ -101,5 +101,7 @@ lastVisiblePaginator = this.numberOfVisiblePaginators;
   }
 
   //  a new image needed need to save again
+  // there is a new way to do it
+  // one more test and a test
 
 }
